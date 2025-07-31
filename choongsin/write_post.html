@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글쓰기 - 충신동 재개발 통합 추진위원회</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* 이 페이지에만 적용될 추가 CSS */
+        .sub-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        .sub-container h2 {
+            font-size: 2.2em;
+            color: #4CAF50;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px solid #81C784;
+            padding-bottom: 15px;
+        }
+        .post-form label {
+            display: block;
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 8px;
+            margin-top: 15px;
+        }
+        .post-form input[type="text"],
+        .post-form textarea {
+            width: calc(100% - 24px); /* 좌우 패딩 고려 */
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
+        }
+        .post-form textarea {
+            min-height: 250px;
+            resize: vertical; /* 세로 크기 조절 가능 */
+        }
+        .form-actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .form-actions button {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 0 10px;
+        }
+        .form-actions .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .form-actions .submit-btn:hover {
+            background-color: #66BB6A;
+        }
+        .form-actions .cancel-btn {
+            background-color: #ccc;
+            color: #333;
+        }
+        .form-actions .cancel-btn:hover {
+            background-color: #bbb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>충신동 재개발 통합 추진위원회</h1>
+                    <p><a href="index.html" style="color: white; text-decoration: none;">메인 페이지로 돌아가기</a></p>
+                </div>
+            </div>
+        </header>
+        <nav class="nav">
+            <div class="nav-content">
+                <a href="index.html#home" class="nav-item">홈</a>
+                <a href="project_overview.html" class="nav-item">사업개요</a>
+                <a href="notice_board.html" class="nav-item">공지·자료실</a>
+                <a href="community_board.html" class="nav-item active">커뮤니티</a>
+                <a href="transparency_center.html" class="nav-item">투명성센터</a>
+                <a href="index.html#contact" class="nav-item">문의하기</a>
+            </div>
+        </nav>
+
+        <main class="main">
+            <div class="sub-container">
+                <h2>✍️ 새 글 작성</h2>
+
+                <form class="post-form">
+                    <label for="post-title">제목:</label>
+                    <input type="text" id="post-title" name="postTitle" placeholder="제목을 입력하세요" required>
+
+                    <label for="post-content">내용:</label>
+                    <textarea id="post-content" name="postContent" placeholder="내용을 입력하세요" required></textarea>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">등록</button>
+                        <button type="button" class="cancel-btn" onclick="location.href='community_board.html'">취소</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 충신동 재개발 통합 추진위원회. 모든 권리 보유.</p>
+            <p>투명하고 공정한 재개발을 위해 최선을 다하겠습니다.</p>
+        </footer>
+    </div>
+</body>
+</html>
