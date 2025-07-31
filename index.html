@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>충신동 재개발 통합 추진위원회</title>
+    <style>
+        /* 기존 CSS 코드는 동일합니다. */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2c5364 0%, #203a43 50%, #0f2027 100%);
+            color: white;
+            padding: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #fff, #f0f8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Navigation */
+        .nav {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .nav-item {
+            padding: 15px 25px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-item:hover::before {
+            left: 100%;
+        }
+
+        .nav-item:hover {
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 25px;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.05) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            position: relative;
+            box-sizing: border-box; /* 추가: padding이 width에 포함되도록 */
+        }
+
+        .progress-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 35%;
+            border-radius: 10px;
+            position: relative;
+            /* animation: progressAnimation 2s ease-out; 초기 로드 시 애니메이션 재시작 방지 위해 제거 */
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes progressAnimation {
+            0% { width: 0%; }
+            100% { width: 35%; }
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        /* Cards Grid */
+        /* 기존 CSS에 추가 */
+        .cards-grid a.card { /* a.card는 a 태그면서 card 클래스를 가진 요소에 적용 */
+            text-decoration: none; /* 밑줄 제거 */
+            color: inherit; /* 부모 요소의 글자색 상속 (기본 링크 색상 방지) */
+            display: block; /* a 태그를 블록 레벨로 만들어 카드 전체를 클릭 가능하게 함 */
+        }
+
+        .cards-grid a.card:hover {
+            /* 카드에 적용했던 hover 효과를 그대로 유지 */
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: white;
+        }
+
+        .card h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Notice Section */
+        .notice-section {
+            background: linear-gradient(135deg, #fff9c4, #fff59d);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 5px solid #ff9800;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box; /* 추가: padding이 width에 포함되도록 */
+        }
+
+        .notice-section::before {
+            content: '📢';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            opacity: 0.3;
+        }
+
+        .notice-title {
+            font-size: 1.3em;
+            color: #e65100;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .notice-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(230, 81, 0, 0.1);
+        }
+
+        .notice-item:last-child {
+            border-bottom: none;
+        }
+
+        .notice-date {
+            background: #e65100;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            margin-right: 15px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .notice-text {
+            flex: 1;
+            color: #bf360c;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-sizing: border-box; /* 추가: padding이 width에 포함되도록 */
+        }
+
+        .contact-title {
+            font-size: 1.5em;
+            color: #1565c0;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-item h4 {
+            color: #1565c0;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c5364;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero h2 {
+                font-size: 2em;
+            }
+
+            .nav-content {
+                flex-direction: column;
+            }
+
+            .nav-item {
+                text-align: center;
+                padding: 12px 20px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Interactive Elements */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .floating-menu {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>충신동 재개발 통합 추진위원회</h1>
+                    <p>함께 만들어가는 새로운 충신동의 미래</p>
+                </div>
+            </div>
+        </header>
+
+        <nav class="nav">
+            <div class="nav-content">
+                <a href="#home" class="nav-item active">홈</a>
+                <a href="project_overview.html" class="nav-item">사업개요</a>
+                <a href="notice_board.html" class="nav-item">공지·자료실</a>
+                <a href="community_board.html" class="nav-item">커뮤니티</a>
+                <a href="transparency_center.html" class="nav-item">투명성센터</a>
+                <a href="#contact" class="nav-item">문의하기</a>
+            </div>
+        </nav>
+
+        <main class="main">
+            <section class="hero" id="home">
+                <div class="hero-content">
+                    <h2>통합으로 하나되는 충신동</h2>
+                    <p>한양도성과 인접한 충신동의 역사적 가치를 보존하면서도 현대적이고 살기 좋은 공간으로 재탄생시키기 위해 신속통합기획을 통한 체계적이고 투명한 재개발을 추진하고 있습니다. 주민 여러분의 적극적인 참여와 관심으로 함께 만들어가는 새로운 충신동의 미래를 기대합니다.</p>
+                    <a href="project_overview.html" class="btn">사업 자세히 보기</a>
+                </div>
+            </section>
+
+            <section class="progress-section" id="project">
+                <h3 class="progress-title">🏗️ 현재 사업 진행 현황</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-text">통합추진위원회 설립 (35% 진행)</div>
+            </section>
+
+            <section class="notice-section" id="notice">
+                <h3 class="notice-title">📢 최신 공지사항</h3>
+                <div class="notice-item">
+                    <span class="notice-date">07.31</span>
+                    <span class="notice-text">⚡️ [긴급공지] 충신동 재개발 통합을 위한 토지등소유자 총회 개최 안내 (예정)</span>
+                </div>
+                <div class="notice-item">
+                    <span class="notice-date">07.31</span>
+                    <span class="notice-text">[자료] 충신동 재개발 사업 추진위원회 표준 규약 공개</span>
+                </div>
+                <div class="notice-item">
+                    <span class="notice-date">07.29</span>
+                    <span class="notice-text">[민원 접수] 종로구청에 충신동 재개발 사업 지연 해결 촉구 민원 제기</span>
+                </div>
+                <div class="notice-item">
+                    <span class="notice-date">07.28</span>
+                    <span class="notice-text">⚠️ 중복 접수로 인한 사업 지연 현황 및 주민 참여의 중요성</span>
+                </div>
+                <div class="notice-item">
+                    <span class="notice-date">07.20</span>
+                    <span class="notice-text">충신동 재개발 통합 추진위원회 공식 웹사이트 오픈!</span>
+                </div>
+            </section>
+
+            <div class="cards-grid">
+                <a href="project_overview.html" class="card">
+                    <div class="card-icon">🏢</div>
+                    <h3>사업 개요</h3>
+                    <p>충신동 재개발의 전체적인 계획과 신속통합기획의 장점, 추진 경과를 상세히 안내합니다. 과거부터 현재까지의 모든 과정을 투명하게 공개합니다.</p>
+                </a>
+
+                <a href="notice_board.html" class="card">
+                    <div class="card-icon">📋</div>
+                    <h3>공지·자료실</h3>
+                    <p>총회 안내, 회의록, 관련 법규, 연구자료 등 재개발과 관련된 모든 정보를 체계적으로 정리하여 제공합니다. FAQ도 함께 확인하세요.</p>
+                </a>
+
+                <a href="community_board.html" class="card">
+                    <div class="card-icon">💬</div>
+                    <h3>커뮤니티</h3>
+                    <p>주민들 간의 자유로운 소통 공간입니다. 궁금한 점을 질문하고, 의견을 나누며, 건의사항을 제안할 수 있습니다.</p>
+                </a>
+
+                <a href="transparency_center.html" class="card">
+                    <div class="card-icon">🔍</div>
+                    <h3>투명성 센터</h3>
+                    <p>모든 회의록, 재정 보고, 추진위원회 구성원 정보를 투명하게 공개합니다. 주민 여러분의 신뢰를 바탕으로 합니다.</p>
+                </a>
+
+                <a href="#contact" class="card">
+                    <div class="card-icon">📱</div>
+                    <h3>실시간 소통</h3>
+                    <p>모바일 최적화로 언제 어디서나 쉽게 접근 가능합니다. 중요한 공지사항은 즉시 확인하실 수 있습니다.</p>
+                </a>
+
+                <a href="#contact" class="card">
+                    <div class="card-icon">🤝</div>
+                    <h3>주민 참여</h3>
+                    <p>다양한 방식으로 주민 의견을 수렴하고 사업에 반영합니다. 여러분의 목소리가 곧 충신동의 미래입니다.</p>
+                </a>
+            </div>
+
+            <section class="contact-section" id="contact">
+                <h3 class="contact-title">📞 추진위원회 연락처</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h4>📍 사무실 주소</h4>
+                        <p>서울특별시 서울 종로구 율곡로 245 1층<br>충신상가 2층 201호</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>📞 전화번호</h4>
+                        <p>대표: 미정<br>팩스: 미정</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>📧 이메일</h4>
+                        <p>info@chungsin-redevelop.or.kr<br>민원: </p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>🕒 운영시간</h4>
+                        <p>평일: 오전 9시 ~ 오후 6시<br>토요일: 오전 9시 ~ 오후 1시</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 충신동 재개발 통합 추진위원회. 모든 권리 보유.</p>
+            <p>투명하고 공정한 재개발을 위해 최선을 다하겠습니다.</p>
+        </footer>
+
+        <div class="floating-menu">
+            <a href="#top" class="floating-btn" title="맨 위로">↑</a>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                // 상단 고정 내비게이션 바 높이를 고려하여 스크롤 위치 조정 (선택 사항)
+                const headerOffset = document.querySelector('.nav').offsetHeight; // nav 바의 높이
+                const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+                const offsetPosition = elementPosition - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Navigation active state and scroll to section on click
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Check if the link is an internal anchor or external HTML file
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#')) { // Internal anchor link
+                        e.preventDefault(); // Prevent default anchor behavior
+
+                        // Remove active class from all nav-items
+                        navItems.forEach(nav => nav.classList.remove('active'));
+                        // Add active class to the clicked nav-item
+                        this.classList.add('active');
+
+                        // Get the section ID and scroll to it
+                        const sectionId = href.substring(1); // Remove '#'
+                        scrollToSection(sectionId);
+                    } else {
+                        // External HTML file, let the browser handle it normally
+                        // No need to preventDefault or change active state here, as it will navigate away
+                    }
+                });
+            });
+
+            // Floating button functionality
+            const floatingBtn = document.querySelector('.floating-btn');
+            floatingBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Show/hide floating button based on scroll position
+            window.addEventListener('scroll', function() {
+                const floatingMenu = document.querySelector('.floating-menu');
+                if (window.scrollY > 300) {
+                    floatingMenu.style.opacity = '1';
+                } else {
+                    floatingMenu.style.opacity = '0.7';
+                }
+            });
+
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Progress bar animation trigger (Intersection Observer를 사용하여 스크롤 시 애니메이션 시작)
+            const progressFill = document.querySelector('.progress-fill');
+            if (progressFill) {
+                const observerOptions = {
+                    threshold: 0.5, // 뷰포트에 50% 보이면
+                    rootMargin: '0px 0px -100px 0px' // 하단에서 100px 위에서 트리거
+                };
+
+                const progressObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // 요소가 뷰포트에 들어오면 애니메이션 적용
+                            entry.target.style.animation = 'progressAnimation 2s ease-out forwards'; // forwards 추가하여 마지막 키프레임 유지
+                            observer.unobserve(entry.target); // 한 번만 실행되도록 관찰 중지
+                        }
+                    });
+                }, observerOptions);
+
+                progressObserver.observe(progressFill); // progress-fill 자체를 관찰하도록 변경
+            }
+
+            // Mobile menu toggle (if needed for smaller screens)
+            function toggleMobileMenu() {
+                const nav = document.querySelector('.nav-content');
+                nav.classList.toggle('mobile-open');
+            }
+
+            // Add some interactive feedback
+            document.querySelectorAll('.btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        });
+
+        // 스크롤 이벤트에 따른 내비게이션 'active' 상태 업데이트 (선택 사항)
+        // 사용자가 스크롤하여 특정 섹션에 도달하면 해당 nav-item에 active 클래스 부여
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('main section'); // 모든 섹션 가져오기
+            const navItems = document.querySelectorAll('.nav-item');
+            let currentActive = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - document.querySelector('.nav').offsetHeight; // nav 바 높이 고려
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    currentActive = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                // Only apply active class for internal links
+                if (item.getAttribute('href').startsWith('#') && item.getAttribute('href').substring(1) === currentActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

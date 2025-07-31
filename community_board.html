@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니티 - 충신동 재개발 통합 추진위원회</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* 이 페이지에만 적용될 추가 CSS */
+        .sub-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        .sub-container h2 {
+            font-size: 2.2em;
+            color: #4CAF50;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px solid #81C784;
+            padding-bottom: 15px;
+        }
+        .board-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+        .board-table th, .board-table td {
+            border-bottom: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+        }
+        .board-table th {
+            background-color: #f2f2f2;
+            font-weight: 600;
+            color: #333;
+        }
+        .board-table tbody tr:hover {
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+        .board-table .title a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .board-table .title a:hover {
+            color: #667eea;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .pagination a {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #666;
+            transition: background-color 0.3s ease;
+        }
+        .pagination a.active, .pagination a:hover {
+            background-color: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        .write-button {
+            text-align: right;
+            margin-bottom: 20px;
+
+        }
+        .write-button button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+                /* 기존 .write-button button { ... } 부분을 아래와 같이 수정/추가 */
+        .write-button .write-post-btn { /* .write-button 안에 있는 write-post-btn 클래스를 가진 <a> 태그 */
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; /* 링크의 기본 밑줄 제거 */
+            display: inline-block; /* <a> 태그가 버튼처럼 너비/높이를 가질 수 있도록 */
+            transition: background-color 0.3s ease;
+        }
+
+        .write-button .write-post-btn:hover {
+            background-color: #66BB6A;
+        }
+        .write-button button:hover {
+            background-color: #66BB6A;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>충신동 재개발 통합 추진위원회</h1>
+                    <p><a href="index.html" style="color: white; text-decoration: none;">메인 페이지로 돌아가기</a></p>
+                </div>
+            </div>
+        </header>
+        <nav class="nav">
+            <div class="nav-content">
+                <a href="index.html#home" class="nav-item">홈</a>
+                <a href="project_overview.html" class="nav-item">사업개요</a>
+                <a href="notice_board.html" class="nav-item">공지·자료실</a>
+                <a href="community_board.html" class="nav-item active">커뮤니티</a>
+                <a href="transparency_center.html" class="nav-item">투명성센터</a>
+                <a href="index.html#contact" class="nav-item">문의하기</a>
+            </div>
+        </nav>
+
+        <main class="main">
+            <div class="sub-container">
+                <h2>💬 주민 커뮤니티</h2>
+
+                <div class="write-button">
+                    <a href="write_post.html" class="write-post-btn">글쓰기</a>
+                </div>
+
+                <table class="board-table">
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th>작성일</th>
+                            <th>조회수</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3</td>
+                            <td class="title"><a href="community_detail_3.html">재개발 사업 진행 관련 질문드립니다.</a></td>
+                            <td>김*민</td>
+                            <td>2025-07-30</td>
+                            <td>45</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="title"><a href="community_detail_2.html">충신동에 새로 이사 오신 분 계신가요?</a></td>
+                            <td>이*수</td>
+                            <td>2025-07-28</td>
+                            <td>62</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td class="title"><a href="community_detail_1.html">안녕하세요, 반갑습니다!</a></td>
+                            <td>운영자</td>
+                            <td>2025-07-25</td>
+                            <td>110</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="pagination">
+                    <a href="#">&laquo;</a>
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">&raquo;</a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 충신동 재개발 통합 추진위원회. 모든 권리 보유.</p>
+            <p>투명하고 공정한 재개발을 위해 최선을 다하겠습니다.</p>
+        </footer>
+    </div>
+</body>
+</html>
