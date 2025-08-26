@@ -48,7 +48,7 @@
         .main {
             padding: 30px 20px;
             background: white;
-            min-height: 600px; /* 최소 높이 설정 */
+            min-height: 600px;
         }
         .sub-container {
             max-width: 900px;
@@ -71,20 +71,21 @@
         }
         .content-box h3 {
             color: #bf360c;
-            font-size: 1.5em;
-            margin-top: 0;
+            font-size: 1.25em;
+            margin-top: 30px;
         }
         .content-box ul {
             list-style-type: none;
             padding: 0;
+            margin: 0 0 16px 0;
         }
         .content-box li {
             background: #ffffff;
             border: 1px solid #eee;
             margin-bottom: 10px;
-            padding: 15px;
+            padding: 13px 15px;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
         }
         .content-box li strong {
             color: #37474f;
@@ -106,9 +107,6 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
-        .file-link + .file-link {
-            margin-top: 15px;
-        }
         .footer {
             background: #eeeeee;
             text-align: center;
@@ -116,6 +114,13 @@
             padding: 20px 0;
             color: #555;
             margin-top: 50px;
+        }
+        .highlight-box {
+            background: #fff8e1;
+            border-left: 5px solid #ffe082;
+            padding: 18px 20px;
+            border-radius: 7px;
+            margin-bottom: 22px;
         }
     </style>
 </head>
@@ -141,42 +146,46 @@
             <div class="sub-container">
                 <h2>📜 주민총회 최종 결과 보고서</h2>
                 <div class="content-box">
-                    <p>존경하는 충신동 소유자 여러분,</p>
-                    [cite_start]<p>지난 <strong>2025년 8월 23일(토)</strong>에 개최된 주민총회가 여러분의 뜨거운 관심과 적극적인 참여 덕분에 성공적으로 마무리되었습니다[cite: 3, 4, 11]. [cite_start]이번 총회는 그동안의 혼란과 갈등을 끝내고, 주민들이 단일한 뜻을 모아 사업을 정상화하는 중요한 발판이 될 것입니다[cite: 5].</p>
-                    
-                    <h3>1. 총회 개요 및 주요 결과</h3>
+                    <div class="highlight-box">
+                        <strong>2025년 8월 23일(토) 주민총회가 성공적으로 마무리되었습니다.</strong><br>
+                        여러분의 적극적인 참여와 단결에 깊이 감사드립니다.
+                    </div>
+
+                    <h3>1. 총회 주요 개요</h3>
                     <ul>
-                        [cite_start]<li><strong>일시 및 장소</strong>: 2025년 8월 23일(토) 오전 10시, 중앙성결교회 2층 성가대 연습실 [cite: 8, 11, 12]</li>
-                        [cite_start]<li><strong>참석 인원</strong>: **오프라인 56명, 온라인 서면 투표 74명으로 총 130명**의 소유자 투표 참여 [cite: 13]</li>
-                        [cite_start]<li><strong>단일 구역계 청원서 서명</strong>: **총 209명**의 소유자님께서 서명하며 사업 정상화에 대한 강력한 의지를 보여주셨습니다[cite: 13].</li>
-                        [cite_start]<li><strong>총회 목적</strong>: 두 주민모임 단체 간의 통합 협상 결렬에 따른 사업 교착 상태를 해결하고, 행정청이 제시한 '주민들의 의결'을 통한 사업 주체 확보에 대한 정당성을 확보하여 사업 정상화의 첫걸음을 내딛기 위함입니다[cite: 14].</li>
+                        <li><strong>일시/장소:</strong> 2025년 8월 23일(토) 오전 10시, 중앙성결교회 2층 성가대 연습실</li>
+                        <li><strong>참여:</strong> 오프라인 56명, 서면 투표 74명, <b>총 130명</b> 소유자 투표 동참</li>
+                        <li><strong>단일 구역계 서명:</strong> 209명의 소유자 참여</li>
+                        <li><strong>총회 목적:</strong> 통합 협상 결렬에 따른 사업 교착 해소와 정당한 사업 주체 확보를 위한 주민 의결</li>
+                    </ul>
+
+                    <h3>2. 주요 안건 의결 결과</h3>
+                    <ul>
+                        <li>
+                            <strong>제1호 안건:</strong> 종로구청 구역계 접수 청원서 제출 및 사업 추진 권한<br>
+                            <b>결과:</b> 곽순한 소유자님 압도적 지지로 대표자 선출, 원안 가결 (찬성 41, 반대 0, 기권 15)
+                        </li>
+                        <li>
+                            <strong>제2·3호 안건:</strong> 독립적 규약 제정 및 방해 행위 법적 대응 권한 위임<br>
+                            <b>결과:</b> 원안 가결 (찬성 130, 반대 0)
+                        </li>
+                        <li>
+                            <strong>제4호 안건:</strong> 동의서 취합 및 관리 업무 위임<br>
+                            <b>결과:</b> 원안 가결 (찬성 130, 반대 0)
+                        </li>
+                    </ul>
+
+                    <h3>3. 향후 추진 계획</h3>
+                    <ul>
+                        <li>총회 의결 결과에 따라 동의서 취합 및 행정서류 정비</li>
+                        <li>구역계 접수 등 행정 절차 신속 재개 (8/26 종로구청 면담 예정)</li>
+                        <li>신속통합기획 후보지 공모 절차 적극 대응</li>
+                        <li>구역계 접수·연번 부여 후 정식 추진(준비)위원회 구성을 통한 사업 정착</li>
                     </ul>
                     
-                    <h3>2. 주요 안건 심의 및 의결 결과</h3>
-                    [cite_start]<p>이번 총회는 두 단체 간의 합의가 불가능하다는 현실을 확인하고, 주민들의 직접적인 의결을 통해 문제를 해결해야 한다는 강력한 의지의 반영입니다[cite: 24]. [cite_start]이에 모든 소유자분들의 뜻을 모아 압도적인 찬성으로 모든 안건이 의결되었습니다[cite: 25].</p>
-                    <ul>
-                        [cite_start]<li><strong>안건 제1호: 종로구청 구역계 접수 청원서 제출 권한 위임의 건</strong> [cite: 28]<br>
-                            [cite_start]**내용**: 주민들을 대표하여 종로구청에 단일 구역계를 접수하고 신속통합기획 연번을 부여받을 때까지의 사업 추진 권한을 위임하는 건입니다. [cite: 29]<br>
-                            [cite_start]**결과**: **곽순한 소유자**님께서 압도적인 지지를 받아 새로운 대표자로 선정되었습니다[cite: 41]. [cite_start]**원안 가결**되었습니다[cite: 46]. (현장투표: 찬성 41표, 반대 0표, 기권 15표) [cite_start][cite: 43, 44, 45]</li>
-                        [cite_start]<li><strong>안건 제2호 & 3호: 독립적 규약 제정 및 법적 대응 위임의 건</strong> [cite: 47]<br>
-                            [cite_start]**내용**: 주민 중심의 투명한 사업 진행을 위해 새로운 규약을 제정하고, 사업 방해 행위에 대한 법적 대응 권한을 위임하는 건입니다[cite: 48, 49].<br>
-                            [cite_start]**결과**: **원안 가결**되었습니다[cite: 53]. (찬성 130표, 반대 0표) [cite_start][cite: 51, 52]</li>
-                        [cite_start]<li><strong>안건 제4호: 동의서 취합 업무 위임의 건</strong> [cite: 54]<br>
-                            [cite_start]**내용**: 공정하고 투명한 재개발을 위해 동의서 접수 및 관리 업무를 단일 주민모임에 공식적으로 위임하는 건입니다[cite: 55, 56].<br>
-                            [cite_start]**결과**: **원안 가결**되었습니다[cite: 59]. (찬성 130표, 반대 0표) [cite_start][cite: 58, 59]</li>
-                    </ul>
-                    
-                    <h3>3. 향후 계획</h3>
-                    [cite_start]<p>이번 총회에서 의결된 내용을 바탕으로, 새로운 주민 대표와 추진모임은 아래와 같은 사업 정상화 로드맵을 신속하게 추진해 나갈 것입니다[cite: 61].</p>
-                    <ul>
-                        [cite_start]<li>**1단계**: 총회 결과를 바탕으로 주민 동의서 취합 및 행정 서류를 재정비합니다[cite: 62].</li>
-                        <li>**2단계**: 주민들의 단일한 의결을 담아 구역계 접수 등 행정 절차를 신속하게 재개하겠습니다. (26일 종로구청장님 면담 예정) [cite_start][cite: 66]</li>
-                        [cite_start]<li>**3단계**: 신속통합기획 후보지 공모 절차에 적극 참여하여 사업을 본격적으로 추진합니다[cite: 68].</li>
-                        [cite_start]<li>**4단계**: 구역계가 접수되고 신속통합기획 연번이 부여되면, 주민들의 직접적인 선택을 통해 정식 단체(추진위원회 또는 준비위원회)를 구성하고, 모든 서류와 권한을 이양하는 절차를 진행합니다[cite: 67].</li>
-                        [cite_start]<li>**5단계**: 신속통합기획 후보지 공모 절차에 적극 참여하여 사업을 본격적으로 추진합니다. [cite: 68]</li>
-                    </ul>
-                    
-                    <p style="font-weight: bold; margin-top: 25px;">더 상세한 내용은 첨부된 최종 보고서 PDF 파일을 통해 확인하실 수 있습니다.</p>
+                    <p style="font-weight: bold; margin-top: 24px;">
+                        상세 내용은 첨부 PDF를 참고해 주시기 바랍니다.
+                    </p>
                     
                     <a href="files/충신동 재개발 사업 주민총회 결과 보고서(최종본).pdf" class="file-link" download>
                         📄 주민총회 최종 결과 보고서 PDF 다운로드
