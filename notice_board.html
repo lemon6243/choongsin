@@ -6,134 +6,78 @@
     <title>공지·자료실 - 충신동 재개발 통합 추진위원회</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .sub-container {
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 30px;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-        .sub-container h2 {
-            font-size: 2.2em;
-            color: #e65100;
-            margin-bottom: 25px;
-            text-align: center;
-            border-bottom: 2px solid #ff9800;
-            padding-bottom: 15px;
-        }
-        .search-box {
-            text-align: right;
-            margin-bottom: 30px;
-        }
-        .search-box input[type="text"] {
-            padding: 9px 14px;
-            border: 1px solid #bbb;
-            border-radius: 5px;
-            margin-right: 7px;
-            font-size: 1em;
-        }
-        .search-box button {
-            padding: 9px 20px;
-            background-color: #ff9800;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1em;
-            transition: background 0.2s;
-        }
-        .search-box button:hover {
-            background-color: #e65100;
-        }
-        .board-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin-top: 10px;
-            background: #fff;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-        }
-        .board-table th, .board-table td {
-            padding: 16px 12px;
-            text-align: center;
-            font-size: 1.05em;
-        }
-        .board-table th {
-            background-color: #f6f6f6;
-            font-weight: 600;
-            color: #e65100;
-            border-bottom: 2px solid #ff9800;
-        }
-        .board-table td {
-            border-bottom: 1px solid #eee;
-            color: #444;
-        }
-        .board-table .title {
-            text-align: left;
-            padding-left: 20px;
-        }
-        .board-table .title a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        .board-table .title a:hover {
-            color: #ff9800;
-            text-decoration: underline;
-        }
-        .board-table tbody tr:hover {
-            background-color: #fff3e0;
-            transition: background 0.2s;
-        }
-        .pagination {
-            text-align: center;
-            margin-top: 35px;
-        }
-        .pagination a {
-            display: inline-block;
-            padding: 8px 15px;
-            margin: 0 3px;
-            border: 1px solid #ff9800;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #e65100;
-            font-weight: bold;
-            transition: background 0.2s, color 0.2s;
-        }
-        .pagination a.active, .pagination a:hover {
-            background-color: #ff9800;
-            color: white;
-            border-color: #ff9800;
-        }
-        @media (max-width: 700px) {
-            .sub-container { padding: 10px; }
-            .board-table th, .board-table td { padding: 7px 3px; font-size: 0.9em; }
-        }
-    </style>
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #263238;
+    color: white;
+    padding: 18px 40px 18px 30px;
+}
+.header .logo h1 {
+    margin: 0;
+    font-size: 2em;
+    font-weight: bold;
+}
+.header .logo p {
+    margin: 4px 0 0 0;
+    font-size: 0.92em;
+}
+.nav {
+    background: #37474f;
+    padding: 0;
+}
+.nav-content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: 56px;
+}
+.nav-item {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 9px 20px;
+    border-radius: 5px;
+    transition: background 0.18s, color 0.18s;
+    font-size: 1.08em;
+    position: relative;
+}
+.nav-item.active,
+.nav-item:hover {
+    background: #ff9800;
+    color: #fff;
+    text-decoration: none;
+}
+@media (max-width: 700px) {
+    .header { flex-direction: column; align-items: flex-start; padding: 16px 10px; }
+    .nav-content { gap: 10px; height: auto; justify-content: flex-start; }
+    .nav-item { padding: 7px 10px; font-size: 0.98em; }
+}
+</style>
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <div class="header-content">
-                <div class="logo">
-                    <h1>충신동 재개발 통합 추진위원회</h1>
-                    <p><a href="index.html" style="color: white; text-decoration: none;">메인 페이지로 돌아가기</a></p>
+            <div class="logo">
+                <h1>충신동 재개발 통합 추진위원회</h1>
+                <p><a href="index.html" style="color: #ffd54f; text-decoration: none;">메인 페이지로 돌아가기</a></p>
+            </div>
+            <!-- nav을 header 내부에 넣어야 한 줄에 정렬됩니다 -->
+            <nav class="nav">
+                <div class="nav-content">
+                    <a href="index.html#home" class="nav-item">홈</a>
+                    <a href="project_overview.html" class="nav-item">사업개요</a>
+                    <a href="notice_board.html" class="nav-item active">공지·자료실</a>
+                    <a href="community_board.html" class="nav-item">커뮤니티</a>
+                    <a href="transparency_center.html" class="nav-item">투명성센터</a>
+                    <a href="index.html#contact" class="nav-item">문의하기</a>
                 </div>
-            </div>
+            </nav>
         </header>
-        <nav class="nav">
-            <div class="nav-content">
-                <a href="index.html#home" class="nav-item">홈</a>
-                <a href="project_overview.html" class="nav-item">사업개요</a>
-                <a href="notice_board.html" class="nav-item active">공지·자료실</a>
-                <a href="community_board.html" class="nav-item">커뮤니티</a>
-                <a href="transparency_center.html" class="nav-item">투명성센터</a>
-                <a href="index.html#contact" class="nav-item">문의하기</a>
-            </div>
-        </nav>
 
         <main class="main">
             <div class="sub-container">
@@ -329,6 +273,7 @@
     </div>
 </body>
 </html>
+
 
 
 
