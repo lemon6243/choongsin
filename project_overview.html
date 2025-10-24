@@ -4,7 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>사업 개요 - 충신동 재개발 통합 추진위원회</title>
-    <link rel="stylesheet" href="style.css"> <style>
+    <style>
+        /* [추가됨] 공통 레이아웃/헤더/네비 스타일 */
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px; /* 공통 디자인 기준으로 통일 (기존 1200px) */
+            margin: 0 auto;
+        }
+        .header {
+            background: #263238;
+            color: white;
+            padding: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.7em;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9em;
+        }
+        .nav {
+            background: #37474f;
+            padding: 10px 0;
+        }
+        .nav-content {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 5px;
+            transition: background 0.15s, color 0.15s;
+            font-size: 1em;
+        }
+        .nav-item.active {
+            background: #ff9800; /* 네비게이션 활성화 색상 통일 */
+            color: #fff;
+            text-decoration: none;
+        }
+        .nav-item:hover {
+            background: #ff9800;
+            color: #fff;
+        }
+        .main {
+            padding: 30px 20px;
+            background: #f5f5f5;
+            min-height: 600px;
+        }
+        .footer {
+            background: #eeeeee;
+            text-align: center;
+            font-size: 0.95em;
+            padding: 22px 0 14px 0;
+            color: #555;
+            margin-top: 50px;
+        }
+        /* 공통 버튼 스타일 추가 (돌아가기 버튼 디자인 유지 위함) */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            color: white;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.05em;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
         /* 이 페이지에만 적용될 추가 CSS */
         .sub-container {
             max-width: 900px; /* 메인 컨테이너보다 약간 작게 설정 */
@@ -124,13 +202,10 @@
 <body>
     <div class="container">
         <header class="header">
-            <div class="header-content">
-                <div class="logo">
-                    <h1>충신동 재개발 통합 추진위원회</h1>
-                    <p><a href="index.html" style="color: white; text-decoration: none;">메인 페이지로 돌아가기</a></p>
-                </div>
-            </div>
+            <h1>충신동 재개발 통합 추진위원회</h1>
+            <p><a href="index.html" style="color: #ffd54f; text-decoration: none;">← 메인 페이지로 돌아가기</a></p>
         </header>
+
         <nav class="nav">
             <div class="nav-content">
                 <a href="index.html#home" class="nav-item">홈</a>
@@ -141,7 +216,6 @@
                 <a href="index.html#contact" class="nav-item">문의하기</a>
             </div>
         </nav>
-
         <main class="main">
             <div class="sub-container">
                 <h2>✨ 사업 개요: 새로운 충신동의 비전</h2>
@@ -172,11 +246,11 @@
                             <h4>2025년 8월 27일: 종로구청장 면담을 통한 사업 정상화 방안 확정</h4>
                             <p>전체 소유자 586명 중 300명 이상의 서명을 받아 제출하면, 해당 주체를 공식적으로 인정하고 사업을 정상 궤도 진입</p>
                         </div>
-                         <div class="timeline-item">
+                           <div class="timeline-item">
                             <h4>2025년 8월 23일: 토지등소유자 전체 총회 성공적 개최 및 결과 보고</h4>
-                            <p>주민총회를 성공적으로 개최하고, 의결된 내용을 정리하여 종로구청에 보고 절차 진행 중입니다.</p>
+                            <p>주민총회를 성공적으로 개최하고, 의결된 내용을 정리하여 종로구청에 보고 절차 진행 중입니다.</p>
                         </div>
-                         <div class="timeline-item">
+                           <div class="timeline-item">
                             <h4>2024년 하반기 ~ 2025년 상반기: 구역계(안) 중복 접수 및 무효 처리 반복</h4>
                             <p>두 개의 추진위에서 각각 구역계(안)를 접수하려 시도하였으나, 중복으로 인한 행정 처리 불가로 사업 진척에 어려움.</p>
                         </div>
@@ -187,7 +261,7 @@
                         <div class="timeline-item">
                             <h4>2024년 초: 충신동 재개발 관심 증대 및 추진위 활동 시작</h4>
                             <p>신속통합기획 등 서울시 정책 변화에 따라 충신동 재개발에 대한 주민들의 관심 증대 및 추진위원회 활동 본격화.</p>
-                        </div>                        
+                        </div>
                     </div>
 
                     <h3 class="section-title">🗺️ 사업 위치 및 구역도</h3>
@@ -218,5 +292,3 @@
     </div>
 </body>
 </html>
-
-
