@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지·자료실 - 충신동 재개발 통합 추진위원회</title>
-    <link rel="stylesheet" href="style.css"> <style>
-        /* 이 페이지에만 적용될 추가 CSS */
+    <link rel="stylesheet" href="style.css">
+    <style>
         .sub-container {
             max-width: 1000px;
             margin: 50px auto;
@@ -22,73 +22,95 @@
             border-bottom: 2px solid #ff9800;
             padding-bottom: 15px;
         }
+        .search-box {
+            text-align: right;
+            margin-bottom: 30px;
+        }
+        .search-box input[type="text"] {
+            padding: 9px 14px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            margin-right: 7px;
+            font-size: 1em;
+        }
+        .search-box button {
+            padding: 9px 20px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: background 0.2s;
+        }
+        .search-box button:hover {
+            background-color: #e65100;
+        }
         .board-table {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 30px;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 10px;
+            background: #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
         }
         .board-table th, .board-table td {
-            border-bottom: 1px solid #ddd;
-            padding: 15px;
-            text-align: left;
+            padding: 16px 12px;
+            text-align: center;
+            font-size: 1.05em;
         }
         .board-table th {
-            background-color: #f2f2f2;
+            background-color: #f6f6f6;
             font-weight: 600;
-            color: #333;
+            color: #e65100;
+            border-bottom: 2px solid #ff9800;
         }
-        .board-table tbody tr:hover {
-            background-color: #f9f9f9;
-            cursor: pointer;
+        .board-table td {
+            border-bottom: 1px solid #eee;
+            color: #444;
+        }
+        .board-table .title {
+            text-align: left;
+            padding-left: 20px;
         }
         .board-table .title a {
             color: #333;
             text-decoration: none;
             font-weight: 500;
+            transition: color 0.2s;
         }
         .board-table .title a:hover {
-            color: #667eea;
+            color: #ff9800;
+            text-decoration: underline;
+        }
+        .board-table tbody tr:hover {
+            background-color: #fff3e0;
+            transition: background 0.2s;
         }
         .pagination {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 35px;
         }
         .pagination a {
             display: inline-block;
             padding: 8px 15px;
-            margin: 0 5px;
-            border: 1px solid #ddd;
+            margin: 0 3px;
+            border: 1px solid #ff9800;
             border-radius: 5px;
             text-decoration: none;
-            color: #666;
-            transition: background-color 0.3s ease;
+            color: #e65100;
+            font-weight: bold;
+            transition: background 0.2s, color 0.2s;
         }
         .pagination a.active, .pagination a:hover {
-            background-color: #667eea;
+            background-color: #ff9800;
             color: white;
-            border-color: #667eea;
+            border-color: #ff9800;
         }
-        .search-box {
-            text-align: right;
-            margin-bottom: 20px;
-        }
-        .search-box input[type="text"] {
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-right: 5px;
-        }
-        .search-box button {
-            padding: 8px 15px;
-            background-color: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .search-box button:hover {
-            background-color: #764ba2;
+        @media (max-width: 700px) {
+            .sub-container { padding: 10px; }
+            .board-table th, .board-table td { padding: 7px 3px; font-size: 0.9em; }
         }
     </style>
 </head>
@@ -113,28 +135,23 @@
             </div>
         </nav>
 
-<!-- 생략된 <head> 및 <style> 부분은 동일하므로 그대로 사용하시면 됩니다. 아래는 <body> 이하만 변경된 내용입니다. -->
-
         <main class="main">
-          <div class="sub-container">
-            <h2>📋 공지·자료실</h2>
-        
-            <div class="search-box">
-              <input type="text" placeholder="검색어를 입력하세요">
-              <button>검색</button>
-            </div>
-        
-            <table class="board-table">
-              <thead>
-                <tr>
-                  <th>번호</th>
-                  <th>제목</th>
-                  <th>작성일</th>
-                  <th>조회수</th>
-                </tr>
-              </thead>
-              <tbody>
-
+            <div class="sub-container">
+                <h2>📋 공지·자료실</h2>
+                <div class="search-box">
+                    <input type="text" placeholder="검색어를 입력하세요">
+                    <button>검색</button>
+                </div>
+                <table class="board-table">
+                    <thead>
+                        <tr>
+                            <th style="width:7%;">번호</th>
+                            <th style="width:55%;">제목</th>
+                            <th style="width:18%;">작성일</th>
+                            <th style="width:10%;">조회수</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                 <tr>
                 <td>15</td>
                 <td class="title">
@@ -293,17 +310,16 @@
                   <td>2025-07-15</td>
                   <td>510</td>
                 </tr>
-              </tbody>
-            </table>
-        
-            <div class="pagination">
-              <a href="#">&laquo;</a>
-              <a href="#" class="active">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">&raquo;</a>
+               </tbody>
+                </table>
+                <div class="pagination">
+                    <a href="#">&laquo;</a>
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">&raquo;</a>
+                </div>
             </div>
-          </div>
         </main>
 
         <footer class="footer">
@@ -312,7 +328,6 @@
         </footer>
     </div>
 </body>
-
 </html>
 
 
