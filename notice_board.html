@@ -12,56 +12,59 @@
             padding: 0;
             color: #333;
         }
+        /* [수정됨] Header와 Nav가 분리된 구조를 위한 CSS */
         .container {
-            max-width: 1200px;
+            max-width: 1000px; /* 기존 1200px에서 1000px로 통일 */
             margin: 0 auto;
         }
-        /* 헤더+네비 한 줄 정렬 */
-        .topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .header {
             background: #263238;
-            padding: 0 36px;
-            height: 68px;
+            color: white;
+            padding: 20px;
         }
-        .topbar .logo h1 {
+        .header h1 {
             margin: 0;
             font-size: 1.7em;
-            font-weight: bold;
-            color: #fff;
-            letter-spacing: -1px;
         }
-        .topbar .logo p {
-            margin: 4px 0 0 0;
-            font-size: 0.93em;
+        .header p {
+            margin: 5px 0 0;
+            font-size: 0.9em;
+        }
+        .nav {
+            background: #37474f;
+            padding: 10px 0;
         }
         .nav-content {
             display: flex;
-            align-items: center;
-            gap: 14px;
+            justify-content: center;
+            gap: 20px;
         }
         .nav-item {
-            color: #fff;
+            color: white;
             text-decoration: none;
             font-weight: 500;
-            padding: 8px 18px;
+            padding: 4px 10px;
             border-radius: 5px;
             transition: background 0.15s, color 0.15s;
-            font-size: 1.06em;
+            font-size: 1em;
         }
-        .nav-item.active,
+        .nav-item.active {
+            background: #ff9800;
+            color: #fff;
+            text-decoration: none; /* active 시 밑줄 대신 배경색 적용 */
+        }
         .nav-item:hover {
             background: #ff9800;
             color: #fff;
         }
         /* 메인 영역 */
         .main {
-            padding: 40px 0 60px 0;
+            padding: 30px 20px; /* 상단 padding을 30px로 통일 */
+            background: white;
             min-height: 600px;
         }
         .sub-container {
-            max-width: 1000px;
+            max-width: 1000px; /* 내부 컨테이너는 1000px 유지 */
             margin: 0 auto;
             padding: 35px 32px 30px 32px;
             background: #fff;
@@ -170,33 +173,27 @@
             color: #555;
             margin-top: 50px;
         }
-        @media (max-width: 900px) {
-            .container { max-width: 100vw; }
-            .topbar { flex-direction: column; align-items: flex-start; height: auto; padding: 18px 10px; }
-            .nav-content { gap: 7px; width: 100%; }
-            .sub-container { padding: 16px 5px; }
-        }
+        /* 미디어 쿼리는 일관성 유지를 위해 삭제하거나, 분리된 구조에 맞게 재조정해야 합니다. */
+        /* 여기서는 분리된 구조에 맞게 삭제합니다. */
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="topbar">
-            <div class="logo">
-                <h1>충신동 재개발 통합 추진위원회</h1>
-                <p><a href="index.html" style="color: #ffd54f; text-decoration: none;">메인 페이지로 돌아가기</a></p>
-            </div>
-            <nav>
-                <div class="nav-content">
-                    <a href="index.html#home" class="nav-item">홈</a>
-                    <a href="project_overview.html" class="nav-item">사업개요</a>
-                    <a href="notice_board.html" class="nav-item active">공지·자료실</a>
-                    <a href="community_board.html" class="nav-item">커뮤니티</a>
-                    <a href="transparency_center.html" class="nav-item">투명성센터</a>
-                    <a href="index.html#contact" class="nav-item">문의하기</a>
-                </div>
-            </nav>
-        </div>
+        <header class="header">
+            <h1>충신동 재개발 통합 추진위원회</h1>
+            <p><a href="index.html" style="color: #ffd54f; text-decoration: none;">← 메인 페이지로 돌아가기</a></p>
+        </header>
 
+        <nav class="nav">
+            <div class="nav-content">
+                <a href="index.html#home" class="nav-item">홈</a>
+                <a href="project_overview.html" class="nav-item">사업개요</a>
+                <a href="notice_board.html" class="nav-item active">공지·자료실</a>
+                <a href="community_board.html" class="nav-item">커뮤니티</a>
+                <a href="transparency_center.html" class="nav-item">투명성센터</a>
+                <a href="index.html#contact" class="nav-item">문의하기</a>
+            </div>
+        </nav>
         <main class="main">
             <div class="sub-container">
                 <h2>📋 공지·자료실</h2>
@@ -248,72 +245,72 @@
                         </tr>
 
                         <tr>
-                        <td>15</td>
-                        <td class="title">
-                        <a href="notice_detail_17.html">⚡️ [중요공지]소유자 주소 사전 확인 및 등기우편 서면 작성 안내</a>
-                        </td>
-                        <td>2025-08-27</td>
-                        <td>873</td>
-                        </tr>
+                        <td>13</td>
+                        <td class="title">
+                        <a href="notice_detail_17.html">⚡️ [중요공지]소유자 주소 사전 확인 및 등기우편 서면 작성 안내</a>
+                        </td>
+                        <td>2025-08-27</td>
+                        <td>873</td>
+                        </tr>
                         <tr>
-                        <td>14</td>
-                        <td class="title">
-                        <a href="notice_detail_16.html">📢 [중요공지]종로구청장 면담 결과 및 사업 정상화 방안 확정</a>
-                        </td>
-                        <td>2025-08-27</td>
-                        <td>300</td>
-                        </tr>
-        
+                        <td>12</td>
+                        <td class="title">
+                        <a href="notice_detail_16.html">📢 [중요공지]종로구청장 면담 결과 및 사업 정상화 방안 확정</a>
+                        </td>
+                        <td>2025-08-27</td>
+                        <td>300</td>
+                        </tr>
+
                         <tr>
-                        <td>13</td>
-                        <td class="title">
-                        <a href="notice_detail_15.html">📢 [중요공지] 주민총회 최종 결과 보고서</a>
-                        </td>
-                        <td>2025-08-26</td>
-                        <td>556</td>
-                        </tr>
+                        <td>11</td>
+                        <td class="title">
+                        <a href="notice_detail_15.html">📢 [중요공지] 주민총회 최종 결과 보고서</a>
+                        </td>
+                        <td>2025-08-26</td>
+                        <td>556</td>
+                        </tr>
                         <tr>
-                        <td>12</td>
-                        <td class="title">
-                        <a href="notice_detail_14.html">📢 [공지] 재개발 사업 관련 법률 상담 질의서 공지</a>
-                        </td>
-                        <td>2025-08-25</td>
-                        <td>456</td>
-                        </tr>
+                        <td>10</td>
+                        <td class="title">
+                        <a href="notice_detail_14.html">📢 [공지] 재개발 사업 관련 법률 상담 질의서 공지</a>
+                        </td>
+                        <td>2025-08-25</td>
+                        <td>456</td>
+                        </tr>
                         <tr>
-                        <td>11</td>
-                        <td class="title">
-                        <a href="notice_detail_13.html">📢 [공지] 주민총회 결과 보고서(초안) 공유 및 의견 청취 안내</a>
-                        </td>
-                        <td>2025-08-23</td>
-                        <td>886</td>
-                        </tr>
-                        <tr>
-                        <td>10</td>
-                        <td class="title">
-                        <a href="notice_detail_12.html">📢 [필독공지] 충신동 재개발 주민총회 이메일 투표 안내</a>
-                        </td>
-                        <td>2025-08-20</td>
-                        <td>786</td>
-                        </tr>
-                        <tr>
-                        <td>9</td>
-                        <td class="title">
-                        <a href="notice_detail_10.html">📢 [공지] 충신동 재개발 사업 통합 협의 진행 경과</a>
-                        </td>
-                        <td>2025-08-15</td>
-                        <td>501</td>
-                        </tr>
+                        <td>9</td>
+                        <td class="title">
+                        <a href="notice_detail_13.html">📢 [공지] 주민총회 결과 보고서(초안) 공유 및 의견 청취 안내</a>
+                        </td>
+                        <td>2025-08-23</td>
+                        <td>886</td>
+                        </tr>
                         <tr>
                         <td>8</td>
+                        <td class="title">
+                        <a href="notice_detail_12.html">📢 [필독공지] 충신동 재개발 주민총회 이메일 투표 안내</a>
+                        </td>
+                        <td>2025-08-20</td>
+                        <td>786</td>
+                        </tr>
+                        <tr>
+                        <td>7</td>
+                        <td class="title">
+                        <a href="notice_detail_10.html">📢 [공지] 충신동 재개발 사업 통합 협의 진행 경과</a>
+                        </td>
+                        <td>2025-08-15</td>
+                        <td>501</td>
+                        </tr>
+                        <tr>
+                        <td>6</td>
                         <td class="title">
                         <a href="notice_detail_8.html">📢 [신규공지] 충신동 주민총회 안건 상세 설명</a>
                         </td>
                         <td>2025-08-08</td>
                         <td>377</td>
-                        </tr>  
+                        </tr>
                         <tr>
-                        <td>7</td>
+                        <td>5</td>
                         <td class="title">
                         <a href="notice_detail_7.html">📢 [신규공지] 주민총회 관련 서류 안내 및 일정 공지</a>
                         </td>
@@ -321,55 +318,118 @@
                         <td>389</td>
                         </tr>
                         <tr>
-                        <tr>
-                          <td>6</td>
-                          <td class="title">
-                            <a href="notice_detail_6.html">📢 [신규공지] 8월 23일 주민총회 개최 안내 및 통합 추진 관련사항</a>
-                          </td>
-                          <td>2025-08-03</td>
-                          <td>388</td>
+                        <td>4</td>
+                        <td class="title">
+                        <a href="notice_detail_6.html">📢 [신규공지] 8월 23일 주민총회 개최 안내 및 통합 추진 관련사항</a>
+                        </td>
+                        <td>2025-08-03</td>
+                        <td>388</td>
                         </tr>
                         <tr>
-                          <td>5</td>
-                          <td class="title">
-                            <a href="notice_detail_5.html">⚡️ [긴급공지] 충신동 재개발 통합을 위한 토지등소유자 총회 개최 안내 (예정)</a>
-                          </td>
-                          <td>2025-07-31</td>
-                          <td>350</td>
+                        <td>3</td>
+                        <td class="title">
+                        <a href="notice_detail_5.html">⚡️ [긴급공지] 충신동 재개발 통합을 위한 토지등소유자 총회 개최 안내 (예정)</a>
+                        </td>
+                        <td>2025-08-03</td>
+                        <td>350</td>
                         </tr>
                         <tr>
-                          <td>4</td>
-                          <td class="title">
-                            <a href="notice_detail_4.html">⚠️ 중복 접수로 인한 사업 지연 현황 및 주민 참여의 중요성</a>
-                          </td>
-                          <td>2025-07-28</td>
-                          <td>280</td>
+                        <td>2</td>
+                        <td class="title">
+                        <a href="notice_detail_4.html">⚠️ 중복 접수로 인한 사업 지연 현황 및 주민 참여의 중요성</a>
+                        </td>
+                        <td>2025-07-28</td>
+                        <td>280</td>
                         </tr>
                         <tr>
-                          <td>3</td>
-                          <td class="title">
-                            <a href="notice_detail_3.html">[민원 접수] 종로구청에 충신동 재개발 사업 지연 해결 촉구 민원 제기</a>
-                          </td>
-                          <td>2025-07-25</td>
-                          <td>190</td>
+                        <td>1</td>
+                        <td class="title">
+                        <a href="notice_detail_1.html">재개발 관련 주요 용어 및 자주 묻는 질문 (FAQ)</a>
+                        </td>
+                        <td>2025-07-15</td>
+                        <td>510</td>
                         </tr>
                         <tr>
-                          <td>2</td>
-                          <td class="title">
-                            <a href="notice_detail_규약.html">추진위원회 관리 규약</a>
-                          </td>
-                          <td>2025-07-25</td>
-                          <td>190</td>
+                        <td>10</td>
+                        <td class="title">
+                        <a href="notice_detail_13.html">📢 [공지] 주민총회 결과 보고서(초안) 공유 및 의견 청취 안내</a>
+                        </td>
+                        <td>2025-08-23</td>
+                        <td>886</td>
                         </tr>
                         <tr>
-                          <td>1</td>
-                          <td class="title">
-                            <a href="notice_detail_1.html">재개발 관련 주요 용어 및 자주 묻는 질문 (FAQ)</a>
-                          </td>
-                          <td>2025-07-15</td>
-                          <td>510</td>
+                        <td>9</td>
+                        <td class="title">
+                        <a href="notice_detail_12.html">📢 [필독공지] 충신동 재개발 주민총회 이메일 투표 안내</a>
+                        </td>
+                        <td>2025-08-20</td>
+                        <td>786</td>
                         </tr>
-                       </tbody>
+                        <tr>
+                        <td>8</td>
+                        <td class="title">
+                        <a href="notice_detail_10.html">📢 [공지] 충신동 재개발 사업 통합 협의 진행 경과</a>
+                        </td>
+                        <td>2025-08-15</td>
+                        <td>501</td>
+                        </tr>
+                        <tr>
+                        <td>7</td>
+                        <td class="title">
+                        <a href="notice_detail_8.html">📢 [신규공지] 충신동 주민총회 안건 상세 설명</a>
+                        </td>
+                        <td>2025-08-08</td>
+                        <td>377</td>
+                        </tr>
+                        <tr>
+                        <td>6</td>
+                        <td class="title">
+                        <a href="notice_detail_7.html">📢 [신규공지] 주민총회 관련 서류 안내 및 일정 공지</a>
+                        </td>
+                        <td>2025-08-06</td>
+                        <td>389</td>
+                        </tr>
+                        <tr>
+                        <td>5</td>
+                        <td class="title">
+                        <a href="notice_detail_6.html">📢 [신규공지] 8월 23일 주민총회 개최 안내 및 통합 추진 관련사항</a>
+                        </td>
+                        <td>2025-08-03</td>
+                        <td>388</td>
+                        </tr>
+                        <tr>
+                        <td>4</td>
+                        <td class="title">
+                        <a href="notice_detail_5.html">⚡️ [긴급공지] 충신동 재개발 통합을 위한 토지등소유자 총회 개최 안내 (예정)</a>
+                        </td>
+                        <td>2025-07-31</td>
+                        <td>350</td>
+                        </tr>
+                        <tr>
+                        <td>3</td>
+                        <td class="title">
+                        <a href="notice_detail_4.html">⚠️ 중복 접수로 인한 사업 지연 현황 및 주민 참여의 중요성</a>
+                        </td>
+                        <td>2025-07-28</td>
+                        <td>280</td>
+                        </tr>
+                        <tr>
+                        <td>2</td>
+                        <td class="title">
+                        <a href="notice_detail_규약.html">추진위원회 관리 규약</a>
+                        </td>
+                        <td>2025-07-25</td>
+                        <td>190</td>
+                        </tr>
+                        <tr>
+                        <td>1</td>
+                        <td class="title">
+                        <a href="notice_detail_1.html">재개발 관련 주요 용어 및 자주 묻는 질문 (FAQ)</a>
+                        </td>
+                        <td>2025-07-15</td>
+                        <td>510</td>
+                        </tr>
+                    </tbody>
                 </table>
                 <div class="pagination">
                     <a href="#">&laquo;</a>
@@ -388,22 +448,3 @@
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
