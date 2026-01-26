@@ -246,10 +246,10 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
             animation: shine 2s infinite;
         }
-
+        /* 애니메이션 수정: 0%에서 38.28%까지 차오름 */
         @keyframes progressAnimation {
             0% { width: 0%; }
-            0% { width: 100%; }
+            100% { width: 38.45%; }
         }
 
         @keyframes shine {
@@ -553,7 +553,9 @@
                 <div class="progress-bar">
                     <div class="progress-fill"></div>
                 </div>
-                <div class="progress-text">(1차목표)"토지등 소유자 50% 달성 목표! 서면 동의 진행률" (신속통합기획 동의서 징구 中)</div>
+                <div class="progress-text">현재동의율:<span style="font-size: 1.2em; color: #e65100;">38.45%</span><br>
+                <span style="font-size: 0.85em; color: #666; font-weight: normal;">(총 680개 필지 중 263개 완료 / 1차 목표 50% 달성까지 동의서가 필요합니다)</span>
+                </div>
             </section>
             
        
@@ -821,35 +823,4 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
