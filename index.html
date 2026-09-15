@@ -90,8 +90,8 @@
                 </div>
 
                 <div class="video-player-wrapper" id="videoDropZone">
-                    <!-- Native MP4 Video Player -->
-                    <video id="visionVideoPlayer" class="cinematic-video" autoplay muted loop playsinline preload="auto" poster="files/choongsin_vision_poster.jpg" src="files/choongsin_vision.mp4">
+                    <!-- Native MP4 Video Player (Web-optimized H.264 FastStart 720p) -->
+                    <video id="visionVideoPlayer" class="cinematic-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="files/choongsin_vision_poster.jpg">
                         <source src="files/choongsin_vision.mp4" type="video/mp4">
                     </video>
 
@@ -763,6 +763,22 @@
                 return (match && match[1]) ? match[1] : (url.length === 11 ? url : null);
             }
 
+            function playVideoSafe() {
+                if (!video) return;
+                video.muted = true;
+                video.defaultMuted = true;
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        showPlayingState();
+                    }).catch(err => {
+                        console.warn('Autoplay waiting for user gesture:', err);
+                        showPausedState();
+                        if (centerPlayBtn) centerPlayBtn.classList.remove('hidden');
+                    });
+                }
+            }
+
             function setMode(mode) {
                 currentMode = mode;
                 if (mode === 'youtube') {
@@ -793,16 +809,7 @@
                     if (controlsBar) controlsBar.style.display = 'flex';
                     if (video) {
                         video.style.display = 'block';
-                        video.muted = true;
-                        const playPromise = video.play();
-                        if (playPromise !== undefined) {
-                            playPromise.then(() => {
-                                showPlayingState();
-                            }).catch(() => {
-                                showPausedState();
-                                if (centerPlayBtn) centerPlayBtn.classList.remove('hidden');
-                            });
-                        }
+                        playVideoSafe();
                     }
                 }
             }
@@ -835,12 +842,6 @@
                         setMode('youtube');
                     } else {
                         setMode('mp4');
-                        if (video) {
-                            video.muted = true;
-                            video.play().then(showPlayingState).catch(() => {
-                                if (centerPlayBtn) centerPlayBtn.classList.remove('hidden');
-                            });
-                        }
                     }
                 })
                 .catch(() => {
@@ -851,23 +852,39 @@
             if (centerPlayBtn && video) {
                 centerPlayBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
+                    e.preventDefault();
                     video.muted = true;
-                    video.play().then(showPlayingState).catch(console.error);
+                    video.defaultMuted = true;
+                    video.play().then(showPlayingState).catch(err => {
+                        console.warn('Center play retry:', err);
+                        video.load();
+                        video.play().then(showPlayingState).catch(console.error);
+                    });
                 });
             }
 
             if (video) {
                 video.addEventListener('playing', showPlayingState);
                 video.addEventListener('pause', showPausedState);
-                video.addEventListener('click', function() {
+                video.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     if (video.paused) {
-                        video.play().then(showPlayingState).catch(console.error);
+                        playVideoSafe();
                     } else {
                         video.pause();
                         showPausedState();
                     }
                 });
             }
+
+            // Global first gesture resume (bypasses browser autoplay restrictions seamlessly)
+            const unlockAutoplay = () => {
+                if (currentMode === 'mp4' && video && video.paused) {
+                    playVideoSafe();
+                }
+            };
+            window.addEventListener('click', unlockAutoplay, { once: true });
+            window.addEventListener('touchstart', unlockAutoplay, { once: true });
 
             // Mode Switch Buttons
             if (modeMp4Btn) {
