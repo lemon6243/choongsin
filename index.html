@@ -63,6 +63,108 @@
 
     <!-- Main Content -->
     <main class="page-wrapper">
+        <!-- Cinematic 3D Vision Video Showcase Section -->
+        <section class="video-hero-section" id="cinematic-video-section">
+            <div class="video-hero-card">
+                <div class="video-header-bar">
+                    <div class="video-badge-wrap">
+                        <span class="video-live-dot"></span>
+                        <span class="video-live-badge">3D 시네마틱 조감 시뮬레이션</span>
+                        <span class="video-tag-text">흥인지문 · 흥덕동천 600년 물길 · 중앙성결교회 · 앙각 27도 수직입체도시</span>
+                    </div>
+                    <div class="video-action-group">
+                        <label for="videoFileInput" class="btn-video-upload" title="동영상 파일 직접 등록/교체">
+                            <span>📁 영상 파일 등록/교체 (MP4)</span>
+                        </label>
+                        <input type="file" id="videoFileInput" accept="video/mp4,video/webm" style="display: none;">
+                    </div>
+                </div>
+
+                <div class="video-player-wrapper" id="videoDropZone">
+                    <video id="visionVideoPlayer" class="cinematic-video" autoplay muted loop playsinline preload="auto">
+                        <source src="files/choongsin_vision.mp4" type="video/mp4">
+                    </video>
+
+                    <!-- Fallback placeholder when no video file is saved on server yet -->
+                    <div class="video-fallback-overlay" id="videoFallbackOverlay">
+                        <div class="video-fallback-content">
+                            <div class="video-fallback-icon">🎬</div>
+                            <h3>충신동 3D 시네마틱 조감 영상 재생</h3>
+                            <p>
+                                생성하신 AI 드론 비행 영상(MP4)을 이 영역으로 <strong>마우스로 끌어다 놓거나(Drag & Drop)</strong><br>
+                                아래 버튼을 눌러 선택하시면 홈페이지 최상단에서 즉시 초고화질로 자동 재생됩니다.
+                            </p>
+                            <label for="videoFileInputPrompt" class="btn-primary-renew" style="cursor: pointer; display: inline-flex; align-items: center; gap: 8px; margin-top: 8px;">
+                                <span>▶ 생성한 MP4 동영상 파일 선택하기</span>
+                            </label>
+                            <input type="file" id="videoFileInputPrompt" accept="video/mp4,video/webm" style="display: none;">
+                            <div style="margin-top: 14px; font-size: 0.8rem; color: #64748b;">
+                                ※ 등록하신 영상은 자동으로 서버 및 브라우저에 저장되어 재접속 시에도 계속 재생됩니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Controls Bar -->
+                    <div class="video-controls-bar" id="videoControlsBar">
+                        <button type="button" class="video-ctrl-btn" id="videoPlayPauseBtn" aria-label="재생/일시정지">
+                            <span id="videoPlayPauseIcon">⏸</span>
+                            <span id="videoPlayPauseText">일시정지</span>
+                        </button>
+                        <button type="button" class="video-ctrl-btn" id="videoMuteBtn" aria-label="음소거 토글">
+                            <span id="videoMuteIcon">🔇</span>
+                            <span id="videoMuteText">소리 켜기</span>
+                        </button>
+                        <button type="button" class="video-ctrl-btn" id="videoFullscreenBtn" aria-label="전체화면">
+                            <span>⛶</span>
+                            <span>전체화면</span>
+                        </button>
+                        <div class="video-status-text" id="videoStatusMsg">
+                            <span>● 4K Drone Aerial Vision</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 Architectural Landmarks Highlight Grid -->
+                <div class="video-landmarks-strip">
+                    <div class="landmark-item">
+                        <span class="landmark-icon">🏯</span>
+                        <div class="landmark-info">
+                            <strong>흥인지문 & 옹성</strong>
+                            <p>600년 역사문화 원형 보존</p>
+                        </div>
+                    </div>
+                    <div class="landmark-item">
+                        <span class="landmark-icon">🌊</span>
+                        <div class="landmark-info">
+                            <strong>흥덕동천 수변공원</strong>
+                            <p>복개 물길 복원 및 수변 산책로</p>
+                        </div>
+                    </div>
+                    <div class="landmark-item">
+                        <span class="landmark-icon">⛪</span>
+                        <div class="landmark-info">
+                            <strong>중앙성결교회</strong>
+                            <p>현대식 채플 & 열린 문화홀</p>
+                        </div>
+                    </div>
+                    <div class="landmark-item">
+                        <span class="landmark-icon">🏡</span>
+                        <div class="landmark-info">
+                            <strong>성곽변 테라스하우스</strong>
+                            <p>앙각 27도 준수 & 낙산 공원화</p>
+                        </div>
+                    </div>
+                    <div class="landmark-item">
+                        <span class="landmark-icon">🏢</span>
+                        <div class="landmark-info">
+                            <strong>역세권 랜드마크 타워</strong>
+                            <p>스카이브릿지 & 약 3,000세대</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Hero Section -->
         <section class="hero-renewed" id="hero-section">
             <div class="hero-content-wrap">
@@ -586,6 +688,191 @@
                 scrollBtn.addEventListener('click', function() {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
+            }
+
+            // Cinematic Vision Video Player Controller
+            const video = document.getElementById('visionVideoPlayer');
+            const fallbackOverlay = document.getElementById('videoFallbackOverlay');
+            const playPauseBtn = document.getElementById('videoPlayPauseBtn');
+            const playPauseIcon = document.getElementById('videoPlayPauseIcon');
+            const playPauseText = document.getElementById('videoPlayPauseText');
+            const muteBtn = document.getElementById('videoMuteBtn');
+            const muteIcon = document.getElementById('videoMuteIcon');
+            const muteText = document.getElementById('videoMuteText');
+            const fullscreenBtn = document.getElementById('videoFullscreenBtn');
+            const statusMsg = document.getElementById('videoStatusMsg');
+            const fileInputs = [document.getElementById('videoFileInput'), document.getElementById('videoFileInputPrompt')];
+            const dropZone = document.getElementById('videoDropZone');
+
+            function showPlayingState() {
+                if (fallbackOverlay) fallbackOverlay.classList.add('hidden');
+                if (playPauseIcon) playPauseIcon.textContent = '⏸';
+                if (playPauseText) playPauseText.textContent = '일시정지';
+                if (statusMsg) statusMsg.innerHTML = '<span style="color: #10b981;">● 3D Drone Aerial Vision Playing</span>';
+            }
+
+            function showPausedState() {
+                if (playPauseIcon) playPauseIcon.textContent = '▶';
+                if (playPauseText) playPauseText.textContent = '재생';
+                if (statusMsg) statusMsg.innerHTML = '<span style="color: #94a3b8;">❚❚ Video Paused</span>';
+            }
+
+            // Check if video file is already present on server
+            fetch('/api/video-status')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.exists && video) {
+                        video.src = data.url + '?t=' + new Date().getTime();
+                        video.load();
+                        const playPromise = video.play();
+                        if (playPromise !== undefined) {
+                            playPromise.then(() => {
+                                showPlayingState();
+                            }).catch(() => {
+                                // Autoplay muted might be needed
+                                video.muted = true;
+                                video.play().then(showPlayingState).catch(() => {});
+                            });
+                        }
+                    }
+                })
+                .catch(() => {});
+
+            if (video) {
+                video.addEventListener('playing', showPlayingState);
+                video.addEventListener('pause', showPausedState);
+                video.addEventListener('loadeddata', function() {
+                    if (video.videoWidth > 0) {
+                        showPlayingState();
+                    }
+                });
+            }
+
+            // Play / Pause Toggle
+            if (playPauseBtn && video) {
+                playPauseBtn.addEventListener('click', function() {
+                    if (video.paused) {
+                        video.play().then(showPlayingState).catch(console.error);
+                    } else {
+                        video.pause();
+                        showPausedState();
+                    }
+                });
+            }
+
+            // Mute / Unmute Toggle
+            if (muteBtn && video) {
+                muteBtn.addEventListener('click', function() {
+                    video.muted = !video.muted;
+                    if (video.muted) {
+                        muteIcon.textContent = '🔇';
+                        muteText.textContent = '소리 켜기';
+                    } else {
+                        muteIcon.textContent = '🔊';
+                        muteText.textContent = '음소거';
+                    }
+                });
+            }
+
+            // Fullscreen
+            if (fullscreenBtn && dropZone) {
+                fullscreenBtn.addEventListener('click', function() {
+                    if (!document.fullscreenElement) {
+                        if (dropZone.requestFullscreen) {
+                            dropZone.requestFullscreen();
+                        } else if (video.requestFullscreen) {
+                            video.requestFullscreen();
+                        }
+                    } else {
+                        if (document.exitFullscreen) {
+                            document.exitFullscreen();
+                        }
+                    }
+                });
+            }
+
+            // File Upload & Local Instant Preview Function
+            function handleVideoFile(file) {
+                if (!file || !file.type.startsWith('video/')) {
+                    alert('MP4 또는 WebM 형식의 동영상 파일을 선택해 주세요.');
+                    return;
+                }
+
+                // 1. Instant local playback
+                const objectUrl = URL.createObjectURL(file);
+                if (video) {
+                    video.src = objectUrl;
+                    video.muted = true;
+                    video.load();
+                    video.play().then(() => {
+                        showPlayingState();
+                    }).catch(console.error);
+                }
+
+                if (statusMsg) {
+                    statusMsg.innerHTML = '<span style="color: #60a5fa;">⏳ 서버에 저장 중...</span>';
+                }
+
+                // 2. Upload to server via /api/upload-video
+                fetch('/api/upload-video', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': file.type || 'video/mp4'
+                    },
+                    body: file
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        if (statusMsg) {
+                            statusMsg.innerHTML = '<span style="color: #10b981;">✅ 서버 저장 완료 · 4K Drone Vision</span>';
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.warn('Video background sync note:', err);
+                    if (statusMsg) {
+                        statusMsg.innerHTML = '<span style="color: #10b981;">● 3D Vision Playing (로컬)</span>';
+                    }
+                });
+            }
+
+            // Attach input change listeners
+            fileInputs.forEach(input => {
+                if (input) {
+                    input.addEventListener('change', function(e) {
+                        if (e.target.files && e.target.files[0]) {
+                            handleVideoFile(e.target.files[0]);
+                        }
+                    });
+                }
+            });
+
+            // Drag and drop onto video player
+            if (dropZone) {
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    dropZone.addEventListener(eventName, (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        dropZone.style.outline = '3px dashed #38bdf8';
+                    }, false);
+                });
+
+                ['dragleave', 'drop'].forEach(eventName => {
+                    dropZone.addEventListener(eventName, (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        dropZone.style.outline = 'none';
+                    }, false);
+                });
+
+                dropZone.addEventListener('drop', (e) => {
+                    const dt = e.dataTransfer;
+                    const files = dt.files;
+                    if (files && files.length > 0) {
+                        handleVideoFile(files[0]);
+                    }
+                }, false);
             }
         });
     </script>
