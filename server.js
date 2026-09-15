@@ -19,7 +19,37 @@ app.get('/api/health', (req, res) => {
 app.get('/api/video-status', (req, res) => {
   const filePath = path.join(__dirname, 'files', 'choongsin_vision.mp4');
   const exists = fs.existsSync(filePath);
-  res.json({ exists, url: exists ? 'files/choongsin_vision.mp4' : null });
+  const configPath = path.join(__dirname, 'files', 'video_config.json');
+  let config = { mode: 'mp4', youtubeUrl: '', youtubeId: '' };
+  if (fs.existsSync(configPath)) {
+    try {
+      config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    } catch (e) {}
+  }
+  res.json({ 
+    exists, 
+    url: exists ? 'files/choongsin_vision.mp4' : null,
+    poster: 'files/choongsin_vision_poster.jpg',
+    mode: config.mode || (exists ? 'mp4' : 'youtube'),
+    youtubeUrl: config.youtubeUrl || '',
+    youtubeId: config.youtubeId || ''
+  });
+});
+
+app.post('/api/video-config', (req, res) => {
+  const filesDir = path.join(__dirname, 'files');
+  if (!fs.existsSync(filesDir)) {
+    fs.mkdirSync(filesDir, { recursive: true });
+  }
+  const configPath = path.join(filesDir, 'video_config.json');
+  const { mode, youtubeUrl, youtubeId } = req.body || {};
+  const newConfig = {
+    mode: mode || 'mp4',
+    youtubeUrl: youtubeUrl || '',
+    youtubeId: youtubeId || ''
+  };
+  fs.writeFileSync(configPath, JSON.stringify(newConfig, null, 2), 'utf8');
+  res.json({ success: true, config: newConfig });
 });
 
 app.post('/api/upload-video', (req, res) => {

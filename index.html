@@ -73,38 +73,54 @@
                         <span class="video-tag-text">흥인지문 · 흥덕동천 600년 물길 · 중앙성결교회 · 앙각 27도 수직입체도시</span>
                     </div>
                     <div class="video-action-group">
-                        <label for="videoFileInput" class="btn-video-upload" title="동영상 파일 직접 등록/교체">
-                            <span>📁 영상 파일 등록/교체 (MP4)</span>
+                        <button type="button" id="modeMp4Btn" class="video-mode-pill active" title="직접 저장된 고화질 MP4 영상 재생">
+                            <span>🎬 자체 영상(MP4)</span>
+                        </button>
+                        <button type="button" id="modeYoutubeBtn" class="video-mode-pill" title="유튜브 스트리밍 영상으로 전환">
+                            <span>🔴 유튜브 영상</span>
+                        </button>
+                        <button type="button" id="openYoutubeModalBtn" class="btn-youtube-link" title="유튜브 영상 링크 등록/변경">
+                            <span>🔗 유튜브 링크 등록</span>
+                        </button>
+                        <label for="videoFileInput" class="btn-video-upload" title="MP4 동영상 파일 교체">
+                            <span>📁 MP4 교체</span>
                         </label>
                         <input type="file" id="videoFileInput" accept="video/mp4,video/webm" style="display: none;">
                     </div>
                 </div>
 
                 <div class="video-player-wrapper" id="videoDropZone">
-                    <video id="visionVideoPlayer" class="cinematic-video" autoplay muted loop playsinline preload="auto">
+                    <!-- Native MP4 Video Player -->
+                    <video id="visionVideoPlayer" class="cinematic-video" autoplay muted loop playsinline preload="auto" poster="files/choongsin_vision_poster.jpg" src="files/choongsin_vision.mp4">
                         <source src="files/choongsin_vision.mp4" type="video/mp4">
                     </video>
 
-                    <!-- Fallback placeholder when no video file is saved on server yet -->
-                    <div class="video-fallback-overlay" id="videoFallbackOverlay">
+                    <!-- YouTube Embed Player -->
+                    <iframe id="visionYoutubePlayer" class="cinematic-video" style="display: none; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                    <!-- Center Play Prompt (Shown if browser autoplay is restricted) -->
+                    <button type="button" id="videoCenterPlayBtn" class="video-center-play hidden" aria-label="3D 조감 영상 재생하기">
+                        <span>▶</span>
+                        <span>3D 시네마틱 조감 영상 재생</span>
+                    </button>
+
+                    <!-- Fallback placeholder (hidden by default since video exists on server) -->
+                    <div class="video-fallback-overlay hidden" id="videoFallbackOverlay">
                         <div class="video-fallback-content">
                             <div class="video-fallback-icon">🎬</div>
-                            <h3>충신동 3D 시네마틱 조감 영상 재생</h3>
+                            <h3>충신동 3D 시네마틱 조감 영상</h3>
                             <p>
-                                생성하신 AI 드론 비행 영상(MP4)을 이 영역으로 <strong>마우스로 끌어다 놓거나(Drag & Drop)</strong><br>
-                                아래 버튼을 눌러 선택하시면 홈페이지 최상단에서 즉시 초고화질로 자동 재생됩니다.
+                                영상을 이 영역으로 <strong>마우스로 끌어다 놓거나(Drag & Drop)</strong><br>
+                                아래 버튼을 눌러 선택하시면 즉시 재생 및 영구 저장됩니다.
                             </p>
                             <label for="videoFileInputPrompt" class="btn-primary-renew" style="cursor: pointer; display: inline-flex; align-items: center; gap: 8px; margin-top: 8px;">
-                                <span>▶ 생성한 MP4 동영상 파일 선택하기</span>
+                                <span>▶ MP4 동영상 파일 선택</span>
                             </label>
                             <input type="file" id="videoFileInputPrompt" accept="video/mp4,video/webm" style="display: none;">
-                            <div style="margin-top: 14px; font-size: 0.8rem; color: #64748b;">
-                                ※ 등록하신 영상은 자동으로 서버 및 브라우저에 저장되어 재접속 시에도 계속 재생됩니다.
-                            </div>
                         </div>
                     </div>
 
-                    <!-- Video Controls Bar -->
+                    <!-- Video Controls Bar for MP4 mode -->
                     <div class="video-controls-bar" id="videoControlsBar">
                         <button type="button" class="video-ctrl-btn" id="videoPlayPauseBtn" aria-label="재생/일시정지">
                             <span id="videoPlayPauseIcon">⏸</span>
@@ -120,6 +136,27 @@
                         </button>
                         <div class="video-status-text" id="videoStatusMsg">
                             <span>● 4K Drone Aerial Vision</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- YouTube Link Modal -->
+                <div id="youtubeModal" class="video-modal-backdrop" style="display: none;">
+                    <div class="video-modal-card">
+                        <div class="video-modal-header">
+                            <h4>🔗 유튜브(YouTube) 영상 링크 연동</h4>
+                            <button type="button" id="closeYoutubeModalBtn" class="close-btn" aria-label="닫기">&times;</button>
+                        </div>
+                        <div class="video-modal-body">
+                            <p style="font-size: 0.9rem; color: #475569; margin-bottom: 12px; line-height: 1.5;">
+                                유튜브에 업로드하신 충신동 3D 조감도 영상 링크를 붙여넣어 주세요.<br>
+                                <span style="font-size: 0.82rem; color: #64748b;">(지원 형식: <code>https://youtu.be/xxx</code> 또는 <code>https://www.youtube.com/watch?v=xxx</code>)</span>
+                            </p>
+                            <input type="text" id="youtubeUrlInput" placeholder="https://youtu.be/..." class="form-input-renew" style="width: 100%; margin-bottom: 16px; font-size: 0.95rem; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box;">
+                            <div style="display: flex; justify-content: flex-end; gap: 8px;">
+                                <button type="button" id="cancelYoutubeBtn" class="btn-secondary-renew" style="padding: 8px 16px;">취소</button>
+                                <button type="button" id="saveYoutubeBtn" class="btn-primary-renew" style="padding: 8px 18px;">유튜브 영상 적용 및 저장</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -690,9 +727,12 @@
                 });
             }
 
-            // Cinematic Vision Video Player Controller
+            // Cinematic Vision Video Player Controller (MP4 + YouTube Dual Mode)
             const video = document.getElementById('visionVideoPlayer');
+            const ytIframe = document.getElementById('visionYoutubePlayer');
             const fallbackOverlay = document.getElementById('videoFallbackOverlay');
+            const centerPlayBtn = document.getElementById('videoCenterPlayBtn');
+            const controlsBar = document.getElementById('videoControlsBar');
             const playPauseBtn = document.getElementById('videoPlayPauseBtn');
             const playPauseIcon = document.getElementById('videoPlayPauseIcon');
             const playPauseText = document.getElementById('videoPlayPauseText');
@@ -701,11 +741,75 @@
             const muteText = document.getElementById('videoMuteText');
             const fullscreenBtn = document.getElementById('videoFullscreenBtn');
             const statusMsg = document.getElementById('videoStatusMsg');
+            const modeMp4Btn = document.getElementById('modeMp4Btn');
+            const modeYoutubeBtn = document.getElementById('modeYoutubeBtn');
+            const openYoutubeModalBtn = document.getElementById('openYoutubeModalBtn');
+            const youtubeModal = document.getElementById('youtubeModal');
+            const closeYoutubeModalBtn = document.getElementById('closeYoutubeModalBtn');
+            const cancelYoutubeBtn = document.getElementById('cancelYoutubeBtn');
+            const saveYoutubeBtn = document.getElementById('saveYoutubeBtn');
+            const youtubeUrlInput = document.getElementById('youtubeUrlInput');
             const fileInputs = [document.getElementById('videoFileInput'), document.getElementById('videoFileInputPrompt')];
             const dropZone = document.getElementById('videoDropZone');
 
+            let currentMode = 'mp4';
+            let storedYoutubeId = '';
+            let storedYoutubeUrl = '';
+
+            function extractYouTubeId(url) {
+                if (!url) return null;
+                const regExp = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/;
+                const match = url.match(regExp);
+                return (match && match[1]) ? match[1] : (url.length === 11 ? url : null);
+            }
+
+            function setMode(mode) {
+                currentMode = mode;
+                if (mode === 'youtube') {
+                    if (modeMp4Btn) modeMp4Btn.classList.remove('active');
+                    if (modeYoutubeBtn) modeYoutubeBtn.classList.add('active');
+                    if (video) {
+                        video.pause();
+                        video.style.display = 'none';
+                    }
+                    if (centerPlayBtn) centerPlayBtn.classList.add('hidden');
+                    if (fallbackOverlay) fallbackOverlay.classList.add('hidden');
+                    if (controlsBar) controlsBar.style.display = 'none';
+                    if (ytIframe) {
+                        ytIframe.style.display = 'block';
+                        if (storedYoutubeId) {
+                            ytIframe.src = 'https://www.youtube.com/embed/' + storedYoutubeId + '?autoplay=1&mute=1&loop=1&playlist=' + storedYoutubeId + '&playsinline=1&controls=1&rel=0';
+                        }
+                    }
+                    if (statusMsg) statusMsg.innerHTML = '<span style="color: #ef4444;">● YouTube 4K Streaming</span>';
+                } else {
+                    // MP4 mode
+                    if (modeMp4Btn) modeMp4Btn.classList.add('active');
+                    if (modeYoutubeBtn) modeYoutubeBtn.classList.remove('active');
+                    if (ytIframe) {
+                        ytIframe.style.display = 'none';
+                        ytIframe.src = '';
+                    }
+                    if (controlsBar) controlsBar.style.display = 'flex';
+                    if (video) {
+                        video.style.display = 'block';
+                        video.muted = true;
+                        const playPromise = video.play();
+                        if (playPromise !== undefined) {
+                            playPromise.then(() => {
+                                showPlayingState();
+                            }).catch(() => {
+                                showPausedState();
+                                if (centerPlayBtn) centerPlayBtn.classList.remove('hidden');
+                            });
+                        }
+                    }
+                }
+            }
+
             function showPlayingState() {
                 if (fallbackOverlay) fallbackOverlay.classList.add('hidden');
+                if (centerPlayBtn) centerPlayBtn.classList.add('hidden');
                 if (playPauseIcon) playPauseIcon.textContent = '⏸';
                 if (playPauseText) playPauseText.textContent = '일시정지';
                 if (statusMsg) statusMsg.innerHTML = '<span style="color: #10b981;">● 3D Drone Aerial Vision Playing</span>';
@@ -717,34 +821,126 @@
                 if (statusMsg) statusMsg.innerHTML = '<span style="color: #94a3b8;">❚❚ Video Paused</span>';
             }
 
-            // Check if video file is already present on server
+            // Load initial status from server
             fetch('/api/video-status')
                 .then(res => res.json())
                 .then(data => {
-                    if (data.exists && video) {
-                        video.src = data.url + '?t=' + new Date().getTime();
-                        video.load();
-                        const playPromise = video.play();
-                        if (playPromise !== undefined) {
-                            playPromise.then(() => {
-                                showPlayingState();
-                            }).catch(() => {
-                                // Autoplay muted might be needed
-                                video.muted = true;
-                                video.play().then(showPlayingState).catch(() => {});
+                    storedYoutubeId = data.youtubeId || '';
+                    storedYoutubeUrl = data.youtubeUrl || '';
+                    if (youtubeUrlInput && storedYoutubeUrl) {
+                        youtubeUrlInput.value = storedYoutubeUrl;
+                    }
+
+                    if (data.mode === 'youtube' && storedYoutubeId) {
+                        setMode('youtube');
+                    } else {
+                        setMode('mp4');
+                        if (video) {
+                            video.muted = true;
+                            video.play().then(showPlayingState).catch(() => {
+                                if (centerPlayBtn) centerPlayBtn.classList.remove('hidden');
                             });
                         }
                     }
                 })
-                .catch(() => {});
+                .catch(() => {
+                    setMode('mp4');
+                });
+
+            // Center play button click
+            if (centerPlayBtn && video) {
+                centerPlayBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    video.muted = true;
+                    video.play().then(showPlayingState).catch(console.error);
+                });
+            }
 
             if (video) {
                 video.addEventListener('playing', showPlayingState);
                 video.addEventListener('pause', showPausedState);
-                video.addEventListener('loadeddata', function() {
-                    if (video.videoWidth > 0) {
-                        showPlayingState();
+                video.addEventListener('click', function() {
+                    if (video.paused) {
+                        video.play().then(showPlayingState).catch(console.error);
+                    } else {
+                        video.pause();
+                        showPausedState();
                     }
+                });
+            }
+
+            // Mode Switch Buttons
+            if (modeMp4Btn) {
+                modeMp4Btn.addEventListener('click', function() {
+                    setMode('mp4');
+                    fetch('/api/video-config', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ mode: 'mp4', youtubeUrl: storedYoutubeUrl, youtubeId: storedYoutubeId })
+                    }).catch(() => {});
+                });
+            }
+
+            if (modeYoutubeBtn) {
+                modeYoutubeBtn.addEventListener('click', function() {
+                    if (!storedYoutubeId) {
+                        // If no YouTube URL registered yet, prompt modal
+                        if (youtubeModal) youtubeModal.style.display = 'flex';
+                    } else {
+                        setMode('youtube');
+                        fetch('/api/video-config', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ mode: 'youtube', youtubeUrl: storedYoutubeUrl, youtubeId: storedYoutubeId })
+                        }).catch(() => {});
+                    }
+                });
+            }
+
+            // YouTube Modal open/close
+            if (openYoutubeModalBtn && youtubeModal) {
+                openYoutubeModalBtn.addEventListener('click', function() {
+                    youtubeModal.style.display = 'flex';
+                    if (youtubeUrlInput) youtubeUrlInput.focus();
+                });
+            }
+
+            function closeYtModal() {
+                if (youtubeModal) youtubeModal.style.display = 'none';
+            }
+
+            if (closeYoutubeModalBtn) closeYoutubeModalBtn.addEventListener('click', closeYtModal);
+            if (cancelYoutubeBtn) cancelYoutubeBtn.addEventListener('click', closeYtModal);
+            if (youtubeModal) {
+                youtubeModal.addEventListener('click', function(e) {
+                    if (e.target === youtubeModal) closeYtModal();
+                });
+            }
+
+            // Save YouTube URL
+            if (saveYoutubeBtn && youtubeUrlInput) {
+                saveYoutubeBtn.addEventListener('click', function() {
+                    const rawUrl = youtubeUrlInput.value.trim();
+                    const yId = extractYouTubeId(rawUrl);
+                    if (!yId) {
+                        alert('올바른 유튜브 영상 링크(URL)를 입력해 주세요.\n예: https://youtu.be/xxx 또는 https://www.youtube.com/watch?v=xxx');
+                        return;
+                    }
+                    storedYoutubeId = yId;
+                    storedYoutubeUrl = rawUrl;
+                    closeYtModal();
+                    setMode('youtube');
+
+                    fetch('/api/video-config', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ mode: 'youtube', youtubeUrl: rawUrl, youtubeId: yId })
+                    })
+                    .then(res => res.json())
+                    .then(() => {
+                        alert('유튜브 영상이 성공적으로 등록 및 연동되었습니다!');
+                    })
+                    .catch(() => {});
                 });
             }
 
@@ -798,46 +994,37 @@
                     return;
                 }
 
-                // 1. Instant local playback
+                setMode('mp4');
                 const objectUrl = URL.createObjectURL(file);
                 if (video) {
                     video.src = objectUrl;
                     video.muted = true;
                     video.load();
-                    video.play().then(() => {
-                        showPlayingState();
-                    }).catch(console.error);
+                    video.play().then(showPlayingState).catch(console.error);
                 }
 
                 if (statusMsg) {
-                    statusMsg.innerHTML = '<span style="color: #60a5fa;">⏳ 서버에 저장 중...</span>';
+                    statusMsg.innerHTML = '<span style="color: #60a5fa;">⏳ 서버에 영구 저장 중...</span>';
                 }
 
-                // 2. Upload to server via /api/upload-video
                 fetch('/api/upload-video', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': file.type || 'video/mp4'
-                    },
+                    headers: { 'Content-Type': file.type || 'video/mp4' },
                     body: file
                 })
                 .then(res => res.json())
                 .then(data => {
                     if (data.success) {
                         if (statusMsg) {
-                            statusMsg.innerHTML = '<span style="color: #10b981;">✅ 서버 저장 완료 · 4K Drone Vision</span>';
+                            statusMsg.innerHTML = '<span style="color: #10b981;">✅ 서버 영구 저장 완료 · 4K Vision</span>';
                         }
                     }
                 })
                 .catch(err => {
-                    console.warn('Video background sync note:', err);
-                    if (statusMsg) {
-                        statusMsg.innerHTML = '<span style="color: #10b981;">● 3D Vision Playing (로컬)</span>';
-                    }
+                    console.warn('Video upload note:', err);
                 });
             }
 
-            // Attach input change listeners
             fileInputs.forEach(input => {
                 if (input) {
                     input.addEventListener('change', function(e) {
@@ -848,7 +1035,6 @@
                 }
             });
 
-            // Drag and drop onto video player
             if (dropZone) {
                 ['dragenter', 'dragover'].forEach(eventName => {
                     dropZone.addEventListener(eventName, (e) => {
