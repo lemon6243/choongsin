@@ -3,212 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>커뮤니티 - 충신동 재개발 통합 추진위원회</title>
+    <title>주민 커뮤니티 - 충신동 도심복합개발 통합 추진위원회</title>
+    <meta name="description" content="충신동 도심복합개발 소유자 및 주민 여러분의 소통과 질의응답을 위한 열린 커뮤니티 게시판입니다.">
+    <link rel="stylesheet" href="style.css">
     <style>
-        /* 기존 게시글에서 가져온 스타일 (Header, Nav 관련) */
-        body {
-            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
-            background: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto; /* 메인 콘텐츠의 마진은 main 내부에서 조정 */
-        }
-        .header {
-            background: #263238;
-            color: white;
-            padding: 20px;
-        }
-        .header h1 {
-            margin: 0;
-        }
-        .header p {
-            margin: 5px 0 0;
-            font-size: 0.9em;
-        }
-        .nav {
-            background: #37474f;
-            padding: 10px 0;
-        }
-        .nav-content {
+        .board-controls {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
         }
-        .nav-item {
+        .write-btn {
+            background: linear-gradient(135deg, var(--accent-teal) 0%, var(--accent-emerald) 100%);
             color: white;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .nav-item.active {
-            text-decoration: underline;
-        }
-        .main {
-            padding: 30px 20px;
-            background: white;
-            min-height: 540px; /* 충분한 높이 확보 */
-        }
-        /* 이 페이지에만 적용될 기존 CSS */
-        .sub-container {
-            max-width: 1000px;
-            margin: 0 auto; /* 상단 메뉴와의 간격 조정을 위해 50px auto -> 0 auto로 변경 */
-            padding: 30px;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-        .sub-container h2 {
-            font-size: 2.2em;
-            color: #4CAF50;
-            margin-bottom: 25px;
-            text-align: center;
-            border-bottom: 2px solid #81C784;
-            padding-bottom: 15px;
-        }
-        .board-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 30px;
-        }
-        .board-table th, .board-table td {
-            border-bottom: 1px solid #ddd;
-            padding: 15px;
-            text-align: left;
-        }
-        .board-table th {
-            background-color: #f2f2f2;
-            font-weight: 600;
-            color: #333;
-        }
-        .board-table tbody tr:hover {
-            background-color: #f9f9f9;
-            cursor: pointer;
-        }
-        .board-table .title a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .board-table .title a:hover {
-            color: #667eea;
-        }
-        .pagination {
-            text-align: center;
-            margin-top: 30px;
-        }
-        .pagination a {
-            display: inline-block;
-            padding: 8px 15px;
-            margin: 0 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #666;
-            transition: background-color 0.3s ease;
-        }
-        .pagination a.active, .pagination a:hover {
-            background-color: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
-        .write-button {
-            text-align: right;
-            margin-bottom: 20px;
-        }
-        .write-button .write-post-btn {
             padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s ease;
+            border-radius: var(--radius-pill);
+            font-size: 0.92rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+            transition: var(--transition);
         }
-        .write-button .write-post-btn:hover {
-            background-color: #66BB6A;
+        .write-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(13, 148, 136, 0.4);
         }
-        /* 기존 불필요했던 button hover 스타일 삭제 */
+        .post-tag {
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: #e2e8f0;
+            color: #475569;
+        }
+        .post-tag-user {
+            background: #d1fae5;
+            color: #065f46;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>충신동 재개발 통합 추진위원회</h1>
-            <p><a href="index.html" style="color:#ffd54f; text-decoration: none;">← 메인 페이지로 돌아가기</a></p>
-        </header>
-
-        <nav class="nav">
-            <div class="nav-content">
-                <a href="index.html#home" class="nav-item">홈</a>
-                <a href="project_overview.html" class="nav-item">사업개요</a>
-                <a href="notice_board.html" class="nav-item">공지·자료실</a>
-                <a href="community_board.html" class="nav-item active">커뮤니티</a>
-                <a href="transparency_center.html" class="nav-item">투명성센터</a>
-                <a href="index.html#contact" class="nav-item">문의하기</a>
-            </div>
-        </nav>
-        <main class="main">
-            <div class="sub-container">
-                <h2>💬 주민 커뮤니티</h2>
-
-                <div class="write-button">
-                    <a href="write_post.html" class="write-post-btn">글쓰기</a>
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="site-logo">
+                <div class="logo-symbol">忠</div>
+                <div class="logo-text-wrap">
+                    <h1>충신동 도심복합개발</h1>
+                    <div class="logo-sub"><span>통합 추진위원회</span></div>
                 </div>
+            </a>
+            <nav class="main-nav" id="main-nav">
+                <a href="index.html" class="nav-link">홈</a>
+                <a href="project_overview.html" class="nav-link">사업개요</a>
+                <a href="notice_board.html" class="nav-link">공지·자료실</a>
+                <a href="community_board.html" class="nav-link active">주민커뮤니티</a>
+                <a href="transparency_center.html" class="nav-link">투명성센터</a>
+                <a href="index.html#contact" class="nav-link">문의하기</a>
+            </nav>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="메뉴 열기">☰</button>
+            </div>
+        </div>
+    </header>
 
-                <table class="board-table">
+    <main class="page-wrapper">
+        <div class="subpage-header" style="background: linear-gradient(135deg, #1e3a5f 0%, #134e4a 100%);">
+            <span class="subpage-badge">OPEN FORUM</span>
+            <h2>주민 열린 소통 커뮤니티</h2>
+            <p>도심복합개발사업 추진에 대한 소유자 및 주민 여러분의 질문, 건의사항, 격려의 글을 남겨주세요.</p>
+        </div>
+
+        <article class="content-card">
+            <div class="board-controls">
+                <div>
+                    <span style="font-size: 0.95rem; font-weight: 700; color: var(--primary);">
+                        총 <span id="postCount" style="color: var(--accent-teal);">8</span>건의 게시글
+                    </span>
+                </div>
+                <a href="write_post.html" class="write-btn">
+                    <span>✍️ 새 글 작성하기</span>
+                </a>
+            </div>
+
+            <div class="table-responsive">
+                <table class="compare-table" style="font-size: 0.93rem;">
                     <thead>
                         <tr>
-                            <th>번호</th>
-                            <th>제목</th>
-                            <th>작성자</th>
-                            <th>작성일</th>
-                            <th>조회수</th>
+                            <th style="width: 10%; text-align: center;">번호</th>
+                            <th style="width: 55%;">제목</th>
+                            <th style="width: 18%;">작성자</th>
+                            <th style="width: 17%;">작성일</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="communityTableBody">
+                        <!-- Initial Posts -->
                         <tr>
-                            <td>3</td>
-                            <td class="title"><a href="community_detail_3.html">재개발 사업 진행 관련 질문드립니다.</a></td>
-                            <td>김*민</td>
-                            <td>2025-07-30</td>
-                            <td>45</td>
+                            <td style="text-align: center;">공지</td>
+                            <td>
+                                <span class="post-tag">운영</span>
+                                <strong style="color: var(--primary); margin-left: 6px;">[필독] 건전한 소통을 위한 커뮤니티 이용 안내</strong>
+                            </td>
+                            <td>운영진</td>
+                            <td>2026.09.01</td>
                         </tr>
                         <tr>
-                            <td>2</td>
-                            <td class="title"><a href="community_detail_2.html">충신동에 새로 이사 오신 분 계신가요?</a></td>
-                            <td>이*수</td>
-                            <td>2025-07-28</td>
-                            <td>62</td>
+                            <td style="text-align: center;">8</td>
+                            <td>
+                                <span class="post-tag">응원</span>
+                                <span>구역 내 가장 큰 충신성결교회 선임목사님께서도 복합개발에 긍정적이시라니 정말 안심되고 큰 힘이 됩니다!</span>
+                            </td>
+                            <td>소유자이자 성도</td>
+                            <td>2026.09.15</td>
                         </tr>
                         <tr>
-                            <td>1</td>
-                            <td class="title"><a href="community_detail_1.html">안녕하세요, 반갑습니다!</a></td>
-                            <td>운영자</td>
-                            <td>2025-07-25</td>
-                            <td>110</td>
+                            <td style="text-align: center;">7</td>
+                            <td>
+                                <span class="post-tag">질문</span>
+                                <span>선진건축 검토보고서 보았는데, 상업지역 상향 시 소유자 혜택이 궁금합니다.</span>
+                            </td>
+                            <td>충신동 주민</td>
+                            <td>2026.09.12</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">6</td>
+                            <td>
+                                <span class="post-tag">의견</span>
+                                <span>성곽 100m 생태공원화와 흥덕동천 복원 아이디어는 정말 서울시 설득에 큰 힘이 될 것 같습니다.</span>
+                            </td>
+                            <td>소유자 모임</td>
+                            <td>2026.09.11</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">5</td>
+                            <td>
+                                <span class="post-tag">질문</span>
+                                <span>성장거점형과 주거중심형 대안 비교 주민설명회는 언제쯤 열리나요?</span>
+                            </td>
+                            <td>조합원 A</td>
+                            <td>2026.09.09</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">4</td>
+                            <td>
+                                <span class="post-tag">응원</span>
+                                <span>신통기획 정체로 답답했는데, 도심복합개발로 발빠르게 전환해주셔서 감사합니다.</span>
+                            </td>
+                            <td>골목길 토박이</td>
+                            <td>2026.09.08</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">3</td>
+                            <td>
+                                <span class="post-tag">질문</span>
+                                <span>제1종 주거지역에 위치한 단독주택 소유자입니다. 이주주택 지원 문의드립니다.</span>
+                            </td>
+                            <td>낙산성곽길</td>
+                            <td>2026.09.05</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">2</td>
+                            <td>
+                                <span class="post-tag">의견</span>
+                                <span>동대문역 접근성을 고려해서 보행통로 설계도 꼼꼼히 반영되었으면 합니다.</span>
+                            </td>
+                            <td>동대문상인</td>
+                            <td>2026.08.30</td>
                         </tr>
                     </tbody>
                 </table>
-
-                <div class="pagination">
-                    <a href="#">&laquo;</a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">&raquo;</a>
-                </div>
             </div>
-        </main>
 
-        <footer class="footer">
-            <p>&copy; 2025 충신동 재개발 통합 추진위원회. 모든 권리 보유.</p>
-            <p>투명하고 공정한 재개발을 위해 최선을 다하겠습니다.</p>
-        </footer>
-    </div>
+            <div style="margin-top: 36px; text-align: right;">
+                <a href="write_post.html" class="write-btn">
+                    <span>✍️ 새 글 작성하기</span>
+                </a>
+            </div>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h4>충신동 도심복합개발 통합 추진위원회</h4>
+                <p>서울특별시 종로구 율곡로 245, 1층 | 대표: 전홍규 | E-mail: bestchoongsin@naver.com</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">홈</a>
+                <a href="project_overview.html">사업개요</a>
+                <a href="notice_board.html">공지·자료실</a>
+                <a href="transparency_center.html">투명성센터</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 충신동 도심복합개발 통합 추진위원회</span>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu
+            document.getElementById('mobile-menu-toggle')?.addEventListener('click', function() {
+                document.getElementById('main-nav')?.classList.toggle('show');
+            });
+
+            // Load Custom Posts from LocalStorage
+            try {
+                const stored = localStorage.getItem('choongsin_community_posts');
+                if (stored) {
+                    const posts = JSON.parse(stored);
+                    const tbody = document.getElementById('communityTableBody');
+                    const countSpan = document.getElementById('postCount');
+                    
+                    if (posts && posts.length > 0) {
+                        countSpan.textContent = 7 + posts.length;
+                        posts.reverse().forEach((p, idx) => {
+                            const tr = document.createElement('tr');
+                            tr.innerHTML = `
+                                <td style="text-align: center; color: var(--accent-teal); font-weight: bold;">NEW</td>
+                                <td>
+                                    <span class="post-tag post-tag-user">주민글</span>
+                                    <strong style="color: var(--text-main); margin-left: 6px;">${p.title}</strong>
+                                    <div style="font-size: 0.86rem; color: #64748b; margin-top: 4px;">${p.content.substring(0, 80)}${p.content.length > 80 ? '...' : ''}</div>
+                                </td>
+                                <td>${p.author || '주민'}</td>
+                                <td>${p.date || '2026.09.15'}</td>
+                            `;
+                            // Insert after notice row (index 1)
+                            if (tbody.children.length > 1) {
+                                tbody.insertBefore(tr, tbody.children[1]);
+                            } else {
+                                tbody.appendChild(tr);
+                            }
+                        });
+                    }
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        });
+    </script>
 </body>
 </html>

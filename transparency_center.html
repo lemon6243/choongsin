@@ -3,214 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>투명성 센터 - 충신동 재개발 통합 추진위원회</title>
+    <title>투명성 센터 - 충신동 도심복합개발 통합 추진위원회</title>
+    <meta name="description" content="충신동 도심복합개발사업의 자문 결과, 회의록, 재정 내역, 행정 공문을 투명하게 공개합니다.">
+    <link rel="stylesheet" href="style.css">
     <style>
-        /* [추가됨] 공통 레이아웃/헤더/네비 스타일 */
-        body {
-            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
-            background: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            color: #333;
+        .faq-item {
+            border-bottom: 1px solid var(--border-light);
+            padding: 18px 0;
         }
-        .container {
-            max-width: 1000px; /* 공통 디자인 기준으로 통일 */
-            margin: 0 auto;
-        }
-        .header {
-            background: #263238;
-            color: white;
-            padding: 20px;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 1.7em;
-        }
-        .header p {
-            margin: 5px 0 0;
-            font-size: 0.9em;
-        }
-        .nav {
-            background: #37474f;
-            padding: 10px 0;
-        }
-        .nav-content {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .nav-item {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 4px 10px;
-            border-radius: 5px;
-            transition: background 0.15s, color 0.15s;
-            font-size: 1em;
-        }
-        .nav-item.active {
-            background: #ff9800; /* 네비게이션 활성화 색상 통일 */
-            color: #fff;
-            text-decoration: none;
-        }
-        .nav-item:hover {
-            background: #ff9800;
-            color: #fff;
-        }
-        .main {
-            padding: 30px 20px;
-            background: #f5f5f5;
-            min-height: 600px;
-        }
-        .footer {
-            background: #eeeeee;
-            text-align: center;
-            font-size: 0.95em;
-            padding: 22px 0 14px 0;
-            color: #555;
-            margin-top: 50px;
-        }
-        /* 공통 버튼 스타일 추가 */
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #4CAF50, #66BB6A);
-            color: white;
-            border-radius: 6px;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 1.05em;
+        .faq-question {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: var(--primary);
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
-            transition: all 0.25s ease;
-        }
-        .btn:hover {
-            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4);
-        }
-
-        /* 이 페이지에만 적용될 추가 CSS */
-        .sub-container {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 30px;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-        .sub-container h2 {
-            font-size: 2.2em;
-            color: #03A9F4;
-            margin-bottom: 25px;
-            text-align: center;
-            border-bottom: 2px solid #4FC3F7;
-            padding-bottom: 15px;
-        }
-        .transparency-category {
-            margin-bottom: 40px;
-        }
-        .transparency-category h3 {
-            font-size: 1.8em;
-            color: #1565c0;
-            margin-bottom: 20px;
-            border-left: 5px solid #2196F3;
-            padding-left: 10px;
-        }
-        .transparency-list {
-            list-style: none;
-            padding: 0;
-        }
-        .transparency-list li {
-            background: #e3f2fd;
-            padding: 15px 20px;
-            margin-bottom: 10px;
-            border-radius: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 1.1em;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: background-color 0.3s ease;
         }
-        .transparency-list li:hover {
-            background-color: #bbdefb;
+        .faq-question:hover {
+            color: var(--accent-teal);
         }
-        .transparency-list li a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-            flex-grow: 1; /* 링크가 가능한 공간을 모두 차지하도록 */
+        .faq-answer {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            display: none;
         }
-        .transparency-list li a:hover {
-            color: #1565c0;
+        .faq-item.active .faq-answer {
+            display: block;
         }
-        .transparency-list li .date {
-            font-size: 0.9em;
-            color: #666;
-            margin-left: 20px;
-            min-width: 90px;
-            text-align: right;
+        .faq-icon {
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>충신동 재개발 통합 추진위원회</h1>
-            <p><a href="index.html" style="color: #ffd54f; text-decoration: none;">← 메인 페이지로 돌아가기</a></p>
-        </header>
-
-        <nav class="nav">
-            <div class="nav-content">
-                <a href="index.html#home" class="nav-item">홈</a>
-                <a href="project_overview.html" class="nav-item">사업개요</a>
-                <a href="notice_board.html" class="nav-item">공지·자료실</a>
-                <a href="community_board.html" class="nav-item">커뮤니티</a>
-                <a href="transparency_center.html" class="nav-item active">투명성센터</a>
-                <a href="index.html#contact" class="nav-item">문의하기</a>
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="site-logo">
+                <div class="logo-symbol">忠</div>
+                <div class="logo-text-wrap">
+                    <h1>충신동 도심복합개발</h1>
+                    <div class="logo-sub"><span>통합 추진위원회</span></div>
+                </div>
+            </a>
+            <nav class="main-nav" id="main-nav">
+                <a href="index.html" class="nav-link">홈</a>
+                <a href="project_overview.html" class="nav-link">사업개요</a>
+                <a href="notice_board.html" class="nav-link">공지·자료실</a>
+                <a href="community_board.html" class="nav-link">주민커뮤니티</a>
+                <a href="transparency_center.html" class="nav-link active">투명성센터</a>
+                <a href="index.html#contact" class="nav-link">문의하기</a>
+            </nav>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="메뉴 열기">☰</button>
             </div>
-        </nav>
-        <main class="main">
-            <div class="sub-container">
-                <h2>🔍 투명성 센터</h2>
+        </div>
+    </header>
 
-                <div class="transparency-category">
-                    <h3>✅ 추진위원회 회의록</h3>
-                    <ul class="transparency-list">
-                        <li><a href="meeting_log_20250110.pdf" target="_blank">제5차 추진위원회 정기회의록(예시)</a><span class="date">2025-01-10</span></li>
-                        <li><a href="meeting_log_20241220.pdf" target="_blank">제4차 추진위원회 임시회의록(예시)</a><span class="date">2024-12-20</span></li>
-                        <li><a href="meeting_log_20241115.pdf" target="_blank">제3차 추진위원회 정기회의록(예시)</a><span class="date">2024-11-15</span></li>
-                    </ul>
-                </div>
+    <main class="page-wrapper">
+        <div class="subpage-header" style="background: linear-gradient(135deg, #09182b 0%, #1e3a5f 100%);">
+            <span class="subpage-badge">TRANSPARENCY & INTEGRITY</span>
+            <h2>투명성 센터 (열린 정보공개)</h2>
+            <p>사업 추진의 모든 단계, 전문 기관의 자문 검토서, 행정 기관과의 공식 공문, 재정 수입·지출을 투명하게 공개하여 신뢰를 보증합니다.</p>
+        </div>
 
-                <div class="transparency-category">
-                    <h3>💰 재정 보고서</h3>
-                    <ul class="transparency-list">
-                        <li><a href="financial_report_2024q4.pdf" target="_blank">2024년 4분기 재정 보고서(예시)</a><span class="date">2025-01-05</span></li>
-                        <li><a href="financial_report_2024q3.pdf" target="_blank">2024년 3분기 재정 보고서(예시)</a><span class="date">2024-10-01</span></li>
-                        <li><a href="financial_report_2024q2.pdf" target="_blank">2024년 2분기 재정 보고서(예시)</a><span class="date">2024-07-01</span></li>
-                    </ul>
-                </div>
+        <!-- Section 1: 전문기관 자문 및 검토 투명 공개 -->
+        <article class="content-card">
+            <h3 class="section-heading">1. 전문 엔지니어링 자문 및 사전검토 결과 공개</h3>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">
+                추진위원회는 자체 주장이 아닌, 도시계획 전문기업 <strong>(주)선진엔지니어링 종합건축사사무소</strong>에 공식 용역 검토를 의뢰하여 객관적인 법적 타당성을 검증받았습니다.
+            </p>
 
-                <div class="transparency-category">
-                    <h3>🧑‍🤝‍🧑 추진위원회 구성원</h3>
-                    <p>충신동 재개발 통합 추진위원회는 다음과 같이 구성되어 투명하고 공정한 사업 진행을 위해 노력하고 있습니다.</p>
-                    <ul class="transparency-list">
-                        <li><a href="#">위원장: 미정</a><span class="date">임기: 2024~2027</span></li>
-                        <li><a href="#">부위원장: 미정</a><span class="date">임기: 2024~2027</span></li>
-                        <li><a href="#">감사: 미정</a><span class="date">임기: 2024~2026</span></li>
-                        <li><a href="#">총무: 미정</a><span class="date">임기: 2024~2026</span></li>
-                    </ul>
-                    <p style="font-size: 0.9em; color: #777; margin-top: 15px;">* 개인정보 보호를 위해 상세 정보는 로그인 후 확인 가능합니다.</p>
-                </div>
-
-                <p style="text-align: center; margin-top: 40px;"><a href="index.html" class="btn">메인으로 돌아가기</a></p>
+            <div class="table-responsive">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>검토 문서명</th>
+                            <th>수행 기관</th>
+                            <th>검토 일자</th>
+                            <th>핵심 검토 결과 및 공개 상태</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>충신동 15-9 일원 도심복합개발사업 대상여부 등 검토</strong></td>
+                            <td>(주)선진엔지니어링 종합건축사사무소</td>
+                            <td>2026.09.10</td>
+                            <td>
+                                율곡로 접도 요건 충족, 용도지역별 면적 분석(제1종 38.3%), 성장거점형 및 주거중심형 대안 비교 권고 
+                                <a href="notice_detail_25.html" style="color: var(--accent-teal); font-weight: 700; margin-left: 6px;">[전문보기]</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>선진건축 검토결과에 따른 재질의 및 기존 개발구상 보완 보고서</strong></td>
+                            <td>충신동 통합추진위원회 기획국</td>
+                            <td>2026.09.12</td>
+                            <td>
+                                8대 핵심 재질의 및 비주거 51%·60%·70% 수지분석과 350m/500m GIS 분석 의뢰 확정
+                                <a href="notice_detail_25.html" style="color: var(--accent-teal); font-weight: 700; margin-left: 6px;">[전문보기]</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>서울시·종로구 도심복합개발 사전협의 요청서(초안)</strong></td>
+                            <td>충신동 통합추진위원회</td>
+                            <td>2026.09.14</td>
+                            <td>
+                                역사문화·생태공원 기부채납(시 예산 0원) 및 아랫마을 고밀 복합개발·원주민 100% 재정착 연계 제안
+                                <a href="notice_detail_26.html" style="color: var(--accent-teal); font-weight: 700; margin-left: 6px;">[전문보기]</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </main>
+        </article>
 
-        <footer class="footer">
-            <p>&copy; 2025 충신동 재개발 통합 추진위원회. 모든 권리 보유.</p>
-            <p>투명하고 공정한 재개발을 위해 최선을 다하겠습니다.</p>
-        </footer>
-    </div>
+        <!-- Section 2: 핵심 질의응답 FAQ -->
+        <article class="content-card">
+            <h3 class="section-heading">2. 소유자가 가장 많이 묻는 질문 (FAQ)</h3>
+
+            <div class="faq-list">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        <span>Q1. 왜 기존의 신속통합기획에서 도심복합개발로 전환하나요?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        기존 신속통합기획은 동의율이 38.45%에서 수개월째 정체되었고 추진 주체 간 중복 신청 갈등으로 종로구청 심의가 중단되어 있었습니다. 
+                        반면 2026년 시행된 도심복합개발 조례는 <strong>일반상업지역 상향 및 최대 1,300% 수준 용적률 적용</strong>이 가능하여, 
+                        성곽 100m 생태공원화(기부채납)라는 막대한 공공성을 제공하면서도 주민 분담금을 획기적으로 낮추는 합법적 돌파구를 열어주기 때문입니다.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Q2. 성장거점형과 주거중심형 중 어떤 방식으로 진행되나요?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        현재 추진위는 어느 한 방식을 독단적으로 고정하지 않고 <strong>복수 대안을 병렬 검토</strong>하고 있습니다. 
+                        성장거점형은 상업지역 상향 시 최대 1,300% 용적률 혜택이 있으나 비주거 면적이 50%를 초과해야 하므로 상가·오피스 분양성이 중요합니다. 
+                        주거중심형은 주택 공급이 50% 이상이라 주거 안정성이 높습니다. 
+                        선진건축의 정밀 수지분석과 서울시 사전협의 결과를 종합하여 <strong>소유자 총회 투표로 최종 결정</strong>합니다.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Q3. 성곽 인접 제1종일반주거지역 소유자들은 공원화되면 쫓겨나나요?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <strong>절대 그렇지 않습니다.</strong> 추진위원회의 제1원칙은 바로 <strong>"원주민 100% 재정착"</strong>입니다. 
+                        공원화로 지정되는 구역의 소유자분들은 아랫마을 신축 복합단지에 우선 입주 권리가 주어지며, 
+                        공사 기간 임시거처와 단계별 순환 이주대책을 서울시 사전협의 요청서의 필수 항목으로 명시하였습니다.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Q4. 용적률 최대 1,300%는 실현 가능한 수치인가요?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        「도심 복합개발 지원에 관한 법률」 및 서울시 조례에 따르면 성장거점형 도심복합개발 시 일반상업지역은 최대 1,300%, 중심상업지역은 1,500%까지 용적률 완화가 가능하도록 규정되어 있습니다. 
+                        다만 실제 적용 비율은 한양도성 경관 앙각(27도) 심의와 공공기여량(성곽 100m 공원 및 흥덕동천 복원)에 따라 행정 협의를 거쳐 확정됩니다.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Q5. 구역 내 핵심 시설인 충신성결교회와의 상생 협의는 어떻게 진행되고 있나요?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        충신성결교회는 우리 충신동 구역 내에서 가장 상징적이고 중요한 최대 중심 시설물입니다. 
+                        최근 추진위원회와의 면담 및 긴밀한 소통 과정에서 <strong>선임목사님께서도 낙후된 골목길 주거환경 개선과 소외된 이웃 주민들의 안전 및 복지를 위한 도심복합개발 추진 취지에 깊이 공감하시고 매우 긍정적인 지지 의사</strong>를 표명해 주셨습니다. 
+                        추진위는 교회의 역사성과 예배 환경을 철저히 존중하여, 수직입체도시 내 최고 수준의 친환경 최신식 예배당과 주민 개방형 문화·복지 홀을 연계 조성하는 모범적인 민·관·종교시설 상생 모델로 함께 발전시켜 나가고 있습니다. (<a href="notice_detail_28.html" style="color: var(--accent-teal); font-weight: 700;">면담 상세 공지 보기</a>)
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Section 3: 투명 재정 보고 원칙 -->
+        <article class="content-card">
+            <h3 class="section-heading">3. 추진위원회 재정 및 회계 공개 원칙</h3>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
+                충신동 통합추진위원회는 주민총회에서 제정된 표준규약에 따라 매월 수입 및 지출 내역을 감사위원의 확인을 거쳐 사무실 및 홈페이지에 공개하고 있습니다.
+            </p>
+
+            <div class="table-responsive">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>구분</th>
+                            <th>집행 원칙</th>
+                            <th>증빙 및 감사 절차</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>운영비 및 자문비</strong></td>
+                            <td>용역 계약(선진엔지니어링 등) 및 필수 사무실 유지비 지출</td>
+                            <td>세금계산서 및 통장 이체증 100% 보관, 감사위원 검인</td>
+                        </tr>
+                        <tr>
+                            <td><strong>홍보 및 총회 비용</strong></td>
+                            <td>등기 우편료, 총회 책자 인쇄비, 장소 대관료 등</td>
+                            <td>우체국 영수증 및 카드 명세서 전수 대조</td>
+                        </tr>
+                        <tr>
+                            <td><strong>열람 신청</strong></td>
+                            <td>토지등소유자 누구나 추진위 사무실에서 회계장부 상시 열람 가능</td>
+                            <td>소유자 신분 확인 후 원본 장부 즉시 열람 제공</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top: 36px; text-align: center;">
+                <a href="project_overview.html" class="btn-primary-renew">사업개요 확인하기</a>
+                <a href="notice_board.html" class="btn-secondary-renew" style="color: var(--primary); border-color: var(--border-medium); margin-left: 10px;">공지·자료실 바로가기</a>
+            </div>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h4>충신동 도심복합개발 통합 추진위원회</h4>
+                <p>서울특별시 종로구 율곡로 245, 1층 | 대표: 전홍규 | E-mail: bestchoongsin@naver.com</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">홈</a>
+                <a href="project_overview.html">사업개요</a>
+                <a href="notice_board.html">공지·자료실</a>
+                <a href="community_board.html">커뮤니티</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 충신동 도심복합개발 통합 추진위원회</span>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        document.getElementById('mobile-menu-toggle')?.addEventListener('click', function() {
+            document.getElementById('main-nav')?.classList.toggle('show');
+        });
+
+        // Accordion FAQ
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>

@@ -3,318 +3,354 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사업 개요 - 충신동 재개발 통합 추진위원회</title>
-    <style>
-        /* [추가됨] 공통 레이아웃/헤더/네비 스타일 */
-        body {
-            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
-            background: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        .container {
-            max-width: 1000px; /* 공통 디자인 기준으로 통일 (기존 1200px) */
-            margin: 0 auto;
-        }
-        .header {
-            background: #263238;
-            color: white;
-            padding: 20px;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 1.7em;
-        }
-        .header p {
-            margin: 5px 0 0;
-            font-size: 0.9em;
-        }
-        .nav {
-            background: #37474f;
-            padding: 10px 0;
-        }
-        .nav-content {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .nav-item {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 4px 10px;
-            border-radius: 5px;
-            transition: background 0.15s, color 0.15s;
-            font-size: 1em;
-        }
-        .nav-item.active {
-            background: #ff9800; /* 네비게이션 활성화 색상 통일 */
-            color: #fff;
-            text-decoration: none;
-        }
-        .nav-item:hover {
-            background: #ff9800;
-            color: #fff;
-        }
-        .main {
-            padding: 30px 20px;
-            background: #f5f5f5;
-            min-height: 600px;
-        }
-        .footer {
-            background: #eeeeee;
-            text-align: center;
-            font-size: 0.95em;
-            padding: 22px 0 14px 0;
-            color: #555;
-            margin-top: 50px;
-        }
-        /* 공통 버튼 스타일 추가 (돌아가기 버튼 디자인 유지 위함) */
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            color: white;
-            border-radius: 6px;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 1.05em;
-            cursor: pointer;
-            transition: all 0.25s ease;
-        }
-
-        /* 이 페이지에만 적용될 추가 CSS */
-        .sub-container {
-            max-width: 900px; /* 메인 컨테이너보다 약간 작게 설정 */
-            margin: 50px auto;
-            padding: 30px 40px; /* 좌우 여백 추가 */
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-        .sub-container h2 {
-            font-size: 2.5em;
-            color: #667eea; /* 메인 테마 색상으로 변경 */
-            margin-bottom: 25px;
-            text-align: center;
-            border-bottom: 2px solid #a7bcfd;
-            padding-bottom: 15px;
-        }
-        .section-title {
-            font-size: 1.8em;
-            color: #333;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            border-left: 5px solid #667eea;
-            padding-left: 15px;
-            font-weight: 600;
-        }
-        .overview-content p {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            color: #555;
-        }
-        .overview-list {
-            list-style: none; /* 기본 목록 스타일 제거 */
-            padding: 0;
-            margin-bottom: 30px;
-        }
-        .overview-list li {
-            background: #f0f4ff;
-            padding: 15px 20px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
-            display: flex;
-            align-items: center;
-            font-size: 1em;
-            color: #444;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .overview-list li strong {
-            color: #667eea;
-            margin-right: 10px;
-        }
-        .overview-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .timeline {
-            margin-top: 40px;
-            position: relative;
-            padding-left: 20px;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background-color: #ddd;
-            border-radius: 2px;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 30px;
-            padding-left: 30px;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -8px;
-            top: 5px;
-            width: 20px;
-            height: 20px;
-            background-color: #667eea;
-            border-radius: 50%;
-            border: 4px solid #fff;
-            box-shadow: 0 0 0 2px #667eea;
-        }
-        .timeline-item h4 {
-            font-size: 1.2em;
-            color: #667eea;
-            margin-bottom: 5px;
-        }
-        .timeline-item p {
-            font-size: 1em;
-            color: #666;
-        }
-        /* [추가됨] 중요 알림 강조 스타일 */
-        .alert-box {
-            background-color: #ffebee;
-            border: 2px solid #ef5350;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 25px;
-            font-weight: bold;
-            color: #c62828;
-            text-align: center;
-        }
-        .back-button-container {
-            text-align: center;
-            margin-top: 40px;
-        }
-        .back-button-container .btn {
-            background: linear-gradient(135deg, #4CAF50, #66BB6A);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
-        }
-        .back-button-container .btn:hover {
-            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4);
-        }
-
-    </style>
+    <title>사업 개요 - 충신동 도심복합개발 통합 추진위원회</title>
+    <meta name="description" content="충신동 15-9 일원 도심복합개발사업(성장거점형 민간복합개발 및 수직입체도시 프로젝트) 상세 사업개요 및 4대 추진원칙">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>충신동 재개발 통합 추진위원회</h1>
-            <p><a href="index.html" style="color: #ffd54f; text-decoration: none;">← 메인 페이지로 돌아가기</a></p>
-        </header>
-
-        <nav class="nav">
-            <div class="nav-content">
-                <a href="index.html#home" class="nav-item">홈</a>
-                <a href="project_overview.html" class="nav-item active">사업개요</a>
-                <a href="notice_board.html" class="nav-item">공지·자료실</a>
-                <a href="community_board.html" class="nav-item">커뮤니티</a>
-                <a href="transparency_center.html" class="nav-item">투명성센터</a>
-                <a href="index.html#contact" class="nav-item">문의하기</a>
+    <!-- Top Notice Bar -->
+    <aside class="top-notice-bar" aria-label="최신 공지 안내">
+        <div class="top-notice-inner">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="top-badge">사업개요 리뉴얼</span>
+                <span>충신동 15-9 일원 <strong>'성장거점형 도심복합개발 및 수직입체도시'</strong> 종합 마스터플랜 안내</span>
             </div>
-        </nav>
-        <main class="main">
-            <div class="sub-container">
-                <h2>✨ 사업 개요: 새로운 충신동의 비전</h2>
+            <div class="top-contact-info">
+                <span>📍 종로구 율곡로 245, 1층</span>
+                <span>✉️ bestchoongsin@naver.com</span>
+            </div>
+        </div>
+    </aside>
 
-                <div class="overview-content">
-                    <p>충신동 재개발 사업은 역사와 문화가 살아 숨 쉬는 한양도성 인접 지역의 특성을 보존하면서, 쾌적하고 편리한 주거 환경을 조성하기 위한 통합적인 도시재생 프로젝트입니다. **'신속통합기획'**을 통해 사업 기간을 단축하고 투명성을 확보하여 주민 여러분의 만족도를 높이는 것을 최우선 목표로 합니다.</p>
-                    <p>본 사업은 단순한 주거 공간 개선을 넘어, 지역 공동체의 활성화와 지속 가능한 도시 발전에 기여할 것입니다. 충신동의 미래를 함께 그려나가는 이 여정에 주민 여러분의 깊은 관심과 참여를 부탁드립니다.</p>
-
-                    <h3 class="section-title">✔ 신속통합기획의 장점</h3>
-                    <ul class="overview-list">
-                        <li><strong>신속한 사업 추진:</strong> 서울시의 적극적인 지원으로 복잡한 절차를 간소화하여 사업 기간을 대폭 단축합니다.</li>
-                        <li><strong>투명하고 공정한 과정:</strong> 서울시와 주민이 함께 계획을 수립하여 모든 과정이 투명하게 공개되고, 주민 의견이 적극 반영됩니다.</li>
-                        <li><strong>맞춤형 도시계획:</strong> 지역 특성을 고려한 유연한 도시계획을 통해 충신동만의 특색 있는 주거단지를 조성합니다.</li>
-                        <li><strong>재정적 지원:</strong> 공공 지원을 통해 사업의 안정성을 높이고, 주민 부담을 줄이는 데 기여합니다.</li>
-                    </ul>
-
-                    <h3 class="section-title">⚠️ 현재 당면 과제: 총회 결과 이행과 목표 달성 집중</h3>
-                    <div class="overview-content">
-                        <p>존경하는 토지등소유자 여러분, 저희 충신동 재개발 사업은 **민주적인 주민 총회를 성공적으로 개최**함으로써 사업 추진의 중대한 분수령을 넘었습니다.</p>
-                        <p>**2025년 11월 1일 주민총회**에서는 토지등소유자들의 적극적인 참여와 압도적인 찬성으로 **새로운 대표자(전홍규)를 선출**하고 **신속통합기획 재추진을 공식적으로 결의**하였습니다. 이는 사업 추진 주체의 **확고한 정통성**과 주민들의 **단합된 의지**를 대외적으로 천명한 것입니다.</p>
-                        <p>현재 가장 시급한 당면 과제는 이 **총회 결과를 바탕으로 행정 절차를 신속히 진행**하는 것입니다.</p>
-                        <p style="font-size: 1.15em; font-weight: bold; color: #4CAF50; border: 2px solid #A5D6A7; padding: 10px; border-radius: 5px;">
-                            저희 위원회는 **종로구청의 공문 및 관련 절차**에 따라, 신속통합기획 후보지 재신청을 위한 **토지등소유자 50% 이상의 동의서 징구**를 다음 단계의 명확한 목표로 설정하고 있습니다.
-                        </p>
-                        <p>구청의 공고(종로구 공고 2024-586호, 2024.5.1.)에 따라 건축허가 제한까지 시행되고 있는 지금, 사업의 신속한 진전을 위해서는 **총회에서 확인된 단합된 힘**을 바탕으로, **50% 동의율 확보**라는 목표를 조기에 달성해야 합니다.</p>
-                        <p>모든 소유자들께서는 **공식적인 총회 결과를 존중**하고, **새로운 대표**를 중심으로 **하나 된 목소리**로 **50% 동의율 달성**에 힘을 모아주십시오. 이는 우리 충신동 재개발 사업이 다음 단계로 나아가기 위한 **중요한 법적·행정적 요건**이자, 충신동의 미래를 결정짓는 중대한 약속이 될 것입니다.</p>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="site-logo" id="site-logo">
+                <div class="logo-symbol">忠</div>
+                <div class="logo-text-wrap">
+                    <h1>충신동 도심복합개발</h1>
+                    <div class="logo-sub">
+                        <span>통합 추진위원회</span>
+                        <span style="color:#cbd5e1;">|</span>
+                        <span class="logo-tag">성장거점형 민간복합개발</span>
                     </div>
-
-                    <div class="alert-box">
-                        <p>📢 **긴급 공지:** 주민 총회 결과는 소유자들의 최신 의사를 반영하는 공식적인 결정입니다. 신속하고 투명한 재개발 추진을 위해 모든 소유자들께서는 **총회 결과 이행에 적극 협조**해 주시길 부탁드립니다.</p>
-                    </div>
-
-                    <h3 class="section-title">⏳ 추진 경과 (최신 업데이트)</h3>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <h4>2025년 11월 1일: 📢 주민총회 성공적 개최 및 새로운 대표(전홍규) 선출</h4>
-                            <p>토지등소유자 **83명이 직접 참석**하여 총회를 개최하고, 핵심 안건인 **대표자 재선임 건을 압도적 찬성으로 가결**하여 추진 동력과 정통성을 확보했습니다.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h4>2025년 11월 첫째 주: 📝 총회 결과 및 대표자 선임 보고 (1단계 구청 제출 예정)</h4>
-                            <p>주민총회 결과, 대표자 선임 결과, 연명부 및 구역계 관련 서류를 바탕으로 신속통합기획 재추진을 위해 **종로구청에 공식 제출할 예정**입니다. (구청 연번 부여 요청)</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h4>2025년 8월 27일: 종로구청장 면담 및 사업 정상화 방안 확정</h4>
-                            <p>전체 소유자 586명 중 300명 이상의 서명을 받아 제출 시, 해당 주체를 공식적으로 인정하고 사업을 정상 궤도 진입하기로 확정.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h4>2024년 하반기 ~ 2025년 상반기: 구역계(안) 중복 접수 및 무효 처리 반복</h4>
-                            <p>두 개의 추진위에서 각각 구역계(안) 접수를 시도하였으나, **행정기관의 판단에 따라 중복으로 인한 처리 불가 상황** 반복. (사업 진척 최대 난관)</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h4>2024년 05월: 종로구청 건축허가 제한 공고 (종로구 공고 2024-586호)</h4>
-                            <p>주택재개발사업 후보지 내 투기 방지 및 원활한 정비사업 추진을 위한 건축허가 제한 시행.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h4>2024년 초: 충신동 재개발 관심 증대 및 추진위 활동 시작</h4>
-                            <p>신속통합기획 등 서울시 정책 변화에 따라 충신동 재개발에 대한 주민들의 관심 증대 및 추진위원회 활동 본격화.</p>
-                        </div>
-                    </div>
-
-                    <h3 class="section-title">🗺️ 사업 위치 및 구역도</h3>
-                    <p>충신동 재개발 사업은 종로구 충신2길 16-6 일대 약 **62,162㎡** 규모로 진행되며, 지리적 이점을 활용하여 도심 속의 쾌적한 주거 공간을 목표로 합니다.</p>
-                    <img src="구역계1.png" alt="충신동 재개발 구역도" class="overview-image">
-                    <p style="text-align: center; font-style: italic; color: #777;">(※ 위 이미지는 이해를 돕기 위한 예시 구역도이며, 실제 계획에 따라 변동될 수 있습니다.)</p>
-
-                    <h3 class="section-title">💡 향후 계획 (예정)</h3>
-                    <ul class="overview-list">
-                        <li>**[1단계 이행] 2025년 하반기:** 총회 결과를 바탕으로 한 **단일 구역계(안) 공식 접수 및 서울시 검토 착수**</li>
-                        <li>**2026년 상반기:** 신속통합기획 1단계 승인 (사업 구역 확정 및 기본 구상안 발표)</li>
-                        <li>**2026년 하반기 ~ 2027년:** 정비구역 지정 및 사업시행자 선정</li>
-                        <li>**2027년 이후:** 건축 심의 및 사업시행계획인가, 관리처분계획인가 및 이주·철거 시작</li>
-                    </ul>
-                    <p style="font-size: 0.95em; color: #777;">*상기 일정은 인허가 진행 상황 및 **토지등소유자 50% 이상 동의율 달성 여부**에 따라 크게 변동될 수 있습니다.</p>
-
                 </div>
-                <div class="back-button-container">
-                    <a href="index.html" class="btn">메인 페이지로 돌아가기</a>
+            </a>
+
+            <nav class="main-nav" id="main-nav">
+                <a href="index.html" class="nav-link">홈</a>
+                <a href="project_overview.html" class="nav-link active">사업개요</a>
+                <a href="notice_board.html" class="nav-link">공지·자료실</a>
+                <a href="community_board.html" class="nav-link">주민커뮤니티</a>
+                <a href="transparency_center.html" class="nav-link">투명성센터</a>
+                <a href="index.html#contact" class="nav-link">문의하기</a>
+            </nav>
+
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <a href="notice_detail_25.html" class="header-cta">
+                    <span>📄 검토보고서 열람</span>
+                </a>
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="메뉴 열기">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="page-wrapper">
+        <div class="subpage-header">
+            <span class="subpage-badge">PROJECT MASTERPLAN 2026</span>
+            <h2>사업 개요: 충신동 수직입체도시 프로젝트</h2>
+            <p>
+                단순 주택 재개발을 넘어, 한양도성 성곽 100m 생태공원화와 동대문 역세권 고밀 복합개발을 유기적으로 결합하는 
+                서울시 도심복합개발의 새로운 이정표를 제시합니다.
+            </p>
+        </div>
+
+        <!-- Content Card 1: 기본 정보 및 전환 배경 -->
+        <article class="content-card">
+            <h3 class="section-heading">1. 사업 기본 현황 및 도심복합개발 전환 배경</h3>
+            
+            <div class="table-responsive" style="margin-bottom: 24px;">
+                <table class="compare-table">
+                    <tbody>
+                        <tr>
+                            <td style="width: 22%;"><strong>사업 명칭</strong></td>
+                            <td colspan="2">충신동 15-9 일원 도심복합개발사업 (성장거점형 민간복합개발 및 수직입체도시 프로젝트)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>위치 및 면적</strong></td>
+                            <td colspan="2">서울특별시 종로구 충신동 15-9번지 일원 / <strong>총 80,439.3㎡</strong> (약 24,333평)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>용도지역 현황</strong></td>
+                            <td colspan="2">
+                                • 제1종일반주거지역: 30,860.6㎡ (38.3%) — 성곽 인접 보전/공원화 구역<br>
+                                • 제2종일반주거지역: 37,525.6㎡ (46.7%) — 아랫마을 복합개발 핵심부<br>
+                                • 제3종일반주거지역: 7,409.8㎡ (9.2%) — 율곡로 인접 개발부<br>
+                                • 일반상업지역: 4,643.3㎡ (5.8%) — 동대문 역세권 상업축
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>도로 및 접도</strong></td>
+                            <td colspan="2">폭 20m 이상 간선도로(율곡로) 직접 접도 및 2면 이상 도로 접도 요건 충족</td>
+                        </tr>
+                        <tr>
+                            <td><strong>주요 법적 근거</strong></td>
+                            <td colspan="2">
+                                • 「도심 복합개발 지원에 관한 법률」 (2024.1 제정, 2026.7 시행)<br>
+                                • 「서울특별시 도심 복합개발 지원에 관한 조례 및 시행규칙」 (2026.6.1 시행)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="callout-box">
+                <strong>💡 왜 신속통합기획에서 도심복합개발로 전환했는가?</strong><br>
+                과거 추진되었던 신속통합기획은 추진체 간의 중복 접수 갈등과 38% 수준의 동의율 정체로 인해 6~7개월 이상 종로구청에서 장기 답보 상태에 빠져 있었습니다. 
+                이에 추진위원회는 2026년 6월 서울시가 발표한 도심복합개발 조례에 맞춰, 
+                <strong>일반상업지역 상향 및 최대 1,300% 용적률 적용</strong>이 가능한 <strong>'성장거점형 민간복합개발'</strong>로 전격 전환하여 
+                사업성과 주민 분담금을 획기적으로 개선하고 서울시와 직통 협의를 개시하였습니다.
+            </div>
+        </article>
+
+        <!-- Content Card 2: 5대 시정 축과의 정렬 -->
+        <article class="content-card">
+            <h3 class="section-heading">2. 서울시 5대 정책 축과의 유기적 통합 (서울시 예산 0원)</h3>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">
+                충신동 프로젝트는 단순한 조합원만의 이익 추구가 아닙니다. 서울시가 역점 추진하는 5대 시정 목표를 하나의 필지에서 모두 실현하는 모범 공공기여 모델입니다.
+            </p>
+
+            <div class="table-responsive">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">오세훈 시정 정책</th>
+                            <th style="width: 35%;">서울시 핵심 목표</th>
+                            <th style="width: 40%;">충신동 프로젝트 혁신 대안</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>녹지생태도심 재창조 전략</strong></td>
+                            <td>도심 녹지율 3.7% → 15% 이상 4배 확대, 개방형 녹지 30%+</td>
+                            <td>성곽 100m 구간 전면 생태공원화로 낙산 동부 녹지대 기부채납, 단지 중심 개방녹지 확보</td>
+                        </tr>
+                        <tr>
+                            <td><strong>세운지구 모델의 동측 완결</strong></td>
+                            <td>북악-종묘-청계천-남산 연결 남북 녹지벨트 (상가 매입 968억 소요)</td>
+                            <td><strong>동측 역사경관축 완결</strong>: 북악-낙산-흥덕동천-청계천을 <strong>민간 기부채납으로 시 예산 0원</strong>에 복원</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2040 서울도시기본계획</strong></td>
+                            <td>수변 중심 도시공간 재편 및 역사정체성 확립, 도심 고품격 주거</td>
+                            <td>조선 600년 흥덕동천 본류 물길 복원 및 유구 보존, 1,000세대 명품 친환경 주거지 공급</td>
+                        </tr>
+                        <tr>
+                            <td><strong>역세권 활성화 사업 확대</strong></td>
+                            <td>지하철역 500m 이내 고밀복합 개발, 용도지역 최대 4단계 종상향</td>
+                            <td>동대문역 역세권 기획을 연계하여 일반상업지역 상향 및 성곽 기부채납 토지 보상 교환</td>
+                        </tr>
+                        <tr>
+                            <td><strong>정비사업 혁신 및 정체 극복</strong></td>
+                            <td>정체된 정비구역 정상화, 주민 갈등 봉합 및 동의율 제고</td>
+                            <td>기존 신통기획 38% 정체 극복, 압도적인 사업성과 원주민 100% 재정착 주택 확보로 주민 대통합</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <!-- Content Card 3: 수직입체도시 4중 레이어 -->
+        <article class="content-card">
+            <h3 class="section-heading">3. 수직입체도시 4중 공간구조 상세 분석</h3>
+            <p style="color: var(--text-muted); margin-bottom: 24px;">
+                급경사지와 성곽 고저차를 창의적 건축으로 극복하는 4개 층위의 수직 복합 레이어입니다.
+            </p>
+
+            <div class="layers-grid" style="margin-bottom: 24px;">
+                <div class="layer-card layer-1">
+                    <span class="layer-badge">지상 상부</span>
+                    <h4 class="layer-title">하늘도시</h4>
+                    <p class="layer-desc">
+                        한양도성 성곽 경관을 가리지 않도록 <strong>앙각 기준(27도)을 엄격 준수</strong>하며, 
+                        친환경 제로에너지(ZEB) 공법과 옥상 정원화를 통해 낙산 정상에서 내려다볼 때 아름다운 '제5의 입면'을 연출합니다.
+                    </p>
+                </div>
+
+                <div class="layer-card layer-2">
+                    <span class="layer-badge">지상 보행</span>
+                    <h4 class="layer-title">지상 그린·블루</h4>
+                    <p class="layer-desc">
+                        성곽 100m 이격구간을 전면 생태공원으로 서울시에 무상 기부채납하고, 
+                        조선 사료(신석교-초교)에 고증된 <strong>흥덕동천 본류 실개천과 수변 산책로</strong>를 조성하여 동대문역에서 성곽까지 대시민 개방로를 완성합니다.
+                    </p>
+                </div>
+
+                <div class="layer-card layer-3">
+                    <span class="layer-badge">지상-지하 연결</span>
+                    <h4 class="layer-title">선큰 유구광장</h4>
+                    <p class="layer-desc">
+                        서울시 종로 공평동 유적전시관 방식(공평동 룰)을 적용하여 발굴된 돌다리 등 <strong>역사 유구를 제자리에 보존</strong>하고 오픈 선큰 문화전시관으로 특화합니다.
+                    </p>
+                </div>
+
+                <div class="layer-card layer-4">
+                    <span class="layer-badge">지하 공간</span>
+                    <h4 class="layer-title">지하 디지털 영토</h4>
+                    <p class="layer-desc">
+                        단단한 화강암 지반을 입체 발굴하여 동대문 패션특구와 직결되는 
+                        <strong>청년 AI 패션 스튜디오, 디지털테크 아카데미, 데이터 허브</strong>를 구축하여 미래형 일자리 기지를 조성합니다.
+                    </p>
                 </div>
             </div>
-        </main>
+        </article>
 
-        <footer class="footer">
-            <p>&copy; 2025 충신동 재개발 통합 추진위원회. 모든 권리 보유.</p>
-            <p>투명하고 공정한 재개발을 위해 최선을 다하겠습니다.</p>
-        </footer>
-    </div>
+        <!-- Content Card 4: 2대 사업유형 검토 및 추진 원칙 -->
+        <article class="content-card">
+            <h3 class="section-heading">4. 선진건축 검토 기준 및 추진위원회 4대 원칙</h3>
+            
+            <div class="callout-warning" style="margin-bottom: 24px;">
+                <strong>⚠️ 선진건축 사전 검토의 핵심 결론:</strong><br>
+                “성장거점형 확정”이 아니라, 대상지 내 제1종일반주거지역(38.3%)의 처리와 비주거 50% 초과 요건, 그리고 주거중심형의 역세권(승강장 350m/500m) 요건을 정량적으로 수치 비교하여 
+                <strong>“성장거점형과 주거중심형의 비교 검토”</strong>로 계획의 표현과 절차를 전환해야 합니다.
+            </div>
+
+            <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--primary); margin-bottom: 14px;">추진위원회 4대 공식 원칙 (사전협의 요청서 기준)</h4>
+            <div class="principles-grid" style="margin-bottom: 20px;">
+                <div class="principle-card">
+                    <div class="principle-icon">1</div>
+                    <div class="principle-body">
+                        <h4>보전과 개발의 기능 분리</h4>
+                        <p>성곽 인접 제1종주거지는 역사수계 복원, 공원, 녹지 및 보행공간으로 기부채납하고 아랫마을은 고밀 복합개발 부지로 기능 분리.</p>
+                    </div>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-icon">2</div>
+                    <div class="principle-body">
+                        <h4>원주민 재정착 최우선</h4>
+                        <p>공원화로 이전이 필요한 기존 주민이 지역에서 이탈하지 않도록 아랫마을 개발부지 내 우선공급, 이주주택, 임시거처 완비.</p>
+                    </div>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-icon">3</div>
+                    <div class="principle-body">
+                        <h4>공공성-사업성 균형</h4>
+                        <p>시 예산 0원의 막대한 역사문화·생태 공공기여에 상응하여 일반상업지역 상향 및 최대 1,300% 수준의 용적률 사전협의 요청.</p>
+                    </div>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-icon">4</div>
+                    <div class="principle-body">
+                        <h4>공식 행정협의 우선</h4>
+                        <p>추진구역 편입 가능성, 국가유산 및 경관 심의 절차를 서울시·종로구와 정량적 GIS 도면과 수지분석표로 공식 검증.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 구역 내 핵심 시설(충신성결교회) 상생 모델 -->
+            <div style="margin-top: 28px; background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%); border: 1.5px solid #86efac; border-radius: var(--radius-md); padding: 26px; box-shadow: var(--shadow-sm);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">
+                    <span style="background: #059669; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 3px 10px; border-radius: 9999px;">종교시설 상생 모델</span>
+                    <h4 style="font-size: 1.22rem; font-weight: 800; color: #065f46; margin: 0;">구역 내 핵심 종교시설 '충신성결교회' 선임목사님 도심복합개발 긍정적 지지</h4>
+                </div>
+                <p style="color: #1e293b; font-size: 0.98rem; line-height: 1.75; margin-bottom: 16px;">
+                    재개발 정비사업 추진 시 가장 큰 갈등 요인으로 꼽히는 종교부지 제척 및 이전 문제를 사전에 해결하기 위해, 
+                    추진위원회는 구역 내 최대이자 가장 중요한 중심 시설물인 <strong>충신성결교회</strong>와 선제적으로 긴밀한 상생 협의를 진행하였습니다. 
+                    그 결과 <strong>충신성결교회 선임목사님께서도 낙후된 주거환경 개선과 소외된 이웃 주민들의 안전 및 삶의 질 향상을 위해 도심복합개발 추진에 깊이 공감하시고 긍정적인 지지 의사</strong>를 표명해 주셨습니다.
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 16px;">
+                    <div style="background: #ffffff; padding: 16px; border-radius: var(--radius-sm); border: 1px solid #dcfce7;">
+                        <strong style="color: #065f46; display: block; margin-bottom: 6px;">✨ 예배당 현대화 & 복합 문화공간</strong>
+                        <p style="font-size: 0.88rem; color: #475569; margin: 0; line-height: 1.6;">단순 철거나 제척이 아닌, 수직입체도시 마스터플랜 내에 최고 수준의 친환경 최신식 예배당과 주민 개방형 문화나눔 홀을 조화롭게 배치</p>
+                    </div>
+                    <div style="background: #ffffff; padding: 16px; border-radius: var(--radius-sm); border: 1px solid #dcfce7;">
+                        <strong style="color: #065f46; display: block; margin-bottom: 6px;">🕊️ 예배 및 성도 활동의 연속성 보장</strong>
+                        <p style="font-size: 0.88rem; color: #475569; margin: 0; line-height: 1.6;">공사 기간 중에도 성도님들의 정기 예배와 지역 섬김 활동에 차질이 없도록 단계별 순환 이주 및 안전한 대체 예배 대책 마련</p>
+                    </div>
+                    <div style="background: #ffffff; padding: 16px; border-radius: var(--radius-sm); border: 1px solid #dcfce7;">
+                        <strong style="color: #065f46; display: block; margin-bottom: 6px;">🤝 갈등 없는 상생 재개발의 모범</strong>
+                        <p style="font-size: 0.88rem; color: #475569; margin: 0; line-height: 1.6;">주민과 종교시설이 대립하지 않고 지역 공동체 전체의 발전을 함께 도모하는 서울시 정비사업의 대표적 상생 롤모델 구축</p>
+                    </div>
+                </div>
+                <div style="text-align: right;">
+                    <a href="notice_detail_28.html" style="font-size: 0.88rem; font-weight: 700; color: #047857; text-decoration: underline;">
+                        충신성결교회 선임목사님 면담 상세 내용 보기 →
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Content Card 5: 구역계 도면 및 추진 일정 -->
+        <article class="content-card" id="site-map">
+            <h3 class="section-heading">5. 사업 구역계 및 추진 로드맵</h3>
+            <p style="color: var(--text-muted); margin-bottom: 16px;">
+                현재 검토 중인 충신동 15-9 일원 대상지 구역계 및 도로 접도 현황도입니다.
+            </p>
+
+            <div style="background: #f8fafc; padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border-light); text-align: center; margin-bottom: 30px;">
+                <img src="구역계1.png" alt="충신동 도심복합개발 구역계 도면" style="max-height: 480px; margin: 0 auto; border-radius: var(--radius-sm); box-shadow: var(--shadow-md);">
+                <p style="margin-top: 10px; font-size: 0.85rem; color: #64748b;">
+                    [충신동 15-9 일원 도심복합개발 대상지 구역계(안) — 선진엔지니어링 종합건축사사무소 검토안 기준]
+                </p>
+            </div>
+
+            <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--primary); margin-bottom: 14px;">향후 추진 로드맵</h4>
+            <div class="roadmap-grid">
+                <div class="roadmap-step active">
+                    <span class="step-num">1단계 (완료)</span>
+                    <h5 class="step-title">기초 검증</h5>
+                    <p class="step-desc">선진건축 사전검토 완료, 용도지역별 면적표 및 접도 조건 도면화, 재질의서 발송</p>
+                </div>
+                <div class="roadmap-step active">
+                    <span class="step-num">2단계 (진행중)</span>
+                    <h5 class="step-title">대안 수지비교</h5>
+                    <p class="step-desc">성장거점형 vs 주거중심형 비주거 51%·60%·70% 시나리오별 공사비·분담금 검증</p>
+                </div>
+                <div class="roadmap-step">
+                    <span class="step-num">3단계</span>
+                    <h5 class="step-title">행정 사전협의</h5>
+                    <p class="step-desc">서울시 도시공간본부 및 종로구에 사전협의 요청서 공식 제출, 기관별 인허가 협의</p>
+                </div>
+                <div class="roadmap-step">
+                    <span class="step-num">4단계</span>
+                    <h5 class="step-title">주민 최종확정</h5>
+                    <p class="step-desc">소유자 전체 설명회 개최, 최적 사업유형 및 공식 구역계 주민투표 의결</p>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 12px; justify-content: center; margin-top: 36px; flex-wrap: wrap;">
+                <a href="notice_detail_25.html" class="btn-primary-renew">선진건축 검토보고서 전문 보기</a>
+                <a href="notice_detail_26.html" class="btn-secondary-renew" style="color: var(--primary); border-color: var(--border-medium);">서울시 사전협의요청서 보기</a>
+                <a href="index.html" class="btn-secondary-renew" style="color: var(--text-muted); border-color: var(--border-medium);">메인 화면으로</a>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h4>충신동 도심복합개발 통합 추진위원회</h4>
+                <p>서울특별시 종로구 율곡로 245, 1층 | 대표: 전홍규 | E-mail: bestchoongsin@naver.com</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">홈</a>
+                <a href="notice_board.html">공지·자료실</a>
+                <a href="community_board.html">커뮤니티</a>
+                <a href="transparency_center.html">투명성센터</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 충신동 도심복합개발 통합 추진위원회. All Rights Reserved.</span>
+            <span>도심복합개발 지원 조례 준용 사업</span>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-toggle')?.addEventListener('click', function() {
+            document.getElementById('main-nav')?.classList.toggle('show');
+        });
+    </script>
 </body>
 </html>
-
-
-

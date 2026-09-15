@@ -3,477 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지·자료실 - 충신동 재개발 통합 추진위원회</title>
+    <title>공지·자료실 - 충신동 도심복합개발 통합 추진위원회</title>
+    <meta name="description" content="충신동 도심복합개발사업 공지사항, 선진건축 검토보고서, 사전협의 문서, 주민총회 자료실입니다.">
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
-            background: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        /* [수정됨] Header와 Nav가 분리된 구조를 위한 CSS */
-        .container {
-            max-width: 1000px; /* 기존 1200px에서 1000px로 통일 */
-            margin: 0 auto;
-        }
-        .header {
-            background: #263238;
-            color: white;
-            padding: 20px;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 1.7em;
-        }
-        .header p {
-            margin: 5px 0 0;
-            font-size: 0.9em;
-        }
-        .nav {
-            background: #37474f;
-            padding: 10px 0;
-        }
-        .nav-content {
+        .filter-bar {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
         }
-        .nav-item {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 4px 10px;
-            border-radius: 5px;
-            transition: background 0.15s, color 0.15s;
-            font-size: 1em;
-        }
-        .nav-item.active {
-            background: #ff9800;
-            color: #fff;
-            text-decoration: none; /* active 시 밑줄 대신 배경색 적용 */
-        }
-        .nav-item:hover {
-            background: #ff9800;
-            color: #fff;
-        }
-        /* 메인 영역 */
-        .main {
-            padding: 30px 20px; /* 상단 padding을 30px로 통일 */
-            background: white;
-            min-height: 600px;
-        }
-        .sub-container {
-            max-width: 1000px; /* 내부 컨테이너는 1000px 유지 */
-            margin: 0 auto;
-            padding: 35px 32px 30px 32px;
-            background: #fff;
-            border-radius: 11px;
-            box-shadow: 0 5px 22px rgba(0,0,0,0.09);
-        }
-        .sub-container h2 {
-            font-size: 2em;
-            color: #e65100;
-            margin-bottom: 25px;
-            text-align: center;
-            border-bottom: 2px solid #ff9800;
-            padding-bottom: 13px;
-        }
-        .search-box {
-            text-align: right;
-            margin-bottom: 22px;
-        }
-        .search-box input[type="text"] {
-            padding: 8px 13px;
-            border: 1px solid #bbb;
-            border-radius: 5px;
-            margin-right: 7px;
-            font-size: 1em;
-        }
-        .search-box button {
-            padding: 8px 18px;
-            background-color: #ff9800;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1em;
-            transition: background 0.2s;
-        }
-        .search-box button:hover {
-            background-color: #e65100;
-        }
-        .board-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin-top: 10px;
-            background: #fff;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-        }
-        .board-table th, .board-table td {
-            padding: 14px 10px;
-            text-align: center;
-            font-size: 1.04em;
-        }
-        .board-table th {
-            background-color: #f6f6f6;
+        .filter-btn {
+            padding: 8px 16px;
+            font-size: 0.88rem;
             font-weight: 600;
-            color: #e65100;
-            border-bottom: 2px solid #ff9800;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-medium);
+            background: white;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
         }
-        .board-table td {
-            border-bottom: 1px solid #eee;
-            color: #444;
-        }
-        .board-table .title {
-            text-align: left;
-            padding-left: 20px;
-        }
-        .board-table .title a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        .board-table .title a:hover {
-            color: #ff9800;
-            text-decoration: underline;
-        }
-        .board-table tbody tr:hover {
-            background-color: #fff3e0;
-            transition: background 0.2s;
-        }
-        .pagination {
-            text-align: center;
-            margin-top: 35px;
-        }
-        .pagination a {
-            display: inline-block;
-            padding: 8px 15px;
-            margin: 0 3px;
-            border: 1px solid #ff9800;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #e65100;
-            font-weight: bold;
-            transition: background 0.2s, color 0.2s;
-        }
-        .pagination a.active, .pagination a:hover {
-            background-color: #ff9800;
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
             color: white;
-            border-color: #ff9800;
+            border-color: var(--primary);
         }
-        .footer {
-            background: #eeeeee;
-            text-align: center;
-            font-size: 0.95em;
-            padding: 22px 0 14px 0;
-            color: #555;
-            margin-top: 50px;
+        .search-input-wrap {
+            position: relative;
+            max-width: 360px;
+            margin-left: auto;
         }
-        /* 미디어 쿼리는 일관성 유지를 위해 삭제하거나, 분리된 구조에 맞게 재조정해야 합니다. */
-        /* 여기서는 분리된 구조에 맞게 삭제합니다. */
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>충신동 재개발 통합 추진위원회</h1>
-            <p><a href="index.html" style="color: #ffd54f; text-decoration: none;">← 메인 페이지로 돌아가기</a></p>
-        </header>
-
-        <nav class="nav">
-            <div class="nav-content">
-                <a href="index.html#home" class="nav-item">홈</a>
-                <a href="project_overview.html" class="nav-item">사업개요</a>
-                <a href="notice_board.html" class="nav-item active">공지·자료실</a>
-                <a href="community_board.html" class="nav-item">커뮤니티</a>
-                <a href="transparency_center.html" class="nav-item">투명성센터</a>
-                <a href="index.html#contact" class="nav-item">문의하기</a>
-            </div>
-        </nav>
-        <main class="main">
-            <div class="sub-container">
-                <h2>📋 공지·자료실</h2>
-                <div class="search-box">
-                    <input type="text" placeholder="검색어를 입력하세요">
-                    <button>검색</button>
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="site-logo">
+                <div class="logo-symbol">忠</div>
+                <div class="logo-text-wrap">
+                    <h1>충신동 도심복합개발</h1>
+                    <div class="logo-sub"><span>통합 추진위원회</span></div>
                 </div>
-                <table class="board-table">
-                    <thead>
-                        <tr>
-                            <th style="width:7%;">번호</th>
-                            <th style="width:55%;">제목</th>
-                            <th style="width:18%;">작성일</th>
-                            <th style="width:10%;">조회수</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            </a>
+            <nav class="main-nav" id="main-nav">
+                <a href="index.html" class="nav-link">홈</a>
+                <a href="project_overview.html" class="nav-link">사업개요</a>
+                <a href="notice_board.html" class="nav-link active">공지·자료실</a>
+                <a href="community_board.html" class="nav-link">주민커뮤니티</a>
+                <a href="transparency_center.html" class="nav-link">투명성센터</a>
+                <a href="index.html#contact" class="nav-link">문의하기</a>
+            </nav>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="메뉴 열기">☰</button>
+            </div>
+        </div>
+    </header>
 
-                        <tr>
-                            <td>20</td>
-                            <td class="title">
-                                <a href="notice_detail_24.html">📢 [공지] 🔥🔥 50% 단독 추진 목표! 긴급 동의서 제출 요청</a>
-                            </td>
-                            <td>2025-11-28</td>
-                            <td>647</td>
-                        </tr>
-                        <tr>
-                            <td>19</td>
-                            <td class="title">
-                                <a href="notice_detail_23.html">📢 [공지] 충신동 재개발 추진 주민총회 결과 보고서</a>
-                            </td>
-                            <td>2025-11-02</td>
-                            <td>1617</td>
-                        </tr>
-                        <tr>
-                            <td>18</td>
-                            <td class="title">
-                                <a href="notice_detail_22.html">⚡️ [공지]'주택재개발 후보지 동의서 번호부여 요청' 처리결과 등 통보 안내</a>
-                            </td>
-                            <td>2025-10-28</td>
-                            <td>617</td>
-                        </tr>
-                        
-                        <tr>
-                            <td>17</td>
-                            <td class="title">
-                                <a href="notice_detail_21.html">⚡️ [연지골축제]주민총회 홍보 지원 요청</a>
-                            </td>
-                            <td>2025-10-24</td>
-                            <td>110</td>
-                        </tr>
-                        <tr>
-                            <td>16</td>
-                            <td class="title">
-                                <a href="notice_detail_20.html">📢 충신동 재개발 추진 주민총회 개최 안내</a>
-                            </td>
-                            <td>2025-10-24</td>
-                            <td>1024</td>
-                        </tr>
-                        <tr>
-                            <td>15</td>
-                            <td class="title">
-                                <a href="notice_detail_19.html">📞 종로구청 담당자 통화 요약(2025.09.15)</a>
-                            </td>
-                            <td>2025-09-15</td>
-                            <td>379</td>
-                        </tr>
-                        <tr>
-                            <td>14</td>
-                            <td class="title">
-                                <a href="notice_detail_18.html">💻 주민 온라인 간담회 개최 안내</a>
-                            </td>
-                            <td>2025-08-29</td>
-                            <td>173</td>
-                        </tr>
+    <main class="page-wrapper">
+        <div class="subpage-header">
+            <span class="subpage-badge">NOTICE & ARCHIVE</span>
+            <h2>공지 및 공식 자료실</h2>
+            <p>선진엔지니어링 사전검토 보고서, 서울시·종로구 사전협의 공문, 주민총회 결과 및 추진위원회 회의록을 투명하게 공개합니다.</p>
+        </div>
 
-                        <tr>
-                        <td>13</td>
-                        <td class="title">
-                        <a href="notice_detail_17.html">⚡️ [중요공지]소유자 주소 사전 확인 및 등기우편 서면 작성 안내</a>
-                        </td>
-                        <td>2025-08-27</td>
-                        <td>873</td>
-                        </tr>
-                        <tr>
-                        <td>12</td>
-                        <td class="title">
-                        <a href="notice_detail_16.html">📢 [중요공지]종로구청장 면담 결과 및 사업 정상화 방안 확정</a>
-                        </td>
-                        <td>2025-08-27</td>
-                        <td>300</td>
-                        </tr>
-
-                        <tr>
-                        <td>11</td>
-                        <td class="title">
-                        <a href="notice_detail_15.html">📢 [중요공지] 주민총회 최종 결과 보고서</a>
-                        </td>
-                        <td>2025-08-26</td>
-                        <td>556</td>
-                        </tr>
-                        <tr>
-                        <td>10</td>
-                        <td class="title">
-                        <a href="notice_detail_14.html">📢 [공지] 재개발 사업 관련 법률 상담 질의서 공지</a>
-                        </td>
-                        <td>2025-08-25</td>
-                        <td>456</td>
-                        </tr>
-                        <tr>
-                        <td>9</td>
-                        <td class="title">
-                        <a href="notice_detail_13.html">📢 [공지] 주민총회 결과 보고서(초안) 공유 및 의견 청취 안내</a>
-                        </td>
-                        <td>2025-08-23</td>
-                        <td>886</td>
-                        </tr>
-                        <tr>
-                        <td>8</td>
-                        <td class="title">
-                        <a href="notice_detail_12.html">📢 [필독공지] 충신동 재개발 주민총회 이메일 투표 안내</a>
-                        </td>
-                        <td>2025-08-20</td>
-                        <td>786</td>
-                        </tr>
-                        <tr>
-                        <td>7</td>
-                        <td class="title">
-                        <a href="notice_detail_10.html">📢 [공지] 충신동 재개발 사업 통합 협의 진행 경과</a>
-                        </td>
-                        <td>2025-08-15</td>
-                        <td>501</td>
-                        </tr>
-                        <tr>
-                        <td>6</td>
-                        <td class="title">
-                        <a href="notice_detail_8.html">📢 [신규공지] 충신동 주민총회 안건 상세 설명</a>
-                        </td>
-                        <td>2025-08-08</td>
-                        <td>377</td>
-                        </tr>
-                        <tr>
-                        <td>5</td>
-                        <td class="title">
-                        <a href="notice_detail_7.html">📢 [신규공지] 주민총회 관련 서류 안내 및 일정 공지</a>
-                        </td>
-                        <td>2025-08-06</td>
-                        <td>389</td>
-                        </tr>
-                        <tr>
-                        <td>4</td>
-                        <td class="title">
-                        <a href="notice_detail_6.html">📢 [신규공지] 8월 23일 주민총회 개최 안내 및 통합 추진 관련사항</a>
-                        </td>
-                        <td>2025-08-03</td>
-                        <td>388</td>
-                        </tr>
-                        <tr>
-                        <td>3</td>
-                        <td class="title">
-                        <a href="notice_detail_5.html">⚡️ [긴급공지] 충신동 재개발 통합을 위한 토지등소유자 총회 개최 안내 (예정)</a>
-                        </td>
-                        <td>2025-08-03</td>
-                        <td>350</td>
-                        </tr>
-                        <tr>
-                        <td>2</td>
-                        <td class="title">
-                        <a href="notice_detail_4.html">⚠️ 중복 접수로 인한 사업 지연 현황 및 주민 참여의 중요성</a>
-                        </td>
-                        <td>2025-07-28</td>
-                        <td>280</td>
-                        </tr>
-                        <tr>
-                        <td>1</td>
-                        <td class="title">
-                        <a href="notice_detail_1.html">재개발 관련 주요 용어 및 자주 묻는 질문 (FAQ)</a>
-                        </td>
-                        <td>2025-07-15</td>
-                        <td>510</td>
-                        </tr>
-                        <tr>
-                        <td>10</td>
-                        <td class="title">
-                        <a href="notice_detail_13.html">📢 [공지] 주민총회 결과 보고서(초안) 공유 및 의견 청취 안내</a>
-                        </td>
-                        <td>2025-08-23</td>
-                        <td>886</td>
-                        </tr>
-                        <tr>
-                        <td>9</td>
-                        <td class="title">
-                        <a href="notice_detail_12.html">📢 [필독공지] 충신동 재개발 주민총회 이메일 투표 안내</a>
-                        </td>
-                        <td>2025-08-20</td>
-                        <td>786</td>
-                        </tr>
-                        <tr>
-                        <td>8</td>
-                        <td class="title">
-                        <a href="notice_detail_10.html">📢 [공지] 충신동 재개발 사업 통합 협의 진행 경과</a>
-                        </td>
-                        <td>2025-08-15</td>
-                        <td>501</td>
-                        </tr>
-                        <tr>
-                        <td>7</td>
-                        <td class="title">
-                        <a href="notice_detail_8.html">📢 [신규공지] 충신동 주민총회 안건 상세 설명</a>
-                        </td>
-                        <td>2025-08-08</td>
-                        <td>377</td>
-                        </tr>
-                        <tr>
-                        <td>6</td>
-                        <td class="title">
-                        <a href="notice_detail_7.html">📢 [신규공지] 주민총회 관련 서류 안내 및 일정 공지</a>
-                        </td>
-                        <td>2025-08-06</td>
-                        <td>389</td>
-                        </tr>
-                        <tr>
-                        <td>5</td>
-                        <td class="title">
-                        <a href="notice_detail_6.html">📢 [신규공지] 8월 23일 주민총회 개최 안내 및 통합 추진 관련사항</a>
-                        </td>
-                        <td>2025-08-03</td>
-                        <td>388</td>
-                        </tr>
-                        <tr>
-                        <td>4</td>
-                        <td class="title">
-                        <a href="notice_detail_5.html">⚡️ [긴급공지] 충신동 재개발 통합을 위한 토지등소유자 총회 개최 안내 (예정)</a>
-                        </td>
-                        <td>2025-07-31</td>
-                        <td>350</td>
-                        </tr>
-                        <tr>
-                        <td>3</td>
-                        <td class="title">
-                        <a href="notice_detail_4.html">⚠️ 중복 접수로 인한 사업 지연 현황 및 주민 참여의 중요성</a>
-                        </td>
-                        <td>2025-07-28</td>
-                        <td>280</td>
-                        </tr>
-                        <tr>
-                        <td>2</td>
-                        <td class="title">
-                        <a href="notice_detail_규약.html">추진위원회 관리 규약</a>
-                        </td>
-                        <td>2025-07-25</td>
-                        <td>190</td>
-                        </tr>
-                        <tr>
-                        <td>1</td>
-                        <td class="title">
-                        <a href="notice_detail_1.html">재개발 관련 주요 용어 및 자주 묻는 질문 (FAQ)</a>
-                        </td>
-                        <td>2025-07-15</td>
-                        <td>510</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="pagination">
-                    <a href="#">&laquo;</a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">&raquo;</a>
+        <div class="content-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
+                <div class="filter-bar" id="filter-bar">
+                    <button class="filter-btn active" data-category="all">전체보기</button>
+                    <button class="filter-btn" data-category="proposal">🌟 도심복합 기획·검토</button>
+                    <button class="filter-btn" data-category="admin">🏛️ 서울시·구청 공문</button>
+                    <button class="filter-btn" data-category="general">📢 총회 및 일반공지</button>
+                    <button class="filter-btn" data-category="download">📥 PDF 서식 다운로드</button>
+                </div>
+                <div class="search-input-wrap">
+                    <input type="text" id="noticeSearch" class="form-control" placeholder="공지사항 검색어 입력..." style="padding: 8px 14px; font-size: 0.9rem;">
                 </div>
             </div>
-        </main>
 
-        <footer class="footer">
-            <p>&copy; 2025 충신동 재개발 통합 추진위원회. 모든 권리 보유.</p>
-            <p>투명하고 공정한 재개발을 위해 최선을 다하겠습니다.</p>
-        </footer>
-    </div>
+            <div class="notice-list" id="noticeListContainer">
+                <!-- Item 0: 2026.09.15 종교시설 상생협의 (신규) -->
+                <a href="notice_detail_28.html" class="notice-row" data-category="general admin">
+                    <div class="notice-main-text">
+                        <span class="notice-tag-badge tag-urgent" style="background: #059669;">상생협력</span>
+                        <span class="notice-subject">구역 내 핵심 시설인 충신성결교회 선임목사님, 도심복합개발 사업 추진에 긍정적 지지 표명</span>
+                    </div>
+                    <div class="notice-meta-info">
+                        <span>추진위</span>
+                        <time datetime="2026-09-15">2026.09.15</time>
+                    </div>
+                </a>
+
+                <!-- Item 1: 2026.09.14 사전협의 -->
+                <a href="notice_detail_26.html" class="notice-row" data-category="proposal admin">
+                    <div class="notice-main-text">
+                        <span class="notice-tag-badge tag-urgent">사전협의</span>
+                        <span class="notice-subject">충신동 역사문화·생태복원 및 주민재정착 연계 도심복합개발 서울시·종로구 사전협의 요청서(초안)</span>
+                    </div>
+                    <div class="notice-meta-info">
+                        <span>추진위</span>
+                        <time datetime="2026-09-14">2026.09.14</time>
+                    </div>
+                </a>
+
+                <!-- Item 2: 2026.09.10 선진건축 보완보고서 -->
+                <a href="notice_detail_25.html" class="notice-row" data-category="proposal">
+                    <div class="notice-main-text">
+                        <span class="notice-tag-badge tag-plan">핵심보고</span>
+                        <span class="notice-subject">선진건축 검토결과에 따른 재질의 및 기존 개발구상 보완 보고서 공유</span>
+                    </div>
+                    <div class="notice-meta-info">
+                        <span>선진/추진위</span>
+                        <time datetime="2026-09-10">2026.09.10</time>
+                    </div>
+                </a>
+
+                <!-- Item 3: 2026.07.06 수직입체도시 기획안 -->
+                <a href="notice_detail_27.html" class="notice-row" data-category="proposal">
+                    <div class="notice-main-text">
+                        <span class="notice-tag-badge tag-new">정책제안</span>
+                        <span class="notice-subject">국가도심 온고이지신(溫故而知新) — 충신동 수직입체도시 프로젝트 서울시 정책 대안 제안서</span>
+                    </div>
+                    <div class="notice-meta-info">
+                        <span>기획위</span>
+                        <time datetime="2026-07-06">2026.07.06</time>
+                    </div>
+                </a>
+
+                <!-- Item 4: PDF 서식 다운로드 -->
+                <a href="files/(가칭)충신동 재개발 주민총회 안건 투표 용지_동의서_위임장_청원서.pdf" target="_blank" class="notice-row" data-category="download general">
+                    <div class="notice-main-text">
+                        <span class="notice-tag-badge tag-plan">다운로드</span>
+                        <span class="notice-subject">[서식] 주민총회 안건 투표 용지, 동의서, 위임장 및 청원서 서식집 (PDF)</span>
+                    </div>
+                    <div class="notice-meta-info">
+                        <span>첨부문서</span>
+                        <time>PDF</time>
+                    </div>
+                </a>
+
+                <!-- Item 5: PDF 법률상담 질의서 -->
+                <a href="files/법률_상담_질의서.pdf" target="_blank" class="notice-row" data-category="download admin">
+                    <div class="notice-main-text">
+                        <span class="notice-tag-badge tag-plan">다운로드</span>
+                        <span class="notice-subject">[법률] 재개발 사업 추진 관련 고문변호사 법률 상담 질의서 및 자문 회신본 (PDF)</span>
+                    </div>
+                    <div class="notice-meta-info">
+                        <span>법무법인</span>
+                        <time>PDF</time>
+                    </div>
+                </a>
+
+                <!-- Item 6: PDF 주민총회 최종본 -->
+                <a href="files/충신동 재개발 사업 주민총회 결과 보고서(최종본).pdf" target="_blank" class="notice-row" data-category="download general">
+                    <div class="notice-main-text">
+                        <span class="notice-tag-badge tag-notice">총회보고</span>
+                        <span class="notice-subject">[보고서] 충신동 재개발 사업 주민총회 공식 결과 보고서 최종본 (PDF)</span>
+                    </div>
+                    <div class="notice-meta-info">
+                        <span>추진위</span>
+                        <time>PDF</time>
+                    </div>
+                </a>
+
+                <!-- Item 7: notice_detail_24 -->
+                <a href="notice_detail_24.html" class="notice-row" data-category="general">
+                    <div class="notice-main-text">
+                        <span class="notice-tag-badge tag-notice">일반공지</span>
+                        <span class="notice-subject">📢 50% 단독 추진 목표 및 긴급 동의서 제출 요청 안내</span>
+                    </div>
+                    <div class="notice-meta-info">
+                        <span>추진위</span>
+                        <time datetime="2025-11-28">2025.11.28</time>
+                    </div>
+                </a>
+
+                <!-- Item 8: notice_detail_23 -->
+                <a href="notice_detail_23.html" class="notice-row" data-category="general">
+                    <div class="notice-main-text">
+                        <span class="notice-tag-badge tag-notice">총회안내</span>
+                        <span class="notice-subject">📢 충신동 재개발 추진 주민총회 결과 보고서 공람 안내</span>
+                    </div>
+                    <div class="notice-meta-info">
+                        <span>추진위</span>
+                        <time datetime="2025-11-02">2025.11.02</time>
+                    </div>
+                </a>
+
+                <!-- Item 9: notice_detail_22 -->
+                <a href="notice_detail_22.html" class="notice-row" data-category="admin">
+                    <div class="notice-main-text">
+                        <span class="notice-tag-badge tag-notice">구청공문</span>
+                        <span class="notice-subject">⚡️ '주택재개발 후보지 동의서 번호부여 요청' 종로구청 처리결과 통보</span>
+                    </div>
+                    <div class="notice-meta-info">
+                        <span>종로구청</span>
+                        <time datetime="2025-10-28">2025.10.28</time>
+                    </div>
+                </a>
+
+                <!-- Item 10: notice_detail_16 -->
+                <a href="notice_detail_16.html" class="notice-row" data-category="admin">
+                    <div class="notice-main-text">
+                        <span class="notice-tag-badge tag-notice">행정면담</span>
+                        <span class="notice-subject">⚡️ 종로구청장 면담 결과 및 사업 정상화 방안 확정 안내</span>
+                    </div>
+                    <div class="notice-meta-info">
+                        <span>추진위</span>
+                        <time datetime="2025-08-27">2025.08.27</time>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h4>충신동 도심복합개발 통합 추진위원회</h4>
+                <p>서울특별시 종로구 율곡로 245, 1층 | 대표: 전홍규 | E-mail: bestchoongsin@naver.com</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">홈</a>
+                <a href="project_overview.html">사업개요</a>
+                <a href="community_board.html">커뮤니티</a>
+                <a href="transparency_center.html">투명성센터</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 충신동 도심복합개발 통합 추진위원회</span>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu
+            document.getElementById('mobile-menu-toggle')?.addEventListener('click', function() {
+                document.getElementById('main-nav')?.classList.toggle('show');
+            });
+
+            // Filter Tabs
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const noticeRows = document.querySelectorAll('.notice-row');
+            const searchInput = document.getElementById('noticeSearch');
+
+            function applyFilter() {
+                const activeBtn = document.querySelector('.filter-btn.active');
+                const category = activeBtn ? activeBtn.getAttribute('data-category') : 'all';
+                const query = (searchInput.value || '').toLowerCase().trim();
+
+                noticeRows.forEach(row => {
+                    const rowCategories = row.getAttribute('data-category') || '';
+                    const text = row.textContent.toLowerCase();
+                    
+                    const matchesCategory = (category === 'all' || rowCategories.includes(category));
+                    const matchesSearch = (!query || text.includes(query));
+
+                    if (matchesCategory && matchesSearch) {
+                        row.style.display = 'flex';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    applyFilter();
+                });
+            });
+
+            searchInput?.addEventListener('input', applyFilter);
+        });
+    </script>
 </body>
 </html>
-
-
-

@@ -3,119 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>글쓰기 - 충신동 재개발 통합 추진위원회</title>
-    <link rel="stylesheet" href="style.css"> <style>
-        /* 이 페이지에만 적용될 추가 CSS */
-        .sub-container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 30px;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-        .sub-container h2 {
-            font-size: 2.2em;
-            color: #4CAF50;
-            margin-bottom: 25px;
-            text-align: center;
-            border-bottom: 2px solid #81C784;
-            padding-bottom: 15px;
-        }
-        .post-form label {
-            display: block;
-            font-size: 1.1em;
-            color: #333;
-            margin-bottom: 8px;
-            margin-top: 15px;
-        }
-        .post-form input[type="text"],
-        .post-form textarea {
-            width: calc(100% - 24px); /* 좌우 패딩 고려 */
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1em;
-            box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
-        }
-        .post-form textarea {
-            min-height: 250px;
-            resize: vertical; /* 세로 크기 조절 가능 */
-        }
-        .form-actions {
-            text-align: center;
-            margin-top: 30px;
-        }
-        .form-actions button {
-            padding: 12px 25px;
-            font-size: 1.1em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin: 0 10px;
-        }
-        .form-actions .submit-btn {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .form-actions .submit-btn:hover {
-            background-color: #66BB6A;
-        }
-        .form-actions .cancel-btn {
-            background-color: #ccc;
-            color: #333;
-        }
-        .form-actions .cancel-btn:hover {
-            background-color: #bbb;
-        }
-    </style>
+    <title>글쓰기 - 충신동 도심복합개발 통합 추진위원회</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="header-content">
-                <div class="logo">
-                    <h1>충신동 재개발 통합 추진위원회</h1>
-                    <p><a href="index.html" style="color: white; text-decoration: none;">메인 페이지로 돌아가기</a></p>
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="site-logo">
+                <div class="logo-symbol">忠</div>
+                <div class="logo-text-wrap">
+                    <h1>충신동 도심복합개발</h1>
+                    <div class="logo-sub"><span>통합 추진위원회</span></div>
                 </div>
+            </a>
+            <nav class="main-nav" id="main-nav">
+                <a href="index.html" class="nav-link">홈</a>
+                <a href="project_overview.html" class="nav-link">사업개요</a>
+                <a href="notice_board.html" class="nav-link">공지·자료실</a>
+                <a href="community_board.html" class="nav-link active">주민커뮤니티</a>
+                <a href="transparency_center.html" class="nav-link">투명성센터</a>
+            </nav>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="메뉴 열기">☰</button>
             </div>
-        </header>
-        <nav class="nav">
-            <div class="nav-content">
-                <a href="index.html#home" class="nav-item">홈</a>
-                <a href="project_overview.html" class="nav-item">사업개요</a>
-                <a href="notice_board.html" class="nav-item">공지·자료실</a>
-                <a href="community_board.html" class="nav-item active">커뮤니티</a>
-                <a href="transparency_center.html" class="nav-item">투명성센터</a>
-                <a href="index.html#contact" class="nav-item">문의하기</a>
-            </div>
-        </nav>
+        </div>
+    </header>
 
-        <main class="main">
-            <div class="sub-container">
-                <h2>✍️ 새 글 작성</h2>
+    <main class="page-wrapper">
+        <div class="subpage-header" style="background: linear-gradient(135deg, #1e3a5f 0%, #134e4a 100%);">
+            <span class="subpage-badge">COMMUNITY POST</span>
+            <h2>✍️ 주민 의견 및 문의 작성</h2>
+            <p>도심복합개발에 관한 의견이나 질문을 남겨주시면 위원회에서 신속하게 확인하고 성실히 답변드립니다.</p>
+        </div>
 
-                <form class="post-form">
-                    <label for="post-title">제목:</label>
-                    <input type="text" id="post-title" name="postTitle" placeholder="제목을 입력하세요" required>
+        <article class="content-card" style="max-width: 800px; margin: 0 auto;">
+            <form id="postForm">
+                <div class="form-group">
+                    <label class="form-label" for="authorName">작성자 성명 (또는 닉네임)</label>
+                    <input type="text" id="authorName" class="form-control" placeholder="예: 충신동 소유자" required>
+                </div>
 
-                    <label for="post-content">내용:</label>
-                    <textarea id="post-content" name="postContent" placeholder="내용을 입력하세요" required></textarea>
+                <div class="form-group">
+                    <label class="form-label" for="postTitle">게시글 제목</label>
+                    <input type="text" id="postTitle" class="form-control" placeholder="제목을 입력하세요 (예: 성장거점형 사업성 관련 문의)" required>
+                </div>
 
-                    <div class="form-actions">
-                        <button type="submit" class="submit-btn">등록</button>
-                        <button type="button" class="cancel-btn" onclick="location.href='community_board.html'">취소</button>
-                    </div>
-                </form>
-            </div>
-        </main>
+                <div class="form-group">
+                    <label class="form-label" for="postContent">게시글 내용</label>
+                    <textarea id="postContent" class="form-control" placeholder="도심복합개발 및 수직입체도시 프로젝트에 대한 의견, 건의사항, 질문 내용을 자유롭게 작성해 주세요." required></textarea>
+                </div>
 
-        <footer class="footer">
-            <p>&copy; 2025 충신동 재개발 통합 추진위원회. 모든 권리 보유.</p>
-            <p>투명하고 공정한 재개발을 위해 최선을 다하겠습니다.</p>
-        </footer>
-    </div>
+                <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 28px;">
+                    <a href="community_board.html" class="btn-secondary-renew" style="color: var(--text-muted); border-color: var(--border-medium);">취소</a>
+                    <button type="submit" class="btn-primary-renew">게시글 등록하기</button>
+                </div>
+            </form>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            <span>&copy; 2026 충신동 도심복합개발 통합 추진위원회</span>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-toggle')?.addEventListener('click', function() {
+            document.getElementById('main-nav')?.classList.toggle('show');
+        });
+
+        document.getElementById('postForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const author = document.getElementById('authorName').value.trim();
+            const title = document.getElementById('postTitle').value.trim();
+            const content = document.getElementById('postContent').value.trim();
+
+            if (!title || !content) return;
+
+            const now = new Date();
+            const dateStr = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`;
+
+            const newPost = {
+                author: author || '충신동 주민',
+                title: title,
+                content: content,
+                date: dateStr
+            };
+
+            try {
+                const existing = JSON.parse(localStorage.getItem('choongsin_community_posts') || '[]');
+                existing.push(newPost);
+                localStorage.setItem('choongsin_community_posts', JSON.stringify(existing));
+            } catch (err) {
+                console.error(err);
+            }
+
+            alert('게시글이 성공적으로 등록되었습니다.');
+            window.location.href = 'community_board.html';
+        });
+    </script>
 </body>
 </html>

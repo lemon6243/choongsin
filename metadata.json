@@ -1,0 +1,8 @@
+{
+  "name": "충신동 재개발 통합 추진위원회",
+  "description": "충신동 15-9 일원 도심복합개발사업(성장거점형 민간복합개발 및 수직입체도시 프로젝트) 통합 추진위원회 공식 웹사이트",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
