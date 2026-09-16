@@ -36,10 +36,20 @@ app.get('/api/video-status', (req, res) => {
   });
 });
 
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '4012';
+
+app.post('/api/admin/verify', (req, res) => {
+  const adminPass = req.headers['x-admin-password'] || (req.body && req.body.adminPassword);
+  if (adminPass === ADMIN_PASSWORD) {
+    return res.json({ success: true, message: '관리자 인증이 완료되었습니다.' });
+  }
+  return res.status(401).json({ error: '관리자 비밀번호가 일치하지 않습니다.' });
+});
+
 app.post('/api/video-config', (req, res) => {
   const adminPass = req.headers['x-admin-password'] || (req.body && req.body.adminPassword);
-  if (adminPass !== '4012') {
-    return res.status(403).json({ error: '관리자 비밀번호(4012)가 일치하지 않습니다.' });
+  if (adminPass !== ADMIN_PASSWORD) {
+    return res.status(403).json({ error: '관리자 비밀번호가 일치하지 않습니다.' });
   }
   const filesDir = path.join(__dirname, 'files');
   if (!fs.existsSync(filesDir)) {
@@ -58,8 +68,8 @@ app.post('/api/video-config', (req, res) => {
 
 app.post('/api/upload-video', (req, res) => {
   const adminPass = req.headers['x-admin-password'] || req.query.password;
-  if (adminPass !== '4012') {
-    return res.status(403).json({ error: '관리자 비밀번호(4012)가 일치하지 않습니다.' });
+  if (adminPass !== ADMIN_PASSWORD) {
+    return res.status(403).json({ error: '관리자 비밀번호가 일치하지 않습니다.' });
   }
   const filesDir = path.join(__dirname, 'files');
   if (!fs.existsSync(filesDir)) {
