@@ -37,6 +37,10 @@ app.get('/api/video-status', (req, res) => {
 });
 
 app.post('/api/video-config', (req, res) => {
+  const adminPass = req.headers['x-admin-password'] || (req.body && req.body.adminPassword);
+  if (adminPass !== '4012') {
+    return res.status(403).json({ error: '관리자 비밀번호(4012)가 일치하지 않습니다.' });
+  }
   const filesDir = path.join(__dirname, 'files');
   if (!fs.existsSync(filesDir)) {
     fs.mkdirSync(filesDir, { recursive: true });
@@ -53,6 +57,10 @@ app.post('/api/video-config', (req, res) => {
 });
 
 app.post('/api/upload-video', (req, res) => {
+  const adminPass = req.headers['x-admin-password'] || req.query.password;
+  if (adminPass !== '4012') {
+    return res.status(403).json({ error: '관리자 비밀번호(4012)가 일치하지 않습니다.' });
+  }
   const filesDir = path.join(__dirname, 'files');
   if (!fs.existsSync(filesDir)) {
     fs.mkdirSync(filesDir, { recursive: true });

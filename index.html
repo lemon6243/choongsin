@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>충신동 도심복합개발 통합 추진위원회 - 공식 웹사이트</title>
-    <meta name="description" content="충신동 15-9 일원 도심복합개발사업(성장거점형 민간복합개발 및 수직입체도시 프로젝트) 통합 추진위원회 공식 웹사이트입니다.">
-    <meta name="keywords" content="충신동 재개발, 도심복합개발, 성장거점형, 수직입체도시, 흥덕동천, 성곽 주변 공원화, 온고이지신, 종로구 재개발">
+    <title>종로 프로젝트 · 충신·이화동 도심복합개발 통합 추진위원회</title>
+    <meta name="description" content="종로 프로젝트, 충신·이화동 도심복합개발사업(성장거점형 민간복합개발) 통합 추진위원회 공식 웹사이트입니다.">
+    <meta name="keywords" content="종로 프로젝트, 충신 이화 수직입체도시, 충신·이화동 재개발, 충신·이화동 도심복합개발, 성장거점형, 흥덕동천(쌍계동천), 성곽 주변 공원화, 온고이지신, 종로구 재개발">
 
-    <meta property="og:title" content="충신동 도심복합개발 통합 추진위원회">
-    <meta property="og:description" content="한양도성 성곽 주변 생태공원화와 동대문 역세권 고밀 복합개발의 상생 — 충신동 수직입체도시 프로젝트">
+    <meta property="og:title" content="종로 프로젝트 · 충신·이화동 도심복합개발">
+    <meta property="og:description" content="한양도성 성곽 주변 생태공원화와 동대문 역세권 고밀 복합개발의 상생 — 종로 프로젝트, 충신·이화 수직입체도시">
     <meta property="og:type" content="website">
 
     <link rel="stylesheet" href="style.css">
@@ -19,7 +19,7 @@
         <div class="top-notice-inner">
             <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="top-badge">2026.09 리뉴얼</span>
-                <span><strong>[공식 전환]</strong> 선진건축 검토결과에 따른 <strong>'성장거점형 도심복합개발 및 수직입체도시 프로젝트'</strong> 추진 안내</span>
+                <span><strong>[공식 전환]</strong> 선진건축 검토결과에 따른 <strong>'종로 프로젝트 + 충신·이화 수직입체도시'</strong> 성장거점형 도심복합개발 추진 안내</span>
             </div>
             <div class="top-contact-info">
                 <span>📍 종로구 율곡로 245, 1층</span>
@@ -32,13 +32,13 @@
     <header class="site-header">
         <div class="header-container">
             <a href="index.html" class="site-logo" id="site-logo">
-                <div class="logo-symbol">忠</div>
+                <div class="logo-symbol">忠·梨</div>
                 <div class="logo-text-wrap">
-                    <h1>충신동 도심복합개발</h1>
+                    <h1>충신·이화동 도심복합개발</h1>
                     <div class="logo-sub">
-                        <span>통합 추진위원회</span>
+                        <span>종로 프로젝트</span>
                         <span style="color:#cbd5e1;">|</span>
-                        <span class="logo-tag">성장거점형 민간복합개발</span>
+                        <span class="logo-tag">충신·이화 수직입체도시</span>
                     </div>
                 </div>
             </a>
@@ -70,7 +70,7 @@
                     <div class="video-badge-wrap">
                         <span class="video-live-dot"></span>
                         <span class="video-live-badge">3D 시네마틱 조감 시뮬레이션</span>
-                        <span class="video-tag-text">흥인지문 · 흥덕동천 600년 물길 · 중앙성결교회 · 앙각 27도 수직입체도시</span>
+                        <span class="video-tag-text">종로 프로젝트 · 흥덕동천(쌍계동천) 600년 물길 · 중앙성결교회 · 충신·이화 수직입체도시</span>
                     </div>
                     <div class="video-action-group">
                         <button type="button" id="modeMp4Btn" class="video-mode-pill active" title="직접 저장된 고화질 MP4 영상 재생">
@@ -79,13 +79,19 @@
                         <button type="button" id="modeYoutubeBtn" class="video-mode-pill" title="유튜브 스트리밍 영상으로 전환">
                             <span>🔴 유튜브 영상</span>
                         </button>
-                        <button type="button" id="openYoutubeModalBtn" class="btn-youtube-link" title="유튜브 영상 링크 등록/변경">
-                            <span>🔗 유튜브 링크 등록</span>
+                        <button type="button" id="adminAuthBtn" class="btn-admin-auth" title="관리자 인증 (영상 교체 및 유튜브 등록)">
+                            <span id="adminAuthIcon">🔒</span>
+                            <span id="adminAuthText">관리자 모드</span>
                         </button>
-                        <label for="videoFileInput" class="btn-video-upload" title="MP4 동영상 파일 교체">
-                            <span>📁 MP4 교체</span>
-                        </label>
-                        <input type="file" id="videoFileInput" accept="video/mp4,video/webm" style="display: none;">
+                        <div id="adminVideoActions" class="admin-video-actions" style="display: none;">
+                            <button type="button" id="openYoutubeModalBtn" class="btn-youtube-link" title="유튜브 영상 링크 등록/변경">
+                                <span>🔗 유튜브 링크 등록</span>
+                            </button>
+                            <label for="videoFileInput" class="btn-video-upload" title="MP4 동영상 파일 교체">
+                                <span>📁 MP4 교체</span>
+                            </label>
+                            <input type="file" id="videoFileInput" accept="video/mp4,video/webm" style="display: none;">
+                        </div>
                     </div>
                 </div>
 
@@ -108,7 +114,7 @@
                     <div class="video-fallback-overlay hidden" id="videoFallbackOverlay">
                         <div class="video-fallback-content">
                             <div class="video-fallback-icon">🎬</div>
-                            <h3>충신동 3D 시네마틱 조감 영상</h3>
+                            <h3>충신·이화동 3D 시네마틱 조감 영상</h3>
                             <p>
                                 영상을 이 영역으로 <strong>마우스로 끌어다 놓거나(Drag & Drop)</strong><br>
                                 아래 버튼을 눌러 선택하시면 즉시 재생 및 영구 저장됩니다.
@@ -149,13 +155,37 @@
                         </div>
                         <div class="video-modal-body">
                             <p style="font-size: 0.9rem; color: #475569; margin-bottom: 12px; line-height: 1.5;">
-                                유튜브에 업로드하신 충신동 3D 조감도 영상 링크를 붙여넣어 주세요.<br>
+                                유튜브에 업로드하신 충신·이화동 3D 조감도 영상 링크를 붙여넣어 주세요.<br>
                                 <span style="font-size: 0.82rem; color: #64748b;">(지원 형식: <code>https://youtu.be/xxx</code> 또는 <code>https://www.youtube.com/watch?v=xxx</code>)</span>
                             </p>
                             <input type="text" id="youtubeUrlInput" placeholder="https://youtu.be/..." class="form-input-renew" style="width: 100%; margin-bottom: 16px; font-size: 0.95rem; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box;">
                             <div style="display: flex; justify-content: flex-end; gap: 8px;">
                                 <button type="button" id="cancelYoutubeBtn" class="btn-secondary-renew" style="padding: 8px 16px;">취소</button>
                                 <button type="button" id="saveYoutubeBtn" class="btn-primary-renew" style="padding: 8px 18px;">유튜브 영상 적용 및 저장</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Authentication Modal (PW: 4012) -->
+                <div id="adminAuthModal" class="video-modal-backdrop" style="display: none;">
+                    <div class="video-modal-card" style="max-width: 420px;">
+                        <div class="video-modal-header">
+                            <h4>🔒 영상 관리자 인증</h4>
+                            <button type="button" id="closeAdminModalBtn" class="close-btn" aria-label="닫기">&times;</button>
+                        </div>
+                        <div class="video-modal-body">
+                            <p style="font-size: 0.92rem; color: #475569; margin-bottom: 14px; line-height: 1.5;">
+                                메인 3D 조감 영상 관리(MP4 파일 교체 및 유튜브 링크 등록)는 <strong>인가된 관리자</strong>만 가능합니다.
+                            </p>
+                            <div style="margin-bottom: 12px;">
+                                <label for="adminPasswordInput" style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 6px;">관리자 비밀번호</label>
+                                <input type="password" id="adminPasswordInput" placeholder="비밀번호 입력" class="form-input-renew" style="width: 100%; font-size: 1.05rem; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; letter-spacing: 2px;">
+                            </div>
+                            <div id="adminPasswordError" style="display: none; color: #ef4444; font-size: 0.85rem; margin-bottom: 12px; font-weight: 600;">비밀번호가 일치하지 않습니다.</div>
+                            <div style="display: flex; justify-content: flex-end; gap: 8px;">
+                                <button type="button" id="cancelAdminBtn" class="btn-secondary-renew" style="padding: 8px 16px;">취소</button>
+                                <button type="button" id="submitAdminBtn" class="btn-primary-renew" style="padding: 8px 18px;">인증하기</button>
                             </div>
                         </div>
                     </div>
@@ -173,7 +203,7 @@
                     <div class="landmark-item">
                         <span class="landmark-icon">🌊</span>
                         <div class="landmark-info">
-                            <strong>흥덕동천 수변공원</strong>
+                            <strong>흥덕동천(쌍계동천) 수변공원</strong>
                             <p>복개 물길 복원 및 수변 산책로</p>
                         </div>
                     </div>
@@ -208,15 +238,17 @@
                 <div class="hero-eyebrow">
                     <span>🏛️ SEOUL 2040</span>
                     <span>•</span>
-                    <span>국가도심 온고이지신(溫故而知新) 프로젝트</span>
+                    <span>종로 프로젝트</span>
+                    <span>•</span>
+                    <span>온고이지신(溫故而知新)</span>
                 </div>
                 <h2 class="hero-title">
-                    충신동 수직입체도시<br>
-                    <span class="highlight">성장거점형 도심복합개발</span>
+                    종로 프로젝트<br>
+                    <span class="highlight">충신·이화 수직입체도시</span>
                 </h2>
                 <p class="hero-description">
                     기존 신속통합기획의 한계를 넘어, 2026년 서울시 도심복합개발 지원 조례에 부합하는 혁신 모델로 전환합니다. 
-                    한양도성 성곽 인접 제1종주거지는 <strong>성곽 주변 전면 생태공원화 및 흥덕동천 수계 복원</strong>으로 공공에 기여하고, 
+                    한양도성 성곽 인접 제1종주거지는 <strong>성곽 주변 전면 생태공원화 및 흥덕동천(쌍계동천) 수계 복원</strong>으로 공공에 기여하고, 
                     아랫마을 역세권은 <strong>일반상업지역 상향(최대 1,300%)</strong>을 통한 고밀 복합개발로 원주민 100% 재정착을 실현합니다.
                 </p>
 
@@ -236,7 +268,7 @@
                 <div class="hero-stats-grid">
                     <div class="hero-stat-card">
                         <span class="hero-stat-num">약 80,000㎡</span>
-                        <span class="hero-stat-label">사업대상지 (충신동 15-9 일원)</span>
+                        <span class="hero-stat-label">사업대상지 (충신·이화동 15-9 일원)</span>
                     </div>
                     <div class="hero-stat-card">
                         <span class="hero-stat-num">최대 1,300%</span>
@@ -308,8 +340,8 @@
                     <div class="layer-accent-bar"></div>
                     <span class="layer-badge">GROUND GREEN-BLUE</span>
                     <h4 class="layer-title">지상 그린·블루</h4>
-                    <div class="layer-sub">생태녹지 & 흥덕동천 물길</div>
-                    <p class="layer-desc">성곽 주변 구간을 전면 생태공원으로 기부채납하고, 일제강점기 복개된 조선 흥덕동천 본류 물길을 사료 고증대로 복원합니다.</p>
+                    <div class="layer-sub">생태녹지 & 흥덕동천(쌍계동천) 물길</div>
+                    <p class="layer-desc">성곽 주변 구간을 전면 생태공원으로 기부채납하고, 일제강점기 복개된 조선 흥덕동천(쌍계동천) 본류 물길을 사료 고증대로 복원합니다.</p>
                     <ul class="layer-points">
                         <li>단지 지상부 개방형 녹지 30%+</li>
                         <li>신석교-초교 물길 수변산책로</li>
@@ -492,8 +524,8 @@
                 </div>
                 <div class="roadmap-step">
                     <span class="step-num">STEP 03</span>
-                    <h5 class="step-title">행정 사전협의</h5>
-                    <p class="step-desc">서울시·종로구 사전협의 요청서 제출 및 역사문화환경, 정비구역 연계 인허가 협의</p>
+                    <h5 class="step-title">협의예정</h5>
+                    <p class="step-desc">서울시와는 도시 건축설계도가 나오면 진행 예정 (역사문화환경 및 도심복합 인허가 사전협의)</p>
                 </div>
                 <div class="roadmap-step">
                     <span class="step-num">STEP 04</span>
@@ -517,7 +549,7 @@
                 <a href="notice_detail_29.html" class="notice-row">
                     <div class="notice-main-text">
                         <span class="notice-tag-badge tag-urgent" style="background: #2563eb;">대외협력</span>
-                        <span class="notice-subject">서울시 행정 협의 사전준비 현황 및 정재호 전 종로구의회 부의장 사업 설명·면담 결과 안내</span>
+                        <span class="notice-subject">서울시 행정 협의 사전준비 현황 및 정재호 전 종로구의회 부의장(전 건설분과 부의장) 사업 설명·면담 결과 안내 (2026.08.06 세검정 사무실 미팅)</span>
                     </div>
                     <div class="notice-meta-info">
                         <span>추진위원회</span>
@@ -541,7 +573,7 @@
                 <a href="notice_detail_26.html" class="notice-row">
                     <div class="notice-main-text">
                         <span class="notice-tag-badge tag-urgent">사전협의</span>
-                        <span class="notice-subject">충신동 역사문화·생태복원 및 주민재정착 연계 도심복합개발 서울시·종로구 사전협의 요청서 (초안)</span>
+                        <span class="notice-subject">충신·이화동 역사문화·생태복원 및 주민재정착 연계 도심복합개발 서울시·종로구 사전협의 요청서 (초안)</span>
                     </div>
                     <div class="notice-meta-info">
                         <span>추진위원회</span>
@@ -565,7 +597,7 @@
                 <a href="notice_detail_27.html" class="notice-row">
                     <div class="notice-main-text">
                         <span class="notice-tag-badge tag-new">정책제안</span>
-                        <span class="notice-subject">국가도심 온고이지신(溫故而知新) 충신동 수직입체도시 프로젝트 서울시 정책 대안 제안서</span>
+                        <span class="notice-subject">국가도심 온고이지신(溫故而知新) 충신·이화동 수직입체도시 프로젝트 서울시 정책 대안 제안서</span>
                     </div>
                     <div class="notice-meta-info">
                         <span>기획위원회</span>
@@ -577,7 +609,7 @@
                 <a href="notice_detail_24.html" class="notice-row">
                     <div class="notice-main-text">
                         <span class="notice-tag-badge tag-notice">총회공지</span>
-                        <span class="notice-subject">충신동 재개발 추진 토지등소유자 주민총회 결과 및 대표자 선임 안내</span>
+                        <span class="notice-subject">충신·이화동 재개발 추진 토지등소유자 주민총회 결과 및 대표자 선임 안내</span>
                     </div>
                     <div class="notice-meta-info">
                         <span>추진위원회</span>
@@ -632,7 +664,7 @@
             <div class="portal-card">
                 <div class="portal-card-icon">🗺️</div>
                 <h3>구역계 및 입지 현황</h3>
-                <p>충신동 15-9 일원 약 80,000㎡의 용도지역 구성(1·2·3종 및 상업지역)과 율곡로 접도 도로망 현황을 도면으로 확인합니다.</p>
+                <p>충신·이화동 15-9 일원 약 80,000㎡의 용도지역 구성(1·2·3종 및 상업지역)과 율곡로 접도 도로망 현황을 도면으로 확인합니다.</p>
                 <a href="project_overview.html#site-map" class="portal-card-link">구역도 확인하기 →</a>
             </div>
 
@@ -677,7 +709,7 @@
     <footer class="site-footer">
         <div class="footer-inner">
             <div class="footer-brand">
-                <h4>충신동 도심복합개발 통합 추진위원회</h4>
+                <h4>충신·이화동 도심복합개발 통합 추진위원회</h4>
                 <p>서울특별시 종로구 율곡로 245, 1층 | 대표: 전홍규 | E-mail: bestchoongsin@naver.com</p>
                 <p style="margin-top: 6px; font-size: 0.82rem; color: #64748b;">
                     ※ 본 웹사이트의 모든 개발 계획은 관계 법령(도심 복합개발 지원에 관한 법률 등) 및 서울특별시·종로구의 공식 인허가 절차에 따라 최종 결정됩니다.
@@ -691,7 +723,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <span>&copy; 2026 충신동 도심복합개발 통합 추진위원회. All Rights Reserved.</span>
+            <span>&copy; 2026 충신·이화동 도심복합개발 통합 추진위원회. All Rights Reserved.</span>
             <span>역사문화 보전과 현대적 주거환경의 조화로운 상생</span>
         </div>
     </footer>
@@ -743,6 +775,17 @@
             const statusMsg = document.getElementById('videoStatusMsg');
             const modeMp4Btn = document.getElementById('modeMp4Btn');
             const modeYoutubeBtn = document.getElementById('modeYoutubeBtn');
+            const adminAuthBtn = document.getElementById('adminAuthBtn');
+            const adminAuthIcon = document.getElementById('adminAuthIcon');
+            const adminAuthText = document.getElementById('adminAuthText');
+            const adminVideoActions = document.getElementById('adminVideoActions');
+            const adminAuthModal = document.getElementById('adminAuthModal');
+            const closeAdminModalBtn = document.getElementById('closeAdminModalBtn');
+            const cancelAdminBtn = document.getElementById('cancelAdminBtn');
+            const submitAdminBtn = document.getElementById('submitAdminBtn');
+            const adminPasswordInput = document.getElementById('adminPasswordInput');
+            const adminPasswordError = document.getElementById('adminPasswordError');
+
             const openYoutubeModalBtn = document.getElementById('openYoutubeModalBtn');
             const youtubeModal = document.getElementById('youtubeModal');
             const closeYoutubeModalBtn = document.getElementById('closeYoutubeModalBtn');
@@ -755,6 +798,99 @@
             let currentMode = 'mp4';
             let storedYoutubeId = '';
             let storedYoutubeUrl = '';
+
+            // Admin Authentication Management (Password: 4012)
+            function isAdminAuthenticated() {
+                return sessionStorage.getItem('choongsin_video_admin_auth') === '4012';
+            }
+
+            function updateAdminUI() {
+                const isAuthed = isAdminAuthenticated();
+                if (isAuthed) {
+                    if (adminVideoActions) adminVideoActions.style.display = 'inline-flex';
+                    if (adminAuthBtn) {
+                        adminAuthBtn.classList.add('active');
+                        adminAuthBtn.title = '관리자 모드 활성화됨 (클릭 시 로그아웃)';
+                    }
+                    if (adminAuthIcon) adminAuthIcon.textContent = '🔓';
+                    if (adminAuthText) adminAuthText.textContent = '관리자 인증됨';
+                } else {
+                    if (adminVideoActions) adminVideoActions.style.display = 'none';
+                    if (adminAuthBtn) {
+                        adminAuthBtn.classList.remove('active');
+                        adminAuthBtn.title = '관리자 인증 (영상 교체 및 유튜브 등록)';
+                    }
+                    if (adminAuthIcon) adminAuthIcon.textContent = '🔒';
+                    if (adminAuthText) adminAuthText.textContent = '관리자 모드';
+                }
+            }
+
+            function openAdminModal() {
+                if (adminAuthModal) {
+                    adminAuthModal.style.display = 'flex';
+                    if (adminPasswordInput) {
+                        adminPasswordInput.value = '';
+                        adminPasswordInput.focus();
+                    }
+                    if (adminPasswordError) adminPasswordError.style.display = 'none';
+                }
+            }
+
+            function closeAdminModal() {
+                if (adminAuthModal) adminAuthModal.style.display = 'none';
+                if (adminPasswordError) adminPasswordError.style.display = 'none';
+            }
+
+            function submitAdminAuth() {
+                if (!adminPasswordInput) return;
+                const entered = adminPasswordInput.value.trim();
+                if (entered === '4012') {
+                    sessionStorage.setItem('choongsin_video_admin_auth', '4012');
+                    closeAdminModal();
+                    updateAdminUI();
+                    alert('관리자 인증이 완료되었습니다.\n유튜브 링크 등록 및 MP4 교체 버튼이 활성화되었습니다.');
+                } else {
+                    if (adminPasswordError) {
+                        adminPasswordError.textContent = '비밀번호가 일치하지 않습니다.';
+                        adminPasswordError.style.display = 'block';
+                    }
+                    adminPasswordInput.focus();
+                }
+            }
+
+            if (adminAuthBtn) {
+                adminAuthBtn.addEventListener('click', function() {
+                    if (isAdminAuthenticated()) {
+                        if (confirm('관리자 모드를 종료(잠금)하시겠습니까?')) {
+                            sessionStorage.removeItem('choongsin_video_admin_auth');
+                            updateAdminUI();
+                        }
+                    } else {
+                        openAdminModal();
+                    }
+                });
+            }
+
+            if (closeAdminModalBtn) closeAdminModalBtn.addEventListener('click', closeAdminModal);
+            if (cancelAdminBtn) cancelAdminBtn.addEventListener('click', closeAdminModal);
+            if (adminAuthModal) {
+                adminAuthModal.addEventListener('click', function(e) {
+                    if (e.target === adminAuthModal) closeAdminModal();
+                });
+            }
+
+            if (submitAdminBtn) submitAdminBtn.addEventListener('click', submitAdminAuth);
+            if (adminPasswordInput) {
+                adminPasswordInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        submitAdminAuth();
+                    }
+                });
+            }
+
+            // Initialize admin state on page load
+            updateAdminUI();
 
             function extractYouTubeId(url) {
                 if (!url) return null;
@@ -890,26 +1026,40 @@
             if (modeMp4Btn) {
                 modeMp4Btn.addEventListener('click', function() {
                     setMode('mp4');
-                    fetch('/api/video-config', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ mode: 'mp4', youtubeUrl: storedYoutubeUrl, youtubeId: storedYoutubeId })
-                    }).catch(() => {});
+                    if (isAdminAuthenticated()) {
+                        fetch('/api/video-config', {
+                            method: 'POST',
+                            headers: { 
+                                'Content-Type': 'application/json',
+                                'x-admin-password': '4012'
+                            },
+                            body: JSON.stringify({ mode: 'mp4', youtubeUrl: storedYoutubeUrl, youtubeId: storedYoutubeId, adminPassword: '4012' })
+                        }).catch(() => {});
+                    }
                 });
             }
 
             if (modeYoutubeBtn) {
                 modeYoutubeBtn.addEventListener('click', function() {
                     if (!storedYoutubeId) {
-                        // If no YouTube URL registered yet, prompt modal
-                        if (youtubeModal) youtubeModal.style.display = 'flex';
+                        if (isAdminAuthenticated()) {
+                            if (youtubeModal) youtubeModal.style.display = 'flex';
+                        } else {
+                            alert('등록된 유튜브 영상 링크가 없습니다.\n관리자 인증(비밀번호: 4012)을 진행하시면 링크를 등록할 수 있습니다.');
+                            openAdminModal();
+                        }
                     } else {
                         setMode('youtube');
-                        fetch('/api/video-config', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ mode: 'youtube', youtubeUrl: storedYoutubeUrl, youtubeId: storedYoutubeId })
-                        }).catch(() => {});
+                        if (isAdminAuthenticated()) {
+                            fetch('/api/video-config', {
+                                method: 'POST',
+                                headers: { 
+                                    'Content-Type': 'application/json',
+                                    'x-admin-password': '4012'
+                                },
+                                body: JSON.stringify({ mode: 'youtube', youtubeUrl: storedYoutubeUrl, youtubeId: storedYoutubeId, adminPassword: '4012' })
+                            }).catch(() => {});
+                        }
                     }
                 });
             }
@@ -917,6 +1067,11 @@
             // YouTube Modal open/close
             if (openYoutubeModalBtn && youtubeModal) {
                 openYoutubeModalBtn.addEventListener('click', function() {
+                    if (!isAdminAuthenticated()) {
+                        alert('유튜브 영상 등록은 관리자만 가능합니다.');
+                        openAdminModal();
+                        return;
+                    }
                     youtubeModal.style.display = 'flex';
                     if (youtubeUrlInput) youtubeUrlInput.focus();
                 });
@@ -937,6 +1092,11 @@
             // Save YouTube URL
             if (saveYoutubeBtn && youtubeUrlInput) {
                 saveYoutubeBtn.addEventListener('click', function() {
+                    if (!isAdminAuthenticated()) {
+                        alert('관리자 인증이 필요합니다.');
+                        openAdminModal();
+                        return;
+                    }
                     const rawUrl = youtubeUrlInput.value.trim();
                     const yId = extractYouTubeId(rawUrl);
                     if (!yId) {
@@ -950,12 +1110,19 @@
 
                     fetch('/api/video-config', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ mode: 'youtube', youtubeUrl: rawUrl, youtubeId: yId })
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'x-admin-password': '4012'
+                        },
+                        body: JSON.stringify({ mode: 'youtube', youtubeUrl: rawUrl, youtubeId: yId, adminPassword: '4012' })
                     })
                     .then(res => res.json())
-                    .then(() => {
-                        alert('유튜브 영상이 성공적으로 등록 및 연동되었습니다!');
+                    .then(data => {
+                        if (data.error) {
+                            alert('오류: ' + data.error);
+                        } else {
+                            alert('유튜브 영상이 성공적으로 등록 및 연동되었습니다!');
+                        }
                     })
                     .catch(() => {});
                 });
@@ -1004,8 +1171,14 @@
                 });
             }
 
-            // File Upload & Local Instant Preview Function
+            // File Upload & Local Instant Preview Function (Admin Only, Password: 4012)
             function handleVideoFile(file) {
+                if (!isAdminAuthenticated()) {
+                    alert('영상 파일 교체는 관리자만 가능합니다.\n먼저 관리자 모드(비밀번호: 4012)를 인증해 주세요.');
+                    openAdminModal();
+                    return;
+                }
+
                 if (!file || !file.type.startsWith('video/')) {
                     alert('MP4 또는 WebM 형식의 동영상 파일을 선택해 주세요.');
                     return;
@@ -1021,20 +1194,26 @@
                 }
 
                 if (statusMsg) {
-                    statusMsg.innerHTML = '<span style="color: #60a5fa;">⏳ 서버에 영구 저장 중...</span>';
+                    statusMsg.innerHTML = '<span style="color: #60a5fa;">⏳ 관리자 승인: 서버에 영구 저장 중...</span>';
                 }
 
                 fetch('/api/upload-video', {
                     method: 'POST',
-                    headers: { 'Content-Type': file.type || 'video/mp4' },
+                    headers: { 
+                        'Content-Type': file.type || 'video/mp4',
+                        'x-admin-password': '4012'
+                    },
                     body: file
                 })
                 .then(res => res.json())
                 .then(data => {
                     if (data.success) {
                         if (statusMsg) {
-                            statusMsg.innerHTML = '<span style="color: #10b981;">✅ 서버 영구 저장 완료 · 4K Vision</span>';
+                            statusMsg.innerHTML = '<span style="color: #10b981;">✅ 관리자 저장 완료 · 4K Vision</span>';
                         }
+                        alert('새로운 메인 MP4 영상이 성공적으로 서버에 교체 및 저장되었습니다.');
+                    } else if (data.error) {
+                        alert('업로드 실패: ' + data.error);
                     }
                 })
                 .catch(err => {
@@ -1073,6 +1252,11 @@
                     const dt = e.dataTransfer;
                     const files = dt.files;
                     if (files && files.length > 0) {
+                        if (!isAdminAuthenticated()) {
+                            alert('동영상 드래그&드롭 교체는 관리자만 가능합니다.\n먼저 관리자 비밀번호(4012)를 인증해 주세요.');
+                            openAdminModal();
+                            return;
+                        }
                         handleVideoFile(files[0]);
                     }
                 }, false);
